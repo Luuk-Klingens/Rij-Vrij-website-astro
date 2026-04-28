@@ -1,123 +1,149 @@
-﻿---
-const primaryColor = '#0391b0';
+---
+const green        = '#223927';
+const gold         = '#ac884d';
+const currentYear  = new Date().getFullYear();
 const contactPhone = '015-2224012';
-const contactEmail = 'info@Rij-Vrij.com';
-const contactAddress = 'Hankweg 39, 2641 WV Pijnacker';
-const currentYear = 2026;
-const facebookUrl = 'https://www.facebook.com/profile.php?id=61569989527327';
-const instagramUrl = 'https://www.instagram.com/autorijschool_auto_maat/';
-const tiktokUrl = 'https://www.tiktok.com/@autorijschool.auto_maat';
+const contactEmail = 'info@rij-vrij.nl';
+const facebookUrl  = 'https://www.facebook.com/profile.php?id=61569989527327';
+const instagramUrl = 'https://www.instagram.com/rij_vrij/';
+const tiktokUrl    = 'https://www.tiktok.com/@rij.vrij/';
 import Icon from './Icon.astro';
 ---
 
-<footer class="bg-gray-900 text-white py-12">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex flex-col md:flex-row gap-16 mb-8">
+<!-- Diagonale bovenkant: goud parallelogram als overgang -->
+<div style={`background-color: ${green}; overflow: hidden; height: 3rem`}>
+  <svg viewBox="0 0 1440 48" preserveAspectRatio="none" style="width:100%;height:100%;display:block;">
+    <path d="M0,0 L1440,0 L1440,48 L0,0 Z" fill="#faf8f4" />
+  </svg>
+</div>
 
-      <!-- Logo & lesgebieden -->
-      <div class="shrink-0">
-        <img
-          src="/RijVrij-logo-png.png"
-          alt="Rij-Vrij Rijschool, RijVrij rijlessen Pijnacker & Delft"
-          class="h-10 w-auto object-contain mb-4"
-          width="213"
-          height="56"
-          loading="lazy"
-        />
-        <ul class="space-y-1.5 text-base text-gray-400">
-          <li><a href="/lesgebied/bergschenhoek" class="hover:text-white transition-colors">RijVrij Bergschenhoek</a></li>
-          <li><a href="/lesgebied/berkel-en-rodenrijs" class="hover:text-white transition-colors">RijVrij Berkel en Rodenrijs</a></li>
-          <li><a href="/lesgebied/bleiswijk" class="hover:text-white transition-colors">RijVrij Bleiswijk</a></li>
-          <li><a href="/lesgebied/delfgauw" class="hover:text-white transition-colors">RijVrij Delfgauw</a></li>
-          <li><a href="/lesgebied/delft" class="hover:text-white transition-colors">RijVrij Delft</a></li>
-          <li><a href="/lesgebied/leidschenveen" class="hover:text-white transition-colors">RijVrij Leidschenveen</a></li>
-          <li><a href="/lesgebied/nootdorp" class="hover:text-white transition-colors">RijVrij Nootdorp</a></li>
-          <li><a href="/lesgebied/pijnacker" class="hover:text-white transition-colors">RijVrij Pijnacker</a></li>
-          <li><a href="/lesgebied/rijswijk" class="hover:text-white transition-colors">RijVrij Rijswijk</a></li>
-          <li><a href="/lesgebied/voorburg" class="hover:text-white transition-colors">RijVrij Voorburg</a></li>
-          <li><a href="/lesgebied/ypenburg" class="hover:text-white transition-colors">RijVrij Ypenburg</a></li>
-          <li><a href="/lesgebied/zoetermeer" class="hover:text-white transition-colors">RijVrij Zoetermeer</a></li>
+<footer style={`background-color: ${green}`} class="text-white">
+
+  <!-- Gouden scheidingslijn bovenaan footer-content -->
+  <div style={`background: linear-gradient(90deg, ${gold}, transparent 60%); height: 3px`}></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-10">
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
+
+      <!-- Kolom 1: Logo & intro -->
+      <div class="md:col-span-1">
+        <div class="flex items-center gap-3 mb-5">
+          <img
+            src="/rij-vrij-logo.png"
+            alt="Rij-Vrij"
+            class="h-10 w-auto object-contain"
+            width="40" height="40" loading="lazy"
+          />
+          <span class="font-extrabold text-xl leading-none" style="letter-spacing: -0.02em">
+            <span class="text-white">Rij</span><span style={`color: ${gold}`}>-Vrij</span>
+          </span>
+        </div>
+        <p class="text-sm mb-5 leading-relaxed" style="color: rgba(255,255,255,0.6)">
+          Professionele opfrislessen in automaat. Regio Haaglanden, Delft &amp; Zoetermeer. Specialist autisme &amp; ADHD.
+        </p>
+        <!-- Gouden accent-streep -->
+        <div style={`width: 2rem; height: 3px; background-color: ${gold}; margin-bottom: 1rem`}></div>
+        <ul class="space-y-1 text-sm" style="color: rgba(255,255,255,0.5)">
+          {[
+            ['bergschenhoek','Bergschenhoek'],['berkel-en-rodenrijs','Berkel en Rodenrijs'],
+            ['bleiswijk','Bleiswijk'],['delfgauw','Delfgauw'],['delft','Delft'],
+            ['leidschenveen','Leidschenveen'],['nootdorp','Nootdorp'],['pijnacker','Pijnacker'],
+            ['rijswijk','Rijswijk'],['voorburg','Voorburg'],['ypenburg','Ypenburg'],
+            ['zoetermeer','Zoetermeer'],
+          ].map(([slug, naam]) => (
+            <li><a href={`/lesgebied/${slug}`} class="footer-link">Opfrislessen {naam}</a></li>
+          ))}
         </ul>
       </div>
 
-      <!-- Contact Details + Legal -->
-      <div class="flex flex-col sm:flex-row flex-1 justify-start gap-16">
+      <!-- Kolom 2: Contact -->
       <div>
-        <h2 class="text-xl font-semibold mb-5">Contact Details</h2>
-        <ul class="space-y-4 text-base text-gray-400">
-          <li class="flex items-center gap-2">
-            <Icon name="envelope" class="w-4 text-center" style={`color: ${primaryColor}`} />
-            <a href="mailto:info@Rij-Vrij.com" class="hover:text-white transition-colors">info@Rij-Vrij.com</a>
+        <h2 class="text-base font-bold mb-5 flex items-center gap-2 uppercase tracking-widest" style={`color: ${gold}; font-size: 0.75rem`}>
+          Contact
+        </h2>
+        <ul class="space-y-3.5 text-sm" style="color: rgba(255,255,255,0.7)">
+          <li>
+            <a href={`mailto:${contactEmail}`} class="footer-link flex items-center gap-2.5">
+              <Icon name="envelope" style={`color: ${gold}; font-size:13px; flex-shrink:0`} />
+              {contactEmail}
+            </a>
           </li>
-          <li class="flex items-center gap-2">
-            <Icon name="phone" class="w-4 text-center" style={`color: ${primaryColor}`} />
-            <a href="tel:0152224012" class="hover:text-white transition-colors">015 – 222 40 12</a>
+          <li>
+            <a href="tel:0152224012" class="footer-link flex items-center gap-2.5">
+              <Icon name="phone" style={`color: ${gold}; font-size:13px; flex-shrink:0`} />
+              {contactPhone}
+            </a>
           </li>
-          <li class="flex items-start gap-2">
-            <Icon name="map-marker-alt" class="w-4 text-center mt-0.5" style={`color: ${primaryColor}`} />
-            <span>Hankweg 39<br />2641 WV PIJNACKER</span>
+          <li class="flex items-start gap-2.5">
+            <Icon name="map-marker-alt" style={`color: ${gold}; font-size:13px; flex-shrink:0; margin-top:2px`} />
+            <span>Hankweg 39<br />2641 WV Pijnacker</span>
           </li>
-          <li class="flex items-center gap-2">
-            <Icon name="clock" class="w-4 text-center" style={`color: ${primaryColor}`} />
+          <li class="flex items-center gap-2.5">
+            <Icon name="clock" style={`color: ${gold}; font-size:13px; flex-shrink:0`} />
             <span>Ma – Vr: 8:00 – 17:00</span>
           </li>
         </ul>
       </div>
 
-      <!-- Legal -->
+      <!-- Kolom 3: Juridisch -->
       <div>
-        <h2 class="text-xl font-semibold mb-5">Legal</h2>
-        <ul class="space-y-4 text-base text-gray-400">
-          <li class="flex items-center gap-2">
-            <Icon name="building" class="w-4 text-center" style={`color: ${primaryColor}`} />
+        <h2 class="text-base font-bold mb-5 uppercase tracking-widest" style={`color: ${gold}; font-size: 0.75rem`}>
+          Juridisch
+        </h2>
+        <ul class="space-y-3.5 text-sm" style="color: rgba(255,255,255,0.7)">
+          <li class="flex items-center gap-2.5">
+            <Icon name="building" style={`color: ${gold}; font-size:13px; flex-shrink:0`} />
             <span>KVK: 62968157</span>
           </li>
-          <li class="flex items-center gap-2">
-            <Icon name="file-invoice" class="w-4 text-center" style={`color: ${primaryColor}`} />
+          <li class="flex items-center gap-2.5">
+            <Icon name="file-invoice" style={`color: ${gold}; font-size:13px; flex-shrink:0`} />
             <span>BTW: NL004762677B86</span>
           </li>
-          <li class="flex items-center gap-2">
-            <Icon name="file-contract" class="w-4 text-center" style={`color: ${primaryColor}`} />
-            <a href="/algemene-voorwaarden" class="hover:text-white transition-colors">Algemene voorwaarden</a>
+          <li class="flex items-center gap-2.5">
+            <Icon name="graduation-cap" style={`color: ${gold}; font-size:13px; flex-shrink:0`} />
+            <span>CBR Opleidersnummer: 1460F3</span>
           </li>
-          <li class="flex items-center gap-2">
-            <Icon name="shield-alt" class="w-4 text-center" style={`color: ${primaryColor}`} />
-            <a href="/privacy-voorwaarden" class="hover:text-white transition-colors">Privacy voorwaarden</a>
+          <li>
+            <a href="/algemene-voorwaarden" class="footer-link flex items-center gap-2.5">
+              <Icon name="file-contract" style={`color: ${gold}; font-size:13px; flex-shrink:0`} />
+              Algemene voorwaarden
+            </a>
           </li>
-          <li class="flex items-center gap-2">
-            <Icon name="graduation-cap" class="w-4 text-center" style={`color: ${primaryColor}`} />
-            <span>CBR Opleidersnummer 1460F3</span>
+          <li>
+            <a href="/privacy-voorwaarden" class="footer-link flex items-center gap-2.5">
+              <Icon name="shield-alt" style={`color: ${gold}; font-size:13px; flex-shrink:0`} />
+              Privacybeleid
+            </a>
           </li>
         </ul>
       </div>
-      </div>
 
-      <!-- Social Media -->
-      <div class="shrink-0 mr-12">
-        <h2 class="text-xl font-semibold mb-5">Volg ons</h2>
-        <div class="flex flex-col gap-3">
-          <a href={facebookUrl} target="_blank" rel="noopener noreferrer"
-             class="flex items-center gap-4 bg-gray-800 hover:bg-gray-700 rounded-xl px-5 py-3 transition-colors group">
-            <Icon name="facebook" class="text-2xl text-blue-400" />
+      <!-- Kolom 4: Social media -->
+      <div>
+        <h2 class="text-base font-bold mb-5 uppercase tracking-widest" style={`color: ${gold}; font-size: 0.75rem`}>
+          Volg ons
+        </h2>
+        <div class="flex flex-col gap-2.5">
+          <a href={facebookUrl} target="_blank" rel="noopener noreferrer" class="social-card">
+            <Icon name="facebook" class="text-blue-400 text-xl flex-shrink-0" />
             <div>
-              <p class="font-semibold text-white text-sm">Facebook</p>
-              <p class="text-xs text-gray-400 group-hover:text-gray-300 transition-colors">Rij-Vrij Rijschool</p>
+              <p class="font-bold text-sm text-white">Facebook</p>
+              <p class="text-xs" style="color: rgba(255,255,255,0.5)">Rij-Vrij Rijschool</p>
             </div>
           </a>
-          <a href={instagramUrl} target="_blank" rel="noopener noreferrer"
-             class="flex items-center gap-4 bg-gray-800 hover:bg-gray-700 rounded-xl px-5 py-3 transition-colors group">
-            <Icon name="instagram" class="text-2xl text-pink-400" />
+          <a href={instagramUrl} target="_blank" rel="noopener noreferrer" class="social-card">
+            <Icon name="instagram" class="text-pink-400 text-xl flex-shrink-0" />
             <div>
-              <p class="font-semibold text-white text-sm">Instagram</p>
-              <p class="text-xs text-gray-400 group-hover:text-gray-300 transition-colors">@autorijschool_auto_maat</p>
+              <p class="font-bold text-sm text-white">Instagram</p>
+              <p class="text-xs" style="color: rgba(255,255,255,0.5)">@rij_vrij</p>
             </div>
           </a>
-          <a href={tiktokUrl} target="_blank" rel="noopener noreferrer"
-             class="flex items-center gap-4 bg-gray-800 hover:bg-gray-700 rounded-xl px-5 py-3 transition-colors group">
-            <Icon name="tiktok" class="text-2xl text-white" />
+          <a href={tiktokUrl} target="_blank" rel="noopener noreferrer" class="social-card">
+            <Icon name="tiktok" class="text-white text-xl flex-shrink-0" />
             <div>
-              <p class="font-semibold text-white text-sm">TikTok</p>
-              <p class="text-xs text-gray-400 group-hover:text-gray-300 transition-colors">@autorijschool.auto_maat</p>
+              <p class="font-bold text-sm text-white">TikTok</p>
+              <p class="text-xs" style="color: rgba(255,255,255,0.5)">@rij.vrij</p>
             </div>
           </a>
         </div>
@@ -125,20 +151,36 @@ import Icon from './Icon.astro';
 
     </div>
 
-    <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400 gap-4">
+    <!-- Copyright balk -->
+    <div class="border-t pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs" style="border-color: rgba(172,136,77,0.25); color: rgba(255,255,255,0.4)">
       <div class="flex items-center gap-4">
-        <p>&copy; {currentYear} Rij-Vrij.com</p>
-        <a href={facebookUrl} target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="Facebook">
-          <Icon name="facebook" class="text-xl" />
-        </a>
-        <a href={instagramUrl} target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="Instagram">
-          <Icon name="instagram" class="text-xl" />
-        </a>
-        <a href={tiktokUrl} target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="TikTok">
-          <Icon name="tiktok" class="text-xl" />
-        </a>
+        <p>&copy; {currentYear} Rij-Vrij Opfrislessen</p>
+        <div class="flex items-center gap-3">
+          <a href={facebookUrl} target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="Facebook"><Icon name="facebook" style="font-size:15px" /></a>
+          <a href={instagramUrl} target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="Instagram"><Icon name="instagram" style="font-size:15px" /></a>
+          <a href={tiktokUrl} target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="TikTok"><Icon name="tiktok" style="font-size:15px" /></a>
+        </div>
       </div>
-      <p>Website made &amp; managed by <a href="https://luukklingens.com" target="_blank" rel="noopener noreferrer" class="font-bold hover:text-white transition-colors">Luuk Klingens</a></p>
+      <p>Website door <a href="https://luukklingens.com" target="_blank" rel="noopener noreferrer" class="font-bold hover:text-white transition-colors">Luuk Klingens</a></p>
     </div>
+
   </div>
 </footer>
+
+<style>
+  .footer-link { transition: color 0.12s; }
+  .footer-link:hover { color: white; }
+
+  .social-card {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    padding: 0.75rem 1rem;
+    border-left: 3px solid #ac884d;
+    background-color: rgba(255,255,255,0.05);
+    transition: background-color 0.12s;
+  }
+  .social-card:hover {
+    background-color: rgba(255,255,255,0.1);
+  }
+</style>

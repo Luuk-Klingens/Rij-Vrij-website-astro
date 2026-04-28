@@ -2,6 +2,7 @@
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import { getLang, getAlternateUrl } from '../i18n/utils';
+import '../styles/global.css';
 
 interface Props {
   title: string;
@@ -11,15 +12,16 @@ interface Props {
 
 const {
   title,
-  description = 'Rij-Vrij Rijschool (RijVrij) geeft RijVrij rijlessen in regio Haaglanden, Delft en Zoetermeer. Geen wachttijden, direct van start. Specialist autisme & ADHD.',
+  description = 'Rij-Vrij biedt professionele opfrislessen voor bestuurders die al een rijbewijs hebben. Automaat, regio Haaglanden, Delft & Zoetermeer. Specialist autisme & ADHD.',
   ogImage = '/og-image.png',
 } = Astro.props;
 
 const lang = getLang(Astro.url.pathname);
-const canonicalURL = new URL(Astro.url.pathname, 'https://Rij-Vrij.com');
+const canonicalURL = new URL(Astro.url.pathname, 'https://rij-vrij.nl');
 const alternateUrl = getAlternateUrl(Astro.url.pathname);
-const alternateAbsolute = new URL(alternateUrl, 'https://Rij-Vrij.com');
-const fullTitle = `${title} | Rij-Vrij Rijschool`;
+const alternateAbsolute = new URL(alternateUrl, 'https://rij-vrij.nl');
+const defaultDescription = 'Rij-Vrij biedt professionele opfrislessen voor bestuurders die al een rijbewijs hebben. Automaat, regio Haaglanden, Delft & Zoetermeer. Specialist autisme & ADHD.';
+const fullTitle = `${title} | Rij-Vrij Opfrislessen`;
 ---
 
 <!DOCTYPE html>
@@ -39,7 +41,7 @@ const fullTitle = `${title} | Rij-Vrij Rijschool`;
     <meta property="og:url" content={canonicalURL.href} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={`https://Rij-Vrij.com${ogImage}`} />
+    <meta property="og:image" content={`https://rij-vrij.nl${ogImage}`} />
     <meta property="og:locale" content={lang === 'en' ? 'en_GB' : 'nl_NL'} />
     <meta property="og:site_name" content="Rij-Vrij Rijschool" />
 
@@ -47,7 +49,7 @@ const fullTitle = `${title} | Rij-Vrij Rijschool`;
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={fullTitle} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={`https://Rij-Vrij.com${ogImage}`} />
+    <meta name="twitter:image" content={`https://rij-vrij.nl${ogImage}`} />
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon.png" />
@@ -57,28 +59,28 @@ const fullTitle = `${title} | Rij-Vrij Rijschool`;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- Google Fonts – niet-blokkerend -->
+    <!-- DM Sans – niet-blokkerend -->
     <link
       rel="preload"
       as="style"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800&display=swap"
       onload="this.onload=null;this.rel='stylesheet'"
     />
     <noscript>
       <link
         rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,700;9..40,800&display=swap"
       />
     </noscript>
 
     <style>
-      body { font-family: 'Inter', sans-serif; }
+      body { font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif; }
     </style>
 
     <!-- Pagina-specifieke head-tags (bv. preload LCP-afbeelding, JSON-LD schema) -->
     <slot name="head" />
   </head>
-  <body class="bg-white">
+  <body class="bg-[#faf8f4] text-[#1a1a18]">
     <Navbar />
     <main>
       <slot />

@@ -2,7 +2,7 @@
 import cloudflare from '@astrojs/cloudflare';
 
 export default defineConfig({
-  site: 'https://Rij-Vrij.com',
+  site: 'https://rij-vrij.nl',
   output: 'server',
   adapter: cloudflare(),
   image: { service: passthroughImageService() },

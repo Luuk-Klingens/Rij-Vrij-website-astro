@@ -4,7 +4,7 @@ import { faqCategories } from '../data/faq';
 
 export const prerender = true;
 
-const SITE = 'https://Rij-Vrij.com';
+const SITE = 'https://rij-vrij.nl';
 const BUILD_DATE = new Date().toISOString().split('T')[0];
 
 const faqSlugs = faqCategories.flatMap(cat => cat.items.map(item => item.slug));

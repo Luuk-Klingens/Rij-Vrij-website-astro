@@ -1,9 +1,9 @@
 ﻿TEKSTEN AANPASSEN (voor papa)
 ------------------------------
 Stap 1: Ga naar de pagina die je wilt aanpassen, voeg ?labels=1 toe aan het einde van de URL.
-         Voorbeeld:  https://Rij-Vrij.com/?labels=1
-                     https://Rij-Vrij.com/over-ons?labels=1
-                     https://Rij-Vrij.com/prijzen?labels=1
+         Voorbeeld:  https://rij-vrij.nl/?labels=1
+                     https://rij-vrij.nl/over-ons?labels=1
+                     https://rij-vrij.nl/prijzen?labels=1
 
 Stap 2: Je ziet nu oranje nummertjes naast elke tekst.
          Klik op een nummertje om de huidige tekst te zien.
@@ -24,13 +24,13 @@ Voorbeeld berichtje:
 GOOGLE SEARCH CONSOLE
 ---------------------
 1. Ga naar https://search.google.com/search-console
-2. Voeg property toe: https://Rij-Vrij.com
+2. Voeg property toe: https://rij-vrij.nl
 3. Verifieer eigendom (bijv. via HTML-tag in Layout.astro of DNS-record bij Cloudflare)
 4. Ga naar Sitemaps (linkermenu)
 5. Voer in: sitemap-index.xml
 6. Klik op Verzenden
 
-Doe dit nadat de site live is op Rij-Vrij.com.
+Doe dit nadat de site live is op rij-vrij.nl.
 
 ---------------------
 NOG TE MAKEN BESTANDEN

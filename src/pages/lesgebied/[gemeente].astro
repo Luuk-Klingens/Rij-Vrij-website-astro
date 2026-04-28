@@ -13,8 +13,8 @@ export function getStaticPaths() {
 
 const { lesgebied } = Astro.props;
 
-const primaryColor = '#0391b0';
-const secondaryColor = '#790f34';
+const primaryColor = '#223927';
+const secondaryColor = '#ac884d';
 
 const schema = {
   '@context': 'https://schema.org',
@@ -22,10 +22,10 @@ const schema = {
   name: 'Rij-Vrij Rijschool',
   alternateName: ['RijVrij Rijschool', 'RijVrij', 'Autorijschool Rij-Vrij', 'Autorijschool RijVrij'],
   description: `Rij-Vrij Rijschool geeft RijVrij rijlessen in ${lesgebied.naam}. Hoog slagingspercentage, geen wachttijden. Specialist rijlessen autisme & ADHD in ${lesgebied.naam} en omgeving.`,
-  url: `https://Rij-Vrij.com/lesgebied/${lesgebied.slug}`,
+  url: `https://rij-vrij.nl/lesgebied/${lesgebied.slug}`,
   telephone: '+31152224012',
-  email: 'info@Rij-Vrij.com',
-  image: 'https://Rij-Vrij.com/og-image.png',
+  email: 'info@rij-vrij.nl',
+  image: 'https://rij-vrij.nl/og-image.png',
   priceRange: '€€',
   address: {
     '@type': 'PostalAddress',
@@ -125,7 +125,7 @@ const serviceSchema = {
     '@type': 'DrivingSchool',
     name: 'Rij-Vrij Rijschool',
     telephone: '+31152224012',
-    url: 'https://Rij-Vrij.com',
+    url: 'https://rij-vrij.nl',
   },
   areaServed: {
     '@type': 'City',
@@ -143,9 +143,9 @@ const breadcrumb = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://Rij-Vrij.com' },
-    { '@type': 'ListItem', position: 2, name: 'Lesgebieden', item: 'https://Rij-Vrij.com/lesgebied' },
-    { '@type': 'ListItem', position: 3, name: lesgebied.naam, item: `https://Rij-Vrij.com/lesgebied/${lesgebied.slug}` },
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://rij-vrij.nl' },
+    { '@type': 'ListItem', position: 2, name: 'Lesgebieden', item: 'https://rij-vrij.nl/lesgebied' },
+    { '@type': 'ListItem', position: 3, name: lesgebied.naam, item: `https://rij-vrij.nl/lesgebied/${lesgebied.slug}` },
   ],
 };
 import Icon from '../../components/Icon.astro';
@@ -159,7 +159,7 @@ import Icon from '../../components/Icon.astro';
   <div class="bg-white">
 
     <!-- Header -->
-    <section class="py-20" style={`background: linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`}>
+    <section class="py-20" style={`background-color: ${primaryColor}`}>
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <!-- Breadcrumb -->
         <nav class="text-white text-sm mb-6" aria-label="Breadcrumb">

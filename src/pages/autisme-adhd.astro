@@ -1,190 +1,172 @@
-﻿---
+---
 import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
 
-const primaryColor = '#0391b0';
-const secondaryColor = '#790f34';
+const green = '#223927';
+const gold  = '#ac884d';
 
 const aanpak = [
-  { icon: 'fa-user', title: 'Jij staat centraal', text: 'Jouw leerstijl, jouw veiligheid en jouw tempo bepalen het ritme van elke les.' },
-  { icon: 'fa-handshake', title: 'Vaste instructeur', text: 'Altijd dezelfde vertrouwde instructeur voor maximale continuiteit en herkenbaarheid.' },
-  { icon: 'fa-calendar-check', title: 'Duidelijke structuur', text: 'Voorspelbare lessen met een vaste opbouw zodat je weet wat je kunt verwachten.' },
-  { icon: 'fa-shield-alt', title: 'Minder prikkels', text: 'Speciale aandacht voor sensorische prikkels en concentratiebehoud tijdens de rit.' },
-  { icon: 'fa-file-alt', title: 'Aangepaste examens', text: 'Indien nodig: verlengd examen of Engelstalig examen.' },
-  { icon: 'fa-car', title: 'RijVrij rijbewijs', text: 'Geen schakelen, dus volledige focus op het verkeer. Scheelt gemiddeld 10 lessen.' },
+  { icon: 'user', title: 'Jij staat centraal', text: 'Jouw leerstijl, jouw veiligheid en jouw tempo bepalen het ritme van elke les.' },
+  { icon: 'handshake', title: 'Vaste instructeur', text: 'Altijd dezelfde vertrouwde instructeur voor maximale continuïteit en herkenbaarheid.' },
+  { icon: 'calendar-check', title: 'Duidelijke structuur', text: 'Voorspelbare lessen met een vaste opbouw — je weet precies wat je kunt verwachten.' },
+  { icon: 'shield-alt', title: 'Minder prikkels', text: 'Extra aandacht voor sensorische prikkels en concentratiebehoud tijdens de rit.' },
+  { icon: 'car', title: 'Altijd automaat', text: 'Geen schakelen, volledige focus op het verkeer. Dat maakt een groot verschil.' },
+  { icon: 'heart', title: 'Geduld & begrip', text: 'Nooit druk, nooit haast. Jouw tempo is ons tempo — altijd.' },
 ];
 
 const silvyReview = {
   name: 'Shiyanna Lucifer (Lucy)',
   photo: 'https://lh3.googleusercontent.com/a-/ALV-UjXHdmykFII6CFC4APW09O8hck0gu4kHT0hqYQNenZcnmTQmkxiS=s128-c0x00000000-cc-rp-mo',
-  text: 'Geweldige rijschool! Peter is heel rustig, kalm, geduldig en bovenal eerlijk! Ook heb ik heerlijk met hem kunnen praten over van alles en nog wat. Er was een relaxte sfeer in de auto en alles was bespreekbaar. Hierdoor is mijn zelfvertrouwen achter het stuur ook flink gestegen. Aan het eind van dit rij-avontuur ben ik in 1x geslaagd dankzij de super begeleiding van Peter! Dit was al met een extra moeilijkheidsgraad vanwege mijn ADHD, maar Peter wist hier heel goed mee om te gaan. Hij kon mij als het ware lezen en las al een pauze in, nog voordat ik zelf doorhad dat ik het toch eigenlijk wel nodig had. Super bedankt Peter, zonder jouw hulp had ik dit nooit gelijk gehaald! Veel succes met je rijschool in de toekomst!',
+  text: 'Geweldige rijschool! Peter is heel rustig, kalm, geduldig en bovenal eerlijk! Ook heb ik heerlijk met hem kunnen praten over van alles en nog wat. Er was een relaxte sfeer in de auto en alles was bespreekbaar. Hierdoor is mijn zelfvertrouwen achter het stuur ook flink gestegen. Dit was al met een extra moeilijkheidsgraad vanwege mijn ADHD, maar Peter wist hier heel goed mee om te gaan. Hij kon mij als het ware lezen en las al een pauze in, nog voordat ik zelf doorhad dat ik het toch eigenlijk wel nodig had. Super bedankt Peter!',
   date: '6 maanden geleden',
 };
-import Icon from '../components/Icon.astro';
 ---
 
 <Layout
-  title="Rijles bij Autisme & ADHD"
-  description="Rij-Vrij Rijschool is specialist in rijlessen voor leerlingen met autisme of ADHD. Geduld, structuur en aanpassing aan jouw tempo. Gecertificeerde instructeur in Pijnacker."
+  title="Opfrislessen bij Autisme & ADHD"
+  description="Rij-Vrij is specialist in opfrislessen voor mensen met autisme of ADHD. Geduld, duidelijke structuur en aanpassing aan jouw tempo. Erkend bij rijles-en-autisme.nl. Pijnacker, regio Haaglanden."
 >
-  <div class="bg-white">
 
-    <!-- Header -->
-    <section class="py-20" style={`background: linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`}>
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <p class="text-white text-sm font-semibold uppercase tracking-widest mb-3">Erkend specialist</p>
-        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Autisme &amp; ADHD</h1>
-        <p class="text-xl text-white max-w-2xl mx-auto">
-          Rijlessen op jouw manier. Rij-Vrij begeleidt mensen met autisme of ADHD met kennis, geduld en structuur.
-        </p>
-        <div class="mt-8 inline-flex items-center gap-3 bg-white/20 backdrop-blur-sm border border-white/30 text-white px-6 py-3 rounded-xl text-sm font-semibold">
-          <Icon name="certificate" />
-          Geregistreerd bij rijles-en-autisme.nl, onderdeel van Spectrum Brabant
-        </div>
+  <!-- ═══ HERO ═══ -->
+  <section style={`background-color: ${green}`} class="py-20">
+    <div class="section-container">
+      <div style={`width: 2.5rem; height: 4px; background-color: ${gold}; margin-bottom: 1.5rem`}></div>
+      <p class="text-xs font-bold tracking-widest uppercase mb-3" style={`color: ${gold}`}>Erkend specialist</p>
+      <h1 class="text-4xl sm:text-5xl font-extrabold text-white mb-4" style="line-height: 1.1">
+        Autisme &amp; ADHD
+      </h1>
+      <p class="text-lg max-w-2xl mb-8" style="color: rgba(255,255,255,0.70)">
+        Opfrislessen op jouw manier. Rij-Vrij begeleidt mensen met autisme of ADHD met kennis, geduld en een vaste structuur.
+      </p>
+      <div class="inline-flex items-center gap-3 px-5 py-3 text-sm font-bold text-white" style={`background-color: rgba(172,136,77,0.15); border-left: 3px solid ${gold}; border-radius: 0 4px 4px 0`}>
+        <Icon name="certificate" style={`color: ${gold}; font-size:14px`} />
+        Geregistreerd bij rijles-en-autisme.nl, onderdeel van Spectrum Brabant
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Tekst links + Silvy review rechts -->
-    <section class="py-16 bg-white">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-
-          <!-- Links: info tekst -->
-          <div class="space-y-5 text-gray-700 leading-relaxed">
-            <p>
-              Mensen met autisme (ASS), ADHD of vergelijkbare problemen kunnen net zo goed auto rijden als anderen. Omdat hun hersenen informatie soms anders verwerken, kan het leren autorijden wat meer tijd of uitleg vragen. Met de juiste begeleiding tijdens de rijlessen is het voor hen gelukkig goed mogelijk om het rijbewijs te halen.
-            </p>
-            <p>
-              Rijschool Rij-Vrij is gespecialiseerd in het begeleiden van mensen met autisme en ADHD. Wij zijn hier trots op. Als erkende specialist staan wij geregistreerd bij <a href="https://www.rijles-en-autisme.nl" target="_blank" rel="noopener noreferrer" class="font-semibold hover:underline" style={`color: ${primaryColor}`}>rijles-en-autisme.nl</a>. Dat is een onderdeel van Spectrum Brabant. Spectrum Brabant is een centrum voor zorg en onderwijs waar een gespecialiseerd centrum voor autisme en ADHD onderdeel van uitmaakt.
-            </p>
-            <p>
-              Mensen met een diagnose AD(H)D en/of autisme die hun rijbewijs willen halen worden vanaf 1 december 2025 voor deze aandoeningen niet meer doorverwezen voor een medische keuring.
-            </p>
-            <p>
-              Inzet is dat AD(H)D en autisme op 1 april 2026 verdwijnen uit de Gezondheidsverklaring. Tot die datum moeten de vragen over AD(H)D en autisme in de Gezondheidsverklaring van het CBR worden beantwoord. Mensen die aangeven AD(H)D en/of autisme te hebben en geen andere aandoeningen hebben zullen gedurende de overgangsperiode echter niet meer worden doorverwezen voor een medische keuring. Zo biedt het CBR duidelijkheid aan de doelgroep en voorkomen ze dat mensen onnodig lang moeten wachten om hun rijbewijs te kunnen halen.
-            </p>
-            <p>
-              Kortom, de weg naar jouw rijbewijs is hiermee vereenvoudigd en Autorijschool Rij-Vrij is jouw erkende specialist en partner daarbij!
-            </p>
-            <p class="font-semibold" style={`color: ${primaryColor}`}>Tot snel achter het stuur!</p>
-          </div>
-
-          <!-- Rechts: Silvy testimonial -->
-          <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 shadow-sm">
-            <p class="text-xs font-bold uppercase tracking-widest mb-5" style={`color: ${primaryColor}`}>Silvy zei dit over ons</p>
-
-            <!-- Sterren -->
-            <div class="flex gap-1 mb-4">
-              {[...Array(5)].map(() => (
-                <Icon name="star" class="text-yellow-400 text-lg" />
-              ))}
-            </div>
-
-            <!-- Review tekst -->
-            <p class="text-gray-700 text-sm leading-relaxed italic mb-6">
-              "{silvyReview.text}"
-            </p>
-
-            <!-- Auteur -->
-            <div class="flex items-center gap-3 border-t border-gray-200 pt-5">
-              <img
-                src={silvyReview.photo}
-                alt={silvyReview.name}
-                width="48"
-                height="48"
-                loading="lazy"
-                class="rounded-full object-cover flex-shrink-0"
-                style="width:48px;height:48px"
-              />
-              <div>
-                <p class="font-semibold text-gray-900 text-sm">{silvyReview.name}</p>
-                <p class="text-xs text-gray-500">{silvyReview.date} · Google Review</p>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-
-    <!-- Waarom RijVrij -->
-    <section class="py-16 bg-white">
-      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-          Waarom RijVrij rijles zo goed werkt
-        </h2>
-        <p class="text-gray-600 leading-relaxed mb-8">
-          Het RijVrij rijbewijs is bij uitstek geschikt voor mensen met autisme of ADHD. Doordat je niet hoeft te schakelen, kun je je volledig concentreren op het verkeer. Dit zorgt voor minder prikkels en meer rust tijdens de rit.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <div
-            class="flex-1 rounded-xl p-5 text-center"
-            style={`background: ${primaryColor}10`}
-          >
-            <div class="text-3xl font-black mb-1" style={`color: ${primaryColor}`}>10</div>
-            <div class="text-sm text-gray-600">lessen minder gemiddeld wanneer je met een RijVrij rijdt</div>
-          </div>
-          <div
-            class="flex-1 rounded-xl p-5 text-center"
-            style={`background: ${secondaryColor}10`}
-          >
-            <div class="text-3xl font-black mb-1" style={`color: ${secondaryColor}`}>100%</div>
-            <div class="text-sm text-gray-600">focus op het verkeer</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Onze aanpak -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-gray-900 mb-3">Onze aanpak</h2>
-          <p class="text-gray-600 max-w-xl mx-auto">
-            Elke les is afgestemd op jouw behoeften. Zo ziet rijles bij Rij-Vrij er voor jou uit.
-          </p>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {aanpak.map((item) => (
-            <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100 overflow-hidden flex flex-col">
-              <div class="flex items-center justify-center py-7" style={`background-color: ${primaryColor}`}>
-                <i class={`fas ${item.icon} text-4xl text-white`}></i>
-              </div>
-              <div class="p-6 flex flex-col flex-grow">
-                <h3 class="font-bold text-gray-900 mb-2 text-center">{item.title}</h3>
-                <p class="text-gray-600 text-sm leading-relaxed text-center">{item.text}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="py-16 bg-white">
-      <div class="max-w-2xl mx-auto px-4 text-center">
-        <h3 class="text-2xl font-bold text-gray-900 mb-3">Klaar om te beginnen?</h3>
-        <p class="text-gray-600 mb-6">
-          Plan een gratis proefles of neem contact op. Wij helpen je graag op weg.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="/#proefles-cta"
-            class="inline-block text-white px-7 py-3 rounded-lg font-semibold hover:opacity-90 transition-all shadow-md"
-            style={`background-color: ${primaryColor}`}
-          >
-            <Icon name="calendar-check" class="mr-2" />Plan gratis proefles
-          </a>
-          <a
-            href="/contact"
-            class="inline-block text-white px-7 py-3 rounded-lg font-semibold hover:opacity-90 transition-all shadow-md"
-            style={`background-color: ${secondaryColor}`}
-          >
-            <Icon name="envelope" class="mr-2" />Neem contact op
-          </a>
-        </div>
-      </div>
-    </section>
-
+  <!-- Diagonale overgang -->
+  <div style={`background-color: ${green}; overflow: hidden; height: 3rem`}>
+    <svg viewBox="0 0 1440 48" preserveAspectRatio="none" style="width:100%;height:100%;display:block;">
+      <path d="M0,0 L1440,48 L0,48 Z" fill="white" />
+    </svg>
   </div>
+
+  <!-- ═══ INFO + REVIEW ═══ -->
+  <section class="pt-4 pb-20 bg-white">
+    <div class="section-container">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+
+        <!-- Info tekst -->
+        <div>
+          <span class="gold-bar"></span>
+          <div class="space-y-4 text-base leading-relaxed" style="color: #374151">
+            <p>
+              Mensen met autisme (ASS), ADHD of vergelijkbare kenmerken kunnen prima autorijden en opfrislessen volgen. Omdat hun hersenen informatie soms anders verwerken, kan begeleiding net iets anders zijn — en daar zijn wij in gespecialiseerd.
+            </p>
+            <p>
+              Rijschool Rij-Vrij is erkend specialist en staat geregistreerd bij <a href="https://www.rijles-en-autisme.nl" target="_blank" rel="noopener noreferrer" class="font-bold hover:opacity-70 transition-opacity" style={`color: ${green}`}>rijles-en-autisme.nl</a>, onderdeel van Spectrum Brabant — een centrum voor zorg en onderwijs gespecialiseerd in autisme en ADHD.
+            </p>
+            <p>
+              Rijden in een automaat helpt extra: geen schakelen, volledig focussen op het verkeer. Dat geeft rust, overzicht en minder prikkels.
+            </p>
+            <p class="font-bold" style={`color: ${green}`}>
+              Altijd op jouw tempo. Nooit druk, nooit haast.
+            </p>
+          </div>
+
+          <!-- Stats -->
+          <div class="grid grid-cols-2 gap-4 mt-8">
+            <div class="p-5 text-center" style={`border: 2px solid #e4ddd0; border-top: 4px solid ${gold}; border-radius: 4px`}>
+              <div class="text-3xl font-extrabold mb-1" style={`color: ${green}`}>100%</div>
+              <div class="text-sm" style="color: #5c5c50">Automaat — minder afleiding</div>
+            </div>
+            <div class="p-5 text-center" style={`border: 2px solid #e4ddd0; border-top: 4px solid ${gold}; border-radius: 4px`}>
+              <div class="text-3xl font-extrabold mb-1" style={`color: ${green}`}>Erkend</div>
+              <div class="text-sm" style="color: #5c5c50">Rijles-en-autisme.nl</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Silvy review -->
+        <div style={`border: 2px solid #e4ddd0; border-left: 4px solid ${gold}; border-radius: 0 4px 4px 0; background: #faf8f4; padding: 2rem`}>
+          <p class="text-xs font-bold uppercase tracking-widest mb-5" style={`color: ${gold}`}>Wat een leerling over ons zei</p>
+
+          <div class="flex gap-1 mb-4">
+            {[...Array(5)].map(() => (
+              <Icon name="star" class="text-yellow-400 text-lg" />
+            ))}
+          </div>
+
+          <p class="text-sm leading-relaxed italic mb-6" style="color: #374151">
+            "{silvyReview.text}"
+          </p>
+
+          <div class="flex items-center gap-3 border-t pt-5" style="border-color: #e4ddd0">
+            <img
+              src={silvyReview.photo}
+              alt={silvyReview.name}
+              width="44" height="44" loading="lazy"
+              style="width:44px;height:44px;border-radius:2px;object-fit:cover;flex-shrink:0"
+            />
+            <div>
+              <p class="font-bold text-sm" style={`color: ${green}`}>{silvyReview.name}</p>
+              <p class="text-xs" style="color: #5c5c50">{silvyReview.date} · Google Review</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ ONZE AANPAK ═══ -->
+  <section class="py-20" style="background-color: #faf8f4">
+    <div class="section-container">
+
+      <div class="mb-12 text-center">
+        <span class="gold-bar-center"></span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold mb-3" style={`color: ${green}`}>Onze aanpak</h2>
+        <p class="max-w-xl mx-auto" style="color: #5c5c50">
+          Elke les is afgestemd op jouw behoeften. Zo ziet een opfrisles bij Rij-Vrij er voor jou uit.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {aanpak.map((item) => (
+          <div class="card-dutch flex flex-col gap-4">
+            <div class="w-10 h-10 flex items-center justify-center flex-shrink-0" style={`background-color: ${green}; border-radius: 4px`}>
+              <Icon name={item.icon} class="text-white" style="font-size:16px" />
+            </div>
+            <div>
+              <h3 class="font-extrabold mb-2" style={`color: ${green}`}>{item.title}</h3>
+              <p class="text-sm leading-relaxed" style="color: #5c5c50">{item.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA ═══ -->
+  <section class="py-16 bg-white border-t" style="border-color: #e4ddd0">
+    <div class="section-container text-center">
+      <span class="gold-bar-center"></span>
+      <h3 class="text-2xl font-extrabold mb-3" style={`color: ${green}`}>Klaar om te starten?</h3>
+      <p class="mb-7" style="color: #5c5c50">
+        Plan een opfrisles of stel je vraag. Wij helpen je graag op weg — op jouw tempo.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a href="/#opfrisles-cta" class="btn-primary">
+          <Icon name="calendar-check" style="font-size:13px" />
+          Plan opfrisles
+        </a>
+        <a href="/contact" class="btn-outline">
+          <Icon name="envelope" style="font-size:13px" />
+          Neem contact op
+        </a>
+      </div>
+    </div>
+  </section>
+
 </Layout>

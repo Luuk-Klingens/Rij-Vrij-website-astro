@@ -2,39 +2,38 @@
 import { siteReviews } from '../data/reviews';
 import Icon from './Icon.astro';
 
-const primaryColor = '#0391b0';
-const AVATAR_STYLE = `width:40px;height:40px;border-radius:50%;background:${primaryColor};color:white;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0`;
+const green = '#223927';
+const AVATAR_STYLE = `width:40px;height:40px;border-radius:2px;background:${green};color:#ac884d;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0`;
 
-// Dupliceer voor naadloze loop (animatie gaat naar -50%)
-const doubled = [...siteReviews, ...siteReviews];
-const duration = siteReviews.length * 5; // 5s per review
+const doubled  = [...siteReviews, ...siteReviews];
+const duration = siteReviews.length * 5;
 ---
 
 <div class="relative overflow-hidden">
-  <!-- Gradient fade links en rechts -->
+  <!-- Gradient fades (past bij donkergroene achtergrond) -->
   <div class="absolute left-0 inset-y-0 w-16 z-10 pointer-events-none"
-       style="background: linear-gradient(to right, white, transparent)"></div>
+       style="background: linear-gradient(to right, #223927, transparent)"></div>
   <div class="absolute right-0 inset-y-0 w-16 z-10 pointer-events-none"
-       style="background: linear-gradient(to left, white, transparent)"></div>
+       style="background: linear-gradient(to left, #223927, transparent)"></div>
 
   <div
     id="rc-track"
-    style={`display:flex;gap:24px;width:max-content;animation:rc-scroll ${duration}s linear infinite`}
+    style={`display:flex;gap:20px;width:max-content;animation:rc-scroll ${duration}s linear infinite`}
   >
     {doubled.map((review) => {
       const photoSrc = review.photoUri ?? review.photo ?? '';
-      const initial = review.name.charAt(0).toUpperCase();
+      const initial  = review.name.charAt(0).toUpperCase();
       return (
-        <div style="width:320px;flex-shrink:0" class="bg-gray-50 rounded-xl p-6 border border-gray-100 flex flex-col">
+        <div style="width:300px;flex-shrink:0;border-left:3px solid #ac884d;background:rgba(255,255,255,0.06);border-radius:0 4px 4px 0" class="p-5 flex flex-col">
           <!-- Sterren -->
           <div class="flex gap-1 mb-3">
             {[...Array(5)].map((_, i) => (
-              <Icon name="star" class={`text-sm ${i < review.rating ? 'text-yellow-400' : 'text-gray-200'}`} />
+              <Icon name="star" class={`text-sm ${i < review.rating ? 'text-yellow-400' : 'text-white/20'}`} />
             ))}
           </div>
 
-          <!-- Tekst (ingekort bij lange reviews) -->
-          <p class="text-gray-700 mb-4 text-sm leading-relaxed italic flex-grow line-clamp-4">
+          <!-- Tekst -->
+          <p class="mb-4 text-sm leading-relaxed italic flex-grow line-clamp-4" style="color: rgba(255,255,255,0.8)">
             "{review.text}"
           </p>
 
@@ -44,7 +43,7 @@ const duration = siteReviews.length * 5; // 5s per review
               <img
                 src={photoSrc}
                 alt={review.name}
-                style="width:40px;height:40px;border-radius:50%;object-fit:cover;flex-shrink:0"
+                style="width:40px;height:40px;border-radius:2px;object-fit:cover;flex-shrink:0"
                 width="40"
                 height="40"
                 loading="lazy"
@@ -55,8 +54,8 @@ const duration = siteReviews.length * 5; // 5s per review
               <div style={AVATAR_STYLE}>{initial}</div>
             )}
             <div>
-              <p class="font-semibold text-gray-900 text-sm">{review.name}</p>
-              {review.date && <p class="text-xs text-gray-600">{review.date}</p>}
+              <p class="font-bold text-sm text-white">{review.name}</p>
+              {review.date && <p class="text-xs" style="color: rgba(255,255,255,0.45)">{review.date}</p>}
             </div>
           </div>
         </div>
@@ -70,9 +69,7 @@ const duration = siteReviews.length * 5; // 5s per review
     from { transform: translateX(0); }
     to   { transform: translateX(-50%); }
   }
-  #rc-track {
-    transform: translateZ(0);
-  }
+  #rc-track { transform: translateZ(0); }
   @media (prefers-reduced-motion: reduce) {
     #rc-track { animation: none !important; }
   }

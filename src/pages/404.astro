@@ -1,28 +1,25 @@
-﻿---
+---
 import Layout from '../layouts/Layout.astro';
-
-const primaryColor = '#0391b0';
-const secondaryColor = '#790f34';
 import Icon from '../components/Icon.astro';
+
+const green = '#223927';
+const gold  = '#ac884d';
 ---
 
 <Layout
   title="Pagina niet gevonden"
-  description="De pagina die je zoekt bestaat niet. Ga terug naar de homepage van Rij-Vrij Rijschool."
+  description="De pagina die je zoekt bestaat niet. Ga terug naar de homepage van Rij-Vrij Opfrislessen."
 >
-  <section class="min-h-[60vh] flex items-center justify-center py-20">
+  <section class="min-h-[70vh] flex items-center justify-center py-20" style="background-color: #faf8f4">
     <div class="text-center px-4">
-      <div class="text-8xl font-bold mb-4" style={`color: ${primaryColor}`}>404</div>
-      <h1 class="text-3xl font-bold text-gray-900 mb-4">Pagina niet gevonden</h1>
-      <p class="text-gray-600 text-lg mb-8 max-w-md mx-auto">
-        De pagina die je zoekt bestaat niet of is verplaatst.
+      <div class="text-9xl font-extrabold mb-4" style={`color: ${gold}; line-height: 1`}>404</div>
+      <div style={`width: 3rem; height: 4px; background-color: ${gold}; margin: 0 auto 1.5rem`}></div>
+      <h1 class="text-3xl font-extrabold mb-4" style={`color: ${green}`}>Pagina niet gevonden</h1>
+      <p class="text-base mb-8 max-w-md mx-auto" style="color: #5c5c50">
+        De pagina die je zoekt bestaat niet of is verplaatst. Ga terug naar de homepage.
       </p>
-      <a
-        href="/"
-        class="inline-block text-white px-8 py-4 rounded-lg text-lg font-semibold hover:opacity-90 transition-all shadow-lg"
-        style={`background-color: ${secondaryColor}`}
-      >
-        <Icon name="home" class="mr-2" />
+      <a href="/" class="btn-green">
+        <Icon name="home" style="font-size:13px" />
         Terug naar home
       </a>
     </div>

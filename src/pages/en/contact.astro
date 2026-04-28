@@ -3,18 +3,18 @@ import Layout from '../../layouts/Layout.astro';
 
 export const prerender = true;
 
-const primaryColor = '#0391b0';
-const secondaryColor = '#790f34';
+const primaryColor = '#223927';
+const secondaryColor = '#ac884d';
 import Icon from '../../components/Icon.astro';
 ---
 
 <Layout
   title="Contact"
-  description="Contact Rij-Vrij Driving School. Call 015-2224012 or email info@Rij-Vrij.com. Based at Hankweg 39 in Pijnacker. Book your trial lesson directly."
+  description="Contact Rij-Vrij Driving School. Call 015-2224012 or email info@rij-vrij.nl. Based at Hankweg 39 in Pijnacker. Book your trial lesson directly."
 >
   <div class="bg-white">
 
-    <section class="py-16" style={`background: linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`}>
+    <section class="py-16" style={`background-color: ${primaryColor}`}>
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Contact</h1>
         <p class="text-xl text-white max-w-2xl mx-auto">Get in touch for more information or to book a trial lesson.</p>
@@ -43,7 +43,7 @@ import Icon from '../../components/Icon.astro';
                 </div>
                 <div>
                   <h4 class="font-semibold text-gray-900">Email</h4>
-                  <a href="mailto:info@Rij-Vrij.com" class="hover:underline" style={`color: ${primaryColor}`}>info@Rij-Vrij.com</a>
+                  <a href="mailto:info@rij-vrij.nl" class="hover:underline" style={`color: ${primaryColor}`}>info@rij-vrij.nl</a>
                 </div>
               </div>
               <div class="flex items-start">
@@ -88,13 +88,13 @@ import Icon from '../../components/Icon.astro';
               Contact us directly via one of the options below. We will respond to your message as soon as possible.
             </p>
             <div class="space-y-4">
-              <a href="mailto:info@Rij-Vrij.com?subject=Question%20via%20website" class="flex items-center gap-4 p-5 rounded-xl border-2 hover:shadow-md transition-all group" style={`border-color: ${primaryColor}`}>
+              <a href="mailto:info@rij-vrij.nl?subject=Question%20via%20website" class="flex items-center gap-4 p-5 rounded-xl border-2 hover:shadow-md transition-all group" style={`border-color: ${primaryColor}`}>
                 <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={`background-color: ${primaryColor}`}>
                   <Icon name="envelope" class="text-white text-lg" />
                 </div>
                 <div>
                   <p class="font-bold text-gray-900">Send an email</p>
-                  <p class="text-sm" style={`color: ${primaryColor}`}>info@Rij-Vrij.com</p>
+                  <p class="text-sm" style={`color: ${primaryColor}`}>info@rij-vrij.nl</p>
                 </div>
                 <Icon name="arrow-right" class="ml-auto text-gray-600 transition-colors" />
               </a>
@@ -108,7 +108,7 @@ import Icon from '../../components/Icon.astro';
                 </div>
                 <Icon name="arrow-right" class="ml-auto text-gray-600 transition-colors" />
               </a>
-              <a href="mailto:info@Rij-Vrij.com?subject=Trial%20lesson%20request" class="flex items-center justify-center gap-3 p-5 rounded-xl text-white font-bold text-lg hover:opacity-90 transition-all shadow-md" style={`background: linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`}>
+              <a href="mailto:info@rij-vrij.nl?subject=Trial%20lesson%20request" class="flex items-center justify-center gap-3 p-5 rounded-xl text-white font-bold text-lg hover:opacity-90 transition-all shadow-md" style={`background-color: ${primaryColor}`}>
                 <Icon name="calendar-check" />
                 Book my trial lesson
               </a>

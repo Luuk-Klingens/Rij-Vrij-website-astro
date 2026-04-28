@@ -1,435 +1,473 @@
-﻿---
+---
 import Layout from '../layouts/Layout.astro';
 import ReviewsCarousel from '../components/ReviewsCarousel.astro';
 import lesgebieden from '../data/lesgebieden';
-
-const primaryColor = '#0391b0';
-const primaryColorDark = '#016d84'; // toegankelijke variant: 5.97:1 contrast op wit
-const secondaryColor = '#790f34';
-
-const waaromCards: { icon: string; title: string; highlight: string; text: string; html?: string }[] = [
-  { icon: 'fa-car', title: 'RijVrij = makkelijker rijden', highlight: 'makkelijker', text: 'Zonder schakelen kun je je volledig concentreren op het verkeer. Daardoor leer je sneller en heb je gemiddeld 10-30% minder lessen nodig.' },
-  { icon: 'fa-trophy', title: 'Hoog slagingspercentage', highlight: 'slagingspercentage', text: 'Onze bewezen lesmethode en gecertificeerde instructeurs zorgen voor een uitstekend resultaat bij het CBR praktijkexamen.' },
-  { icon: 'fa-mobile-alt', title: 'OnMyWay inbegrepen', highlight: 'OnMyWay', text: "Oefen theorie via video's en maak 50 praktijkexamens. Volg je voortgang en plan je lessen eenvoudig via de app." },
-  { icon: 'fa-handshake', title: 'Transparant & eerlijk', highlight: 'Transparant', text: 'Wat wij beloven, maken wij waar. Duidelijke tarieven, eerlijk advies over jouw voortgang en geen verborgen kosten.' },
-  { icon: 'fa-heart', title: 'Erkend specialist autisme & ADHD', highlight: 'autisme & ADHD', text: 'Onze instructeurs hebben speciale expertise in het begeleiden van leerlingen met autisme of ADHD. Op jouw tempo, met geduld en begrip.', html: 'Onze instructeurs hebben speciale expertise in het begeleiden van leerlingen met autisme of ADHD. Op jouw tempo, met geduld en begrip. Wij zijn <a href="https://rijles-en-autisme.nl" target="_blank" rel="noopener noreferrer" style="color:#016d84" class="underline font-medium">erkend specialist via Rijles-en-Autisme.nl</a>, onderdeel van Spectrum Brabant.' },
-  { icon: 'fa-clock', title: 'Geen wachttijden', highlight: 'Geen wachttijden', text: 'Je kunt direct starten. Geen lange wachtrij, vandaag aanmelden betekent snel van start met jouw RijVrij rijlessen.' },
-];
-
-const proeflesBullets = [
-  'Stap direct achter het stuur in een moderne RijVrij',
-  'Maak kennis met je instructeur en de lesmethode',
-  'Gratis en vrijblijvend advies over jouw rijbewijs',
-  'Proefles €49,- of gratis bij afname van een startpakket!',
-];
-
-const packages = [
-  {
-    name: 'Start10',
-    description: '10 lessen van 90 minuten',
-    price: '1.399',
-    isPopular: false,
-    features: ['10 rijlessen van 90 minuten', 'CBR praktijkexamen inbegrepen', 'Gratis proefles t.w.v. €49,-', 'Gratis theorieopleiding t.w.v. €59,-', 'Direct starten!'],
-  },
-  {
-    name: 'Populair20',
-    description: '20 lessen van 90 minuten',
-    price: '2.399',
-    isPopular: true,
-    features: ['20 rijlessen van 90 minuten', 'CBR praktijkexamen inbegrepen', 'Gratis proefles t.w.v. €49,-', 'Gratis theorieopleiding t.w.v. €59,-', 'Gratis in twee termijnen betalen', 'Direct starten!'],
-  },
-  {
-    name: 'Compleet30',
-    description: '30 lessen van 90 minuten',
-    price: '3.299',
-    isPopular: false,
-    features: ['30 rijlessen van 90 minuten', 'CBR praktijkexamen inbegrepen', 'Gratis proefles t.w.v. €49,-', 'Gratis theorieopleiding t.w.v. €59,-', 'Gratis in drie termijnen betalen', 'Direct starten!'],
-  },
-];
-
-const stats = [
-  { value: '70%', label: "van nieuwe auto's is RijVrij", sub: 'De toekomst is RijVrij' },
-  { value: '10-30%', label: 'minder rijlessen nodig', sub: 'Sneller & goedkoper je rijbewijs' },
-  { value: '15+', label: 'lesgebieden', sub: 'Regio Haaglanden, Delft en Zoetermeer' },
-];
-
 import Icon from '../components/Icon.astro';
+
+const green = '#223927';
+const gold  = '#ac884d';
+
+const diensten = [
+  {
+    icon: 'redo',
+    title: 'Algemene opfrisles',
+    text: 'Al een tijd niet gereden? We beoordelen je rijvaardigheid en werken gericht aan de punten waar je winst kunt halen.',
+  },
+  {
+    icon: 'road',
+    title: 'Snelwegles',
+    text: 'Invoegen, uitvoegen, veilig inhalen en rijden op snelheid. Specifiek gericht op snelweg en autosnelwegrijden.',
+  },
+  {
+    icon: 'parking',
+    title: 'Parkeertraining',
+    text: 'Inparkeren, haaks parkeren, achteruitrijden in smalle straten. Wij herhalen tot het zit.',
+  },
+  {
+    icon: 'heart',
+    title: 'Rijangst overwinnen',
+    text: 'Rustig en veilig werken aan vertrouwen. Voor mensen die angst hebben opgebouwd na een incident of lange pauze.',
+  },
+  {
+    icon: 'user-check',
+    title: 'CBR rijtest (ouderen)',
+    text: 'Speciale voorbereiding op de CBR rijtest die vereist is voor het verlengen van je rijbewijs na je 75e.',
+  },
+  {
+    icon: 'gift',
+    title: 'Cadeaubon',
+    text: 'Geef een opfrisles cadeau aan iemand die je dierbaar is. Praktisch, persoonlijk en altijd welkom.',
+  },
+];
+
+const waaromItems = [
+  { icon: 'car', title: '100% automaat', text: 'Geen schakelen, volle aandacht voor het verkeer. Rustiger rijden, sneller resultaat.' },
+  { icon: 'heart', title: 'Specialist autisme & ADHD', text: 'Erkend bij rijles-en-autisme.nl. Lessen op jouw tempo, met geduld en duidelijke structuur.' },
+  { icon: 'map-pin', title: '15+ lesgebieden', text: 'Actief in heel regio Haaglanden, Delft en Zoetermeer. Wij komen naar jou toe.' },
+  { icon: 'clock', title: 'Geen wachttijden', text: 'Direct starten. Vandaag aanmelden, zo snel mogelijk achter het stuur.' },
+];
+
+const pakketten = [
+  {
+    name: 'Opfris Start',
+    sub: '3 lessen × 90 minuten',
+    price: '299',
+    popular: false,
+    features: [
+      'Beoordeling huidige rijvaardigheid',
+      'Gericht werken aan verbeterpunten',
+      'Vaste instructeur elke les',
+      'Direct starten',
+    ],
+  },
+  {
+    name: 'Opfris Plus',
+    sub: '5 lessen × 90 minuten',
+    price: '479',
+    popular: true,
+    features: [
+      'Alles van Opfris Start',
+      'Extra aandacht voor specifieke situaties',
+      'Stadsverkeer én snelweg',
+      'Betaling in 2 termijnen mogelijk',
+      'Direct starten',
+    ],
+  },
+  {
+    name: 'Opfris Volledig',
+    sub: '8 lessen × 90 minuten',
+    price: '749',
+    popular: false,
+    features: [
+      'Volledig opfrisprogramma',
+      'Alle verkeerssituaties behandeld',
+      'Optioneel: CBR rijtest voorbereiding',
+      'Betaling in 3 termijnen mogelijk',
+      'Direct starten',
+    ],
+  },
+];
+
+const ctaBullets = [
+  'Maatwerk — we starten met een beoordeling van je huidig niveau',
+  'Vaste instructeur voor continuïteit en vertrouwen',
+  'Alleen automaat — minder afleiding, meer focus op het verkeer',
+  'Specialist autisme & ADHD — altijd geduld en duidelijkheid',
+];
 ---
 
 <Layout
-  title="Autorijschool Rij-Vrij – Regio Haaglanden, Delft & Zoetermeer"
-  description="Rij-Vrij Rijschool (ook bekend als RijVrij Rijschool) geeft RijVrij rijlessen in regio Haaglanden, Delft en Zoetermeer. Hoog slagingspercentage, geen wachttijden. Specialist autisme & ADHD. Plan gratis je proefles!"
+  title="Opfrislessen — Rij-Vrij Rijschool Haaglanden & Delft"
+  description="Rij-Vrij biedt professionele opfrislessen in automaat. Rijangst, snelweg, parkeren of gewoon weer vertrouwen krijgen. Specialist autisme & ADHD. Direct starten, geen wachttijden."
 >
-  <!-- Hero-afbeelding vroeg laden zodat LCP snel is -->
-  <link slot="head" rel="preload" as="image" href="/hero-768.webp" type="image/webp" imagesrcset="/hero-768.webp 768w, /hero-1080.webp 1080w, /hero-1440.webp 1440w" imagesizes="100vw" fetchpriority="high" />
+  <link slot="head" rel="preload" as="image" href="/hero-768.webp" type="image/webp"
+    imagesrcset="/hero-768.webp 768w, /hero-1080.webp 1080w, /hero-1440.webp 1440w"
+    imagesizes="100vw" fetchpriority="high" />
 
-  <!-- LocalBusiness schema -->
   <script slot="head" type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "DrivingSchool",
     "name": "Rij-Vrij Rijschool",
-    "alternateName": ["RijVrij Rijschool", "RijVrij", "Rij Vrij Rijschool", "Autorijschool Rij-Vrij", "Autorijschool RijVrij"],
-    "description": "Rij-Vrij Rijschool (RijVrij) verzorgt RijVrij rijlessen in de regio Haaglanden, Delft en Zoetermeer. Specialist in rijlessen voor leerlingen met autisme & ADHD. Geen wachttijden, direct starten.",
-    "url": "https://Rij-Vrij.com",
+    "alternateName": ["RijVrij Rijschool", "Rij-Vrij Opfrislessen"],
+    "url": "https://rij-vrij.nl",
     "telephone": "+31152224012",
-    "email": "info@Rij-Vrij.com",
-    "image": "https://Rij-Vrij.com/og-image.png",
+    "email": "info@rij-vrij.nl",
+    "image": "https://rij-vrij.nl/og-image.png",
     "priceRange": "€€",
     "sameAs": [
       "https://www.facebook.com/profile.php?id=61569989527327",
-      "https://www.instagram.com/autorijschool_auto_maat/",
-      "https://www.tiktok.com/@autorijschool.auto_maat"
+      "https://www.instagram.com/rij_vrij/",
+      "https://www.tiktok.com/@rij.vrij/"
     ],
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "Hankweg 39",
       "addressLocality": "Pijnacker",
       "postalCode": "2641 WV",
-      "addressCountry": "NL",
-      "addressRegion": "Zuid-Holland"
+      "addressCountry": "NL"
     },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 52.0169,
-      "longitude": 4.4306
-    },
+    "geo": { "@type": "GeoCoordinates", "latitude": 52.0169, "longitude": 4.4306 },
     "openingHoursSpecification": [
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "21:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "17:00" },
       { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "17:00" }
     ],
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "9.7",
-      "ratingCount": "47",
-      "bestRating": "10"
-    },
-    "availableLanguage": [
-      { "@type": "Language", "name": "Dutch" },
-      { "@type": "Language", "name": "English" }
-    ],
-    "areaServed": lesgebieden.flatMap(g => [
-      { "@type": "City", "name": g.naam, "containedInPlace": { "@type": "AdministrativeArea", "name": "Zuid-Holland" } },
-      ...g.buurtwijken.map(wijk => ({ "@type": "Place", "name": `${wijk}, ${g.naam}` }))
-    ]),
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "RijVrij rijlessen pakketten",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "name": "Start10 – 10 rijlessen RijVrij",
-          "description": "10 rijlessen van 90 minuten met RijVrij. CBR praktijkexamen inbegrepen. Gratis proefles en theorieopleiding.",
-          "price": "1399",
-          "priceCurrency": "EUR",
-          "itemOffered": { "@type": "Service", "name": "RijVrij rijlessen – Start10 pakket" }
-        },
-        {
-          "@type": "Offer",
-          "name": "Populair20 – 20 rijlessen RijVrij",
-          "description": "20 rijlessen van 90 minuten met RijVrij. Meest gekozen pakket. CBR praktijkexamen inbegrepen. Betaling in 2 termijnen.",
-          "price": "2399",
-          "priceCurrency": "EUR",
-          "itemOffered": { "@type": "Service", "name": "RijVrij rijlessen – Populair20 pakket" }
-        },
-        {
-          "@type": "Offer",
-          "name": "Compleet30 – 30 rijlessen RijVrij",
-          "description": "30 rijlessen van 90 minuten met RijVrij. CBR praktijkexamen inbegrepen. Betaling in 3 termijnen.",
-          "price": "3299",
-          "priceCurrency": "EUR",
-          "itemOffered": { "@type": "Service", "name": "RijVrij rijlessen – Compleet30 pakket" }
-        },
-        {
-          "@type": "Offer",
-          "name": "Proefles RijVrij rijles",
-          "description": "Vrijblijvende proefles RijVrij rijden in de regio Haaglanden, Delft en Zoetermeer. Gratis bij afname van een rijpakket.",
-          "price": "49",
-          "priceCurrency": "EUR",
-          "itemOffered": { "@type": "Service", "name": "Proefles RijVrij rijles" }
-        },
-        {
-          "@type": "Offer",
-          "name": "Rijlessen autisme & ADHD",
-          "description": "Gespecialiseerde rijlessen voor leerlingen met autisme of ADHD. Erkend specialist via Rijles-en-Autisme.nl.",
-          "itemOffered": { "@type": "Service", "name": "Rijlessen autisme ADHD specialist" }
-        },
-        {
-          "@type": "Offer",
-          "name": "Opfriscursus rijles RijVrij",
-          "description": "Opfristraject voor rijbewijsbezitters die meer zelfvertrouwen achter het stuur willen. RijVrij, op maat.",
-          "itemOffered": { "@type": "Service", "name": "Opfriscursus RijVrij rijles" }
-        }
-      ]
-    }
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "9.7", "ratingCount": "47", "bestRating": "10" },
+    "areaServed": lesgebieden.map(g => ({ "@type": "City", "name": g.naam }))
   })} />
 
-  <div class="bg-white">
+  <!-- ═══════════════════════════════════════════════════════
+       HERO — Diagonale split (Dutch Design)
+  ═══════════════════════════════════════════════════════════ -->
+  <section class="relative overflow-hidden" style="min-height: 640px">
 
-    <!-- Hero Section -->
-    <section class="relative min-h-[600px] flex items-center justify-center overflow-hidden">
-      <img
-        src="/hero-1440.webp"
-        srcset="/hero-768.webp 768w, /hero-1080.webp 1080w, /hero-1440.webp 1440w"
-        sizes="100vw"
-        alt=""
-        aria-hidden="true"
-        width="1440"
-        height="647"
-        fetchpriority="high"
-        loading="eager"
-        decoding="sync"
-        class="absolute inset-0 w-full h-full object-cover"
-      />
-      <div class="absolute inset-0" style={`background-color: ${primaryColor}; opacity: 0.78`}></div>
+    <!-- Witte rechterkant (vol breedte op mobile, geclipped op desktop) -->
+    <div class="absolute inset-0 bg-white"></div>
 
-      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
-        <div class="inline-block bg-white/20 backdrop-blur-sm text-white text-sm font-semibold px-4 py-2 rounded-full mb-6 border border-white/30">
-          <Icon name="check-circle" class="mr-2" />
-          Geen wachttijden, direct van start
-        </div>
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-white">
-          Rijden met Rij-Vrij
-        </h1>
-        <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-white font-semibold">
-          De slimme weg naar jouw rijbewijs! Omdat je het leren schakelen overslaat, met een RijVrij, rijd je makkelijker, haal je sneller je rijbewijs en bespaar je op het totale aantal lessen. Geen wachttijden, start vandaag nog!
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="#proefles-cta"
-            class="inline-block text-white px-8 py-4 rounded-lg text-lg font-semibold hover:opacity-90 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
-            style={`background-color: ${secondaryColor}`}
-          >
-            <Icon name="calendar-check" class="mr-2" />
-            Plan mijn proefles
-          </a>
-          <a
-            href="tel:0152224012"
-            class="inline-block bg-white/20 backdrop-blur-sm border border-white/40 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white/30 transition-all"
-          >
-            <Icon name="phone" class="mr-2" />
-            015-2224012
-          </a>
-        </div>
-      </div>
-    </section>
+    <!-- Groene linkerkant met diagonale rand — desktop only -->
+    <div class="absolute inset-0 hidden lg:block" style={`background-color: ${green}; clip-path: polygon(0 0, 60% 0, 52% 100%, 0 100%)`}></div>
 
-    <!-- Statistics Section -->
-    <section class="py-16 bg-white border-b border-gray-100">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-          {stats.map((stat) => (
-            <div class="p-8 rounded-xl text-white" style={`background-color: ${primaryColorDark}`}>
-              <div class="text-4xl md:text-5xl font-bold mb-2">{stat.value}</div>
-              <div class="text-lg font-semibold mb-1">{stat.label}</div>
-              <div class="text-white text-sm">{stat.sub}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+    <!-- Gouden diagonale accent-lijn — desktop only -->
+    <div class="absolute inset-0 hidden lg:block" style={`background-color: ${gold}; clip-path: polygon(60% 0, 62.5% 0, 54.5% 100%, 52% 100%)`}></div>
 
-    <!-- Why Choose Us Section -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Waarom rijles bij Rij-Vrij de slimste keuze is voor jou
-          </h2>
-        </div>
+    <!-- Mobile: volledige groene achtergrond -->
+    <div class="absolute inset-0 lg:hidden" style={`background-color: ${green}`}></div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {waaromCards.map((item) => (
-            <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100 overflow-hidden flex flex-col">
-              <div class="flex items-center justify-center py-7" style={`background-color: ${primaryColor}`}>
-                <Icon name={item.icon.replace('fa-', '')} class="text-4xl text-white" />
-              </div>
-              <div class="p-6 flex flex-col flex-grow">
-                <h3 class="text-lg font-bold text-gray-900 mb-3 text-center">{item.title}</h3>
-                <p class="text-gray-600 text-sm leading-relaxed text-center" set:html={item.html ?? item.text}></p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+    <!-- Content grid -->
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[640px] flex items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-0 w-full py-16 lg:py-24">
 
-    <!-- Reviews Section -->
-    <section class="py-20 bg-white overflow-hidden">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-10">
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-            Wat zeggen onze leerlingen?
-          </h2>
-          <div class="flex items-center justify-center gap-1 mb-1">
-            {[...Array(5)].map(() => (
-              <Icon name="star" class="text-yellow-400 text-xl" />
-            ))}
+        <!-- LINKS — groene kant -->
+        <div class="flex flex-col justify-center lg:pr-20">
+          <div class="mb-6">
+            <span class="inline-block text-xs font-bold tracking-widest uppercase px-3 py-1" style={`background-color: ${gold}; color: ${green}; border-radius: 2px`}>
+              Opfrislessen
+            </span>
           </div>
-          <p class="text-sm text-gray-500">5 sterren op Google</p>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6" style="line-height: 1.1">
+            Vertrouwen<br />terug<br />achter<br />het stuur.
+          </h1>
+
+          <p class="text-lg mb-8 leading-relaxed max-w-md" style="color: rgba(255,255,255,0.75)">
+            Je rijbewijs heb je al. Rij-Vrij helpt je er alles uit te halen — rustig, doelgericht en op jouw tempo. Alleen automaat, regio Haaglanden, Delft &amp; Zoetermeer.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-3">
+            <a href="#opfrisles-cta" class="btn-primary">
+              <Icon name="calendar-check" style="font-size:14px" />
+              Plan mijn opfrisles
+            </a>
+            <a href="tel:0152224012" class="btn-outline-white">
+              <Icon name="phone" style="font-size:14px" />
+              015-2224012
+            </a>
+          </div>
         </div>
+
+        <!-- RECHTS — witte kant (desktop only) -->
+        <div class="hidden lg:flex flex-col justify-center pl-20">
+          <div class="space-y-4">
+
+            <!-- Stat cards: Dutch Design stijl -->
+            {[
+              { value: '100%', label: 'Automaat', sub: 'Geen schakelen — meer focus op het verkeer' },
+              { value: '15+', label: 'Lesgebieden', sub: 'Haaglanden, Delft & Zoetermeer' },
+              { value: '5★', label: 'Waardering', sub: 'Beoordeeld door onze leerlingen' },
+            ].map((stat) => (
+              <div class="flex items-center gap-4 p-4 bg-white" style="border-left: 4px solid #ac884d; border-radius: 0 4px 4px 0; box-shadow: 0 2px 12px rgba(34,57,39,0.08)">
+                <div class="text-3xl font-extrabold flex-shrink-0" style={`color: ${green}; min-width: 64px`}>{stat.value}</div>
+                <div>
+                  <div class="font-bold text-sm" style={`color: ${green}`}>{stat.label}</div>
+                  <div class="text-xs" style="color: #5c5c50">{stat.sub}</div>
+                </div>
+              </div>
+            ))}
+
+            <!-- CBR badge -->
+            <div class="flex items-center gap-3 px-4 py-3" style={`background-color: ${green}; border-radius: 4px`}>
+              <Icon name="certificate" style={`color: ${gold}; font-size:16px; flex-shrink:0`} />
+              <span class="text-xs font-bold text-white">Erkend specialist autisme &amp; ADHD · rijles-en-autisme.nl</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       DIENSTEN — Wat bieden wij aan?
+  ═══════════════════════════════════════════════════════════ -->
+  <section class="py-20 bg-white">
+    <div class="section-container">
+
+      <div class="mb-14">
+        <span class="gold-bar"></span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold mb-3" style={`color: ${green}`}>
+          Opfrislessen op maat
+        </h2>
+        <p class="text-base max-w-xl" style="color: #5c5c50">
+          Of je nu lang niet gereden hebt, snelwegangst hebt of wil oefenen voor de CBR rijtest — wij maken een plan op jouw situatie.
+        </p>
       </div>
 
-      <!-- Carousel loopt buiten de max-breedte voor full-width effect -->
-      <div class="px-4 sm:px-6 lg:px-8 mb-8">
-        <ReviewsCarousel />
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {diensten.map((d) => (
+          <div class="card-dutch flex flex-col gap-4">
+            <div class="w-10 h-10 flex items-center justify-center flex-shrink-0" style={`background-color: ${green}; border-radius: 4px`}>
+              <Icon name={d.icon} class="text-white" style="font-size:16px" />
+            </div>
+            <div>
+              <h3 class="font-bold mb-2" style={`color: ${green}`}>{d.title}</h3>
+              <p class="text-sm leading-relaxed" style="color: #5c5c50">{d.text}</p>
+            </div>
+          </div>
+        ))}
       </div>
 
-      <div class="text-center">
-        <a
-          href="/reviews"
-          class="font-semibold hover:underline inline-flex items-center gap-2"
-          style={`color: ${primaryColorDark}`}
-        >
-          Bekijk deze reviews volledig <Icon name="arrow-right" />
+      <div class="mt-10">
+        <a href="/diensten" class="btn-outline">
+          Bekijk alle diensten <Icon name="arrow-right" style="font-size:12px" />
         </a>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Packages Section -->
-    <section class="py-20" style="background-color: #f0f9fc">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Kies jouw rijpakket bij Rij-Vrij
-          </h2>
-          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-            Haal jouw rijbewijs sneller en voor minder geld met RijVrij rijlessen. Kies het pakket dat bij jou past en start vandaag nog!
-          </p>
-        </div>
+  <!-- ═══════════════════════════════════════════════════════
+       WAAROM RIJ-VRIJ — op donkergroene band
+  ═══════════════════════════════════════════════════════════ -->
+  <section style={`background-color: ${green}`} class="py-20">
+    <div class="section-container">
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {packages.map((pkg) => (
-            <div
-              class={`bg-white rounded-xl border-2 p-8 flex flex-col relative ${pkg.isPopular ? 'shadow-xl scale-105' : 'border-gray-200 shadow-sm'}`}
-              style={pkg.isPopular ? `border-color: ${primaryColor}` : ''}
-            >
-              {pkg.isPopular && (
-                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <span
-                    class="text-white px-4 py-1 rounded-full text-sm font-semibold shadow-lg"
-                    style={`background-color: ${primaryColorDark}`}
-                  >
-                    Meest gekozen
-                  </span>
-                </div>
-              )}
-
-              <h3 class="text-2xl font-bold text-gray-900 mb-2 text-center">{pkg.name}</h3>
-              <p class="text-gray-600 text-sm text-center mb-4">{pkg.description}</p>
-
-              <div class="text-center mb-6">
-                <div class="text-4xl font-bold mb-1" style={`color: ${primaryColor}`}>
-                  €{pkg.price},-
-                </div>
-              </div>
-
-              <div class="flex-grow space-y-3 mb-8">
-                {pkg.features.map((feature) => (
-                  <div class="flex items-start text-sm text-gray-700">
-                    <Icon name="check-circle" class="mr-3 mt-0.5 flex-shrink-0" style={`color: ${primaryColor}`} />
-                    <span>{feature}</span>
-                  </div>
-                ))}
-              </div>
-
-              <a
-                href="#proefles-cta"
-                class="text-white px-6 py-3 rounded-lg text-center font-semibold hover:opacity-90 transition-all block shadow-md hover:shadow-lg w-full"
-                style={`background-color: ${pkg.isPopular ? primaryColorDark : secondaryColor}`}
-              >
-                Plan mijn proefles
-              </a>
-            </div>
-          ))}
-        </div>
-
-        <p class="text-center text-sm text-gray-500 mt-8">
-          Losse proefles (60 min): <strong>€49,-</strong> &nbsp;|&nbsp; Losse les (90 min): <strong>€109,-</strong>
+      <div class="mb-12">
+        <span class="block mb-4" style={`width: 3rem; height: 4px; background-color: ${gold}`}></span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-3">
+          Waarom Rij-Vrij?
+        </h2>
+        <p class="text-base" style="color: rgba(255,255,255,0.65)">
+          Professioneel, persoonlijk en altijd automaat.
         </p>
       </div>
-    </section>
 
-    <!-- Proefles CTA Section -->
-    <section id="proefles-cta" class="py-20 bg-white">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div
-          class="rounded-2xl p-8 md:p-12 shadow-xl"
-          style={`background: linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`}
-        >
-          <div class="text-center mb-8">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
-              Plan direct je proefles bij Rij-Vrij
-            </h2>
-            <div class="space-y-2 text-white/90 text-lg">
-              {proeflesBullets.map((bullet, i) => (
-                <p class={i === proeflesBullets.length - 1 ? 'font-semibold mt-4 pt-3 border-t border-white/20' : ''}>
-                  <Icon name="check" class="mr-2" />{bullet}
-                </p>
-              ))}
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {waaromItems.map((item) => (
+          <div class="p-6 flex flex-col gap-4" style={`background-color: rgba(255,255,255,0.06); border-left: 3px solid ${gold}`}>
+            <div class="w-10 h-10 flex items-center justify-center flex-shrink-0" style={`background-color: ${gold}; border-radius: 4px`}>
+              <Icon name={item.icon} style={`color: ${green}; font-size:16px`} />
+            </div>
+            <div>
+              <h3 class="font-bold text-white mb-2 text-sm">{item.title}</h3>
+              <p class="text-sm leading-relaxed" style="color: rgba(255,255,255,0.65)">{item.text}</p>
             </div>
           </div>
+        ))}
+      </div>
+    </div>
+  </section>
 
-          <form id="proefles-form" class="mt-8 space-y-3 max-w-md mx-auto">
-            <div id="proefles-success" class="hidden p-4 bg-white/20 border border-white/40 rounded-xl text-white text-sm flex items-center gap-3">
-              <Icon name="check-circle" class="text-lg flex-shrink-0" />
-              <p><strong>Aanvraag verstuurd!</strong> Wij nemen zo snel mogelijk contact met je op.</p>
+  <!-- ═══════════════════════════════════════════════════════
+       REVIEWS — op donkergroene achtergrond
+  ═══════════════════════════════════════════════════════════ -->
+  <section style={`background-color: ${green}`} class="pb-20 overflow-hidden">
+
+    <div class="section-container mb-10">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div>
+          <div class="flex gap-1 mb-2">
+            {[...Array(5)].map(() => <Icon name="star" class="text-yellow-400 text-lg" />)}
+          </div>
+          <p class="text-sm font-bold text-white">5 sterren op Google</p>
+        </div>
+        <a href="/reviews" class="text-sm font-bold transition-opacity hover:opacity-75" style={`color: ${gold}`}>
+          Bekijk alle reviews →
+        </a>
+      </div>
+    </div>
+
+    <div class="px-4 sm:px-6 lg:px-8">
+      <ReviewsCarousel />
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       PAKKETTEN
+  ═══════════════════════════════════════════════════════════ -->
+  <section class="py-20 bg-white">
+    <div class="section-container">
+
+      <div class="mb-14 text-center">
+        <span class="gold-bar-center"></span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold mb-3" style={`color: ${green}`}>
+          Opfris pakketten
+        </h2>
+        <p class="text-base max-w-xl mx-auto" style="color: #5c5c50">
+          Losse les of een pakket — wij starten altijd met een korte beoordeling van jouw rijvaardigheid.
+          Alle pakketten in automaat, geen verborgen kosten.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+        {pakketten.map((pkg) => (
+          <div class={`flex flex-col relative bg-white ${pkg.popular ? 'scale-[1.03]' : ''}`}
+            style={`border: 2px solid ${pkg.popular ? gold : '#e4ddd0'}; border-top: 4px solid ${pkg.popular ? gold : green}; border-radius: 4px; box-shadow: ${pkg.popular ? '0 8px 32px rgba(34,57,39,0.12)' : '0 2px 12px rgba(34,57,39,0.06)'}`}>
+
+            {pkg.popular && (
+              <div class="text-center py-2 text-xs font-bold tracking-widest uppercase text-white" style={`background-color: ${gold}`}>
+                Meest gekozen
+              </div>
+            )}
+
+            <div class="p-8 flex flex-col flex-grow">
+              <h3 class="text-xl font-extrabold mb-1" style={`color: ${green}`}>{pkg.name}</h3>
+              <p class="text-sm mb-6" style="color: #5c5c50">{pkg.sub}</p>
+
+              <div class="mb-6">
+                <span class="text-4xl font-extrabold" style={`color: ${green}`}>€{pkg.price}</span>
+                <span class="text-sm ml-1" style="color: #5c5c50">,-</span>
+              </div>
+
+              <ul class="flex-grow space-y-3 mb-8">
+                {pkg.features.map((f) => (
+                  <li class="flex items-start gap-2.5 text-sm" style="color: #374151">
+                    <Icon name="check" style={`color: ${gold}; font-size:13px; flex-shrink:0; margin-top:2px`} />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+
+              <a
+                href="#opfrisles-cta"
+                class={pkg.popular ? 'btn-primary justify-center' : 'btn-outline justify-center'}
+                style={pkg.popular ? '' : `border-color: ${green}; color: ${green}`}
+              >
+                Aanmelden
+              </a>
             </div>
-            <div id="proefles-error" class="hidden p-4 bg-white/20 border border-red-300/60 rounded-xl text-white text-sm flex items-center gap-3">
-              <Icon name="exclamation-circle" class="text-lg flex-shrink-0" />
-              <p id="proefles-error-text">Er ging iets mis. Probeer het later opnieuw.</p>
-            </div>
-            <input
-              type="text"
-              name="naam"
-              required
-              placeholder="Volledige naam"
-              class="w-full px-4 py-3 rounded-lg bg-white/15 border border-white/30 text-white placeholder-white/60 text-sm focus:outline-none focus:bg-white/25 transition"
-            />
-            <input
-              type="tel"
-              name="telefoon"
-              required
-              placeholder="Telefoonnummer"
-              class="w-full px-4 py-3 rounded-lg bg-white/15 border border-white/30 text-white placeholder-white/60 text-sm focus:outline-none focus:bg-white/25 transition"
-            />
-            <input
-              type="text"
-              name="adres"
-              required
-              placeholder="Adres"
-              class="w-full px-4 py-3 rounded-lg bg-white/15 border border-white/30 text-white placeholder-white/60 text-sm focus:outline-none focus:bg-white/25 transition"
-            />
-            <input
-              type="text"
-              name="woonplaats"
-              required
-              placeholder="Woonplaats"
-              class="w-full px-4 py-3 rounded-lg bg-white/15 border border-white/30 text-white placeholder-white/60 text-sm focus:outline-none focus:bg-white/25 transition"
-            />
-            <button
-              type="submit"
-              id="proefles-btn"
-              class="w-full bg-white font-bold py-3 rounded-lg hover:opacity-90 transition-all shadow-lg cursor-pointer"
-              style={`color: ${primaryColorDark}`}
-            >
-              <Icon name="calendar-check" class="mr-2" />
-              <span id="proefles-label">Proefles aanvragen</span>
-            </button>
-          </form>
+          </div>
+        ))}
+      </div>
+
+      <p class="text-center text-sm mt-8" style="color: #5c5c50">
+        Losse les (90 min): <strong style={`color: ${green}`}>€109,-</strong>
+        &nbsp;·&nbsp;
+        Intakeles / beoordeling (60 min): <strong style={`color: ${green}`}>€69,-</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       CTA — Aanmelding formulier (diagonale split)
+  ═══════════════════════════════════════════════════════════ -->
+  <section id="opfrisles-cta" class="py-20" style="background-color: #faf8f4">
+    <div class="section-container">
+      <div class="overflow-hidden" style={`border-left: 4px solid ${gold}; border-radius: 0 4px 4px 0; box-shadow: 0 4px 32px rgba(34,57,39,0.10)`}>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2">
+
+          <!-- Links: info -->
+          <div class="p-10 lg:p-12" style={`background-color: ${green}`}>
+
+            <!-- Gouden accent streep -->
+            <div style={`width: 2.5rem; height: 4px; background-color: ${gold}; margin-bottom: 1.5rem`}></div>
+
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-3">
+              Plan je opfrisles bij Rij-Vrij
+            </h2>
+            <p class="text-sm mb-8" style="color: rgba(255,255,255,0.65)">
+              Vul het formulier in en wij nemen zo snel mogelijk contact op. Vrijblijvend.
+            </p>
+
+            <ul class="space-y-3">
+              {ctaBullets.map((b) => (
+                <li class="flex items-start gap-3 text-sm" style="color: rgba(255,255,255,0.85)">
+                  <Icon name="check" style={`color: ${gold}; font-size:13px; flex-shrink:0; margin-top:2px`} />
+                  {b}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <!-- Rechts: formulier -->
+          <div class="bg-white p-10 lg:p-12 flex flex-col justify-center">
+            <form id="opfrisles-form" class="space-y-3">
+
+              <div id="opfrisles-success" class="hidden p-4 text-sm flex items-center gap-2" style={`background-color: rgba(34,57,39,0.08); border-left: 3px solid ${green}; color: ${green}`}>
+                <Icon name="check-circle" style="font-size:14px; flex-shrink:0" />
+                <p><strong>Verzonden!</strong> Wij nemen snel contact op.</p>
+              </div>
+              <div id="opfrisles-error" class="hidden p-4 text-sm flex items-center gap-2" style="background-color: rgba(239,68,68,0.08); border-left: 3px solid #ef4444; color: #b91c1c">
+                <Icon name="exclamation-circle" style="font-size:14px; flex-shrink:0" />
+                <p id="opfrisles-error-text">Er ging iets mis. Probeer later opnieuw.</p>
+              </div>
+
+              {['naam', 'telefoon', 'adres', 'woonplaats'].map((field) => (
+                <input
+                  type={field === 'telefoon' ? 'tel' : 'text'}
+                  name={field}
+                  required
+                  placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
+                  class="w-full px-4 py-3 text-sm outline-none transition"
+                  style={`border: 2px solid #e4ddd0; border-radius: 4px; background: #faf8f4; color: #1a1a18`}
+                />
+              ))}
+
+              <button
+                type="submit"
+                id="opfrisles-btn"
+                class="w-full py-3.5 font-bold text-sm tracking-wide transition-all duration-150 cursor-pointer"
+                style={`background-color: ${gold}; color: ${green}; border-radius: 4px; border: none`}
+              >
+                <span id="opfrisles-label">Opfrisles aanvragen</span>
+              </button>
+            </form>
+          </div>
+
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-  </div>
 </Layout>
 
 <script>
-  const form    = document.getElementById('proefles-form') as HTMLFormElement;
-  const btn     = document.getElementById('proefles-btn') as HTMLButtonElement;
-  const label   = document.getElementById('proefles-label') as HTMLSpanElement;
-  const success = document.getElementById('proefles-success') as HTMLDivElement;
-  const errorBox = document.getElementById('proefles-error') as HTMLDivElement;
-  const errorText = document.getElementById('proefles-error-text') as HTMLParagraphElement;
+  const form     = document.getElementById('opfrisles-form') as HTMLFormElement;
+  const btn      = document.getElementById('opfrisles-btn') as HTMLButtonElement;
+  const label    = document.getElementById('opfrisles-label') as HTMLSpanElement;
+  const success  = document.getElementById('opfrisles-success') as HTMLDivElement;
+  const errorBox = document.getElementById('opfrisles-error') as HTMLDivElement;
+  const errorTxt = document.getElementById('opfrisles-error-text') as HTMLParagraphElement;
+
+  const inputs = form?.querySelectorAll('input');
+  inputs?.forEach((input) => {
+    input.addEventListener('focus', () => {
+      (input as HTMLInputElement).style.borderColor = '#223927';
+      (input as HTMLInputElement).style.background  = '#fff';
+    });
+    input.addEventListener('blur', () => {
+      (input as HTMLInputElement).style.borderColor = '#e4ddd0';
+      (input as HTMLInputElement).style.background  = '#faf8f4';
+    });
+  });
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -437,33 +475,22 @@ import Icon from '../components/Icon.astro';
     label.textContent = 'Verzenden...';
     success.classList.add('hidden');
     errorBox.classList.add('hidden');
-
     try {
-      const res = await fetch('/api/proefles', {
-        method: 'POST',
-        body: new FormData(form),
-      });
-
+      const res  = await fetch('/api/proefles', { method: 'POST', body: new FormData(form) });
       let json: { ok: boolean; error?: string } | null = null;
       try { json = await res.json(); } catch {
-        errorText.textContent = `Serverfout (${res.status}). Probeer het later opnieuw.`;
+        errorTxt.textContent = `Serverfout (${res.status}).`;
         errorBox.classList.remove('hidden');
         return;
       }
-
-      if (json?.ok) {
-        form.reset();
-        success.classList.remove('hidden');
-      } else {
-        errorText.textContent = json?.error ?? 'Er ging iets mis.';
-        errorBox.classList.remove('hidden');
-      }
+      if (json?.ok) { form.reset(); success.classList.remove('hidden'); }
+      else { errorTxt.textContent = json?.error ?? 'Er ging iets mis.'; errorBox.classList.remove('hidden'); }
     } catch {
-      errorText.textContent = 'Geen verbinding. Controleer je internetverbinding.';
+      errorTxt.textContent = 'Geen verbinding. Controleer je internet.';
       errorBox.classList.remove('hidden');
     } finally {
       btn.disabled = false;
-      label.textContent = 'Proefles aanvragen';
+      label.textContent = 'Opfrisles aanvragen';
     }
   });
 </script>

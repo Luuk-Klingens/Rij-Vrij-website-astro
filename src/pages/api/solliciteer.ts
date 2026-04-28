@@ -2,7 +2,7 @@
 
 type CloudflareEnv = { RESEND_API_KEY?: string };
 
-const LOGO    = 'https://Rij-Vrij.com/RijVrij-logo-png.png';
+const LOGO    = 'https://rij-vrij.nl/RijVrij-logo-png.png';
 const PRIMARY = '#0391b0';
 const SECONDARY = '#790f34';
 
@@ -21,7 +21,7 @@ function emailHeader(title: string) {
 function emailFooter() {
   return `
     <div style="background:linear-gradient(135deg,${PRIMARY} 0%,${SECONDARY} 100%);border-radius:0 0 12px 12px;padding:14px 32px;text-align:center;margin-top:-1px">
-      <p style="color:rgba(255,255,255,0.8);font-size:12px;margin:0">Rij-Vrij Rijschool &bull; <a href="https://Rij-Vrij.com" style="color:#fff;text-decoration:underline">Rij-Vrij.com</a></p>
+      <p style="color:rgba(255,255,255,0.8);font-size:12px;margin:0">Rij-Vrij Rijschool &bull; <a href="https://rij-vrij.nl" style="color:#fff;text-decoration:underline">rij-vrij.nl</a></p>
     </div>`;
 }
 
@@ -84,7 +84,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
           </p>
         </div>
         <p style="color:#6b7280;font-size:13px;margin:0">
-          Heb je vragen? Neem gerust contact op via <a href="mailto:info@Rij-Vrij.com" style="color:#0391b0">info@Rij-Vrij.com</a> of bel ons op <a href="tel:0152224012" style="color:#0391b0">015 222 40 12</a>.
+          Heb je vragen? Neem gerust contact op via <a href="mailto:info@rij-vrij.nl" style="color:#0391b0">info@rij-vrij.nl</a> of bel ons op <a href="tel:0152224012" style="color:#0391b0">015 222 40 12</a>.
         </p>
       </div>
       ${emailFooter()}
@@ -100,16 +100,16 @@ export const POST: APIRoute = async ({ request, locals }) => {
   try {
     const [internalRes, confirmRes] = await Promise.all([
       send({
-        from: 'Rij-Vrij Rijschool <noreply@Rij-Vrij.com>',
-        to: ['leads@Rij-Vrij.com'],
+        from: 'Rij-Vrij Rijschool <noreply@rij-vrij.nl>',
+        to: ['leads@rij-vrij.nl'],
         reply_to: email,
         subject: `Sollicitatie ${vacature} van ${naam}`,
         html: internalHtml,
       }),
       send({
-        from: 'Rij-Vrij Rijschool <noreply@Rij-Vrij.com>',
+        from: 'Rij-Vrij Rijschool <noreply@rij-vrij.nl>',
         to: [email],
-        reply_to: 'info@Rij-Vrij.com',
+        reply_to: 'info@rij-vrij.nl',
         subject: `Bevestiging sollicitatie ${vacature}`,
         html: confirmHtml,
       }),

@@ -1,385 +1,305 @@
-﻿---
+---
 import { navbarLesgebieden } from '../data/lesgebieden';
 import { getLang, getAlternateUrl } from '../i18n/utils';
+import Icon from './Icon.astro';
 
-const primaryColor = '#0391b0';
-const secondaryColor = '#790f34';
-const topBarColor = '#027a93';
+const green        = '#223927';
+const gold         = '#ac884d';
 const contactPhone = '015-2224012';
-const contactEmail = 'info@Rij-Vrij.com';
-const facebookUrl = 'https://www.facebook.com/profile.php?id=61569989527327';
-const instagramUrl = 'https://www.instagram.com/autorijschool_auto_maat/';
-const tiktokUrl = 'https://www.tiktok.com/@autorijschool.auto_maat';
+const contactEmail = 'info@rij-vrij.nl';
+const facebookUrl  = 'https://www.facebook.com/profile.php?id=61569989527327';
+const instagramUrl = 'https://www.instagram.com/rij_vrij/';
+const tiktokUrl    = 'https://www.tiktok.com/@rij.vrij/';
 
-const lang = getLang(Astro.url.pathname);
-const isEN = lang === 'en';
+const lang         = getLang(Astro.url.pathname);
+const isEN         = lang === 'en';
 const alternateUrl = getAlternateUrl(Astro.url.pathname);
 
 const p = (nl: string, en: string) => (isEN ? en : nl);
-const base = isEN ? '/en' : '';
-import Icon from './Icon.astro';
 ---
 
-<nav class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
-  <!-- Top bar (desktop only) -->
-  <div class="hidden lg:block border-b border-black/10 text-white shadow-sm" style={`background-color: ${topBarColor}`}>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-11 gap-4 text-sm font-semibold">
-      <!-- Sterren links -->
-      <div class="flex items-center gap-2">
-        <div class="flex items-center gap-0.5">
-          <Icon name="star" class="text-yellow-400 text-xs" />
-          <Icon name="star" class="text-yellow-400 text-xs" />
-          <Icon name="star" class="text-yellow-400 text-xs" />
-          <Icon name="star" class="text-yellow-400 text-xs" />
-          <Icon name="star" class="text-yellow-400 text-xs" />
+<!-- Gouden top-strip: kenmerk Dutch Design -->
+<div style={`height:3px;background-color:${gold}`}></div>
+
+<nav class="bg-white sticky top-0 z-50" style="box-shadow: 0 1px 0 #e4ddd0, 0 2px 12px rgba(34,57,39,0.06);">
+
+  <!-- Info-balk -->
+  <div class="hidden lg:block text-white text-xs font-medium" style={`background-color: ${green}`}>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-9 gap-4">
+
+      <div class="flex items-center gap-1.5">
+        {[0,1,2,3,4].map(() => <Icon name="star" class="text-yellow-400" style="font-size:10px" />)}
+        <span class="ml-1 opacity-85">{p('5 sterren opfrislessen — direct starten', '5-star refresher lessons — start immediately')}</span>
+      </div>
+
+      <div class="flex items-center gap-5">
+        <a href="tel:0152224012" class="flex items-center gap-1.5 opacity-80 hover:opacity-100 transition-opacity">
+          <Icon name="phone" style="font-size:10px" />
+          {contactPhone}
+        </a>
+        <a href={`mailto:${contactEmail}`} class="flex items-center gap-1.5 opacity-80 hover:opacity-100 transition-opacity">
+          <Icon name="envelope" style="font-size:10px" />
+          {contactEmail}
+        </a>
+        <div class="flex items-center gap-2 pl-4 border-l border-white/20">
+          <a href={facebookUrl} target="_blank" rel="noopener noreferrer" class="opacity-70 hover:opacity-100 transition-opacity" aria-label="Facebook">
+            <Icon name="facebook" style="font-size:13px" />
+          </a>
+          <a href={instagramUrl} target="_blank" rel="noopener noreferrer" class="opacity-70 hover:opacity-100 transition-opacity" aria-label="Instagram">
+            <Icon name="instagram" style="font-size:13px" />
+          </a>
+          <a href={tiktokUrl} target="_blank" rel="noopener noreferrer" class="opacity-70 hover:opacity-100 transition-opacity" aria-label="TikTok">
+            <Icon name="tiktok" style="font-size:13px" />
+          </a>
         </div>
-        <span class="text-white text-xs font-semibold">{p('Door leerlingen beoordeeld met 5 sterren', 'Rated 5 stars by our students')}</span>
+        <span class="pl-4 border-l border-white/20 opacity-65">CBR {p('Opleidersnummer', 'School nr.')}: 1460F3</span>
       </div>
-      <!-- Rechts: contact + socials + CBR -->
-      <div class="flex items-center gap-4">
-      <a href="tel:0152224012" class="flex items-center gap-1.5 text-white hover:text-white/80 transition-colors">
-        <Icon name="phone" class="text-xs" />
-        {contactPhone}
-      </a>
-      <a href={`mailto:${contactEmail}`} class="flex items-center gap-1.5 text-white hover:text-white/80 transition-colors">
-        <Icon name="envelope" class="text-xs" />
-        {contactEmail}
-      </a>
-      <div class="flex items-center gap-2 border-l border-white/20 pl-3">
-        <a href={facebookUrl} target="_blank" rel="noopener noreferrer" class="text-white hover:text-white/80 transition-colors" aria-label="Facebook">
-          <Icon name="facebook" class="text-base" />
-        </a>
-        <a href={instagramUrl} target="_blank" rel="noopener noreferrer" class="text-white hover:text-white/80 transition-colors" aria-label="Instagram">
-          <Icon name="instagram" class="text-base" />
-        </a>
-        <a href={tiktokUrl} target="_blank" rel="noopener noreferrer" class="text-white hover:text-white/80 transition-colors" aria-label="TikTok">
-          <Icon name="tiktok" class="text-base" />
-        </a>
-      </div>
-      <span class="border-l border-white/20 pl-3 text-white">CBR Opleidersnummer: 1460F3</span>
-      </div>
+
     </div>
   </div>
 
-  <!-- Main nav -->
+  <!-- Gouden accent-lijn onder info-balk -->
+  <div class="hidden lg:block h-px" style={`background: linear-gradient(90deg, ${gold}, transparent 70%)`}></div>
+
+  <!-- Hoofdnavigatie -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-20">
+
       <!-- Logo -->
-      <a href={isEN ? '/en/' : '/'} class="flex items-center group flex-shrink-0">
-        <picture>
-          <source srcset="/RijVrij-logo.webp" type="image/webp" />
-          <img
-            src="/RijVrij-logo-png.png"
-            alt="Rij-Vrij"
-            class="h-14 lg:h-16 w-auto object-contain transition-opacity group-hover:opacity-80"
-            width="400"
-            height="105"
-            loading="eager"
-            fetchpriority="high"
-            decoding="sync"
-          />
-        </picture>
+      <a href={isEN ? '/en/' : '/'} class="flex items-center gap-3 flex-shrink-0 group">
+        <img
+          src="/rij-vrij-logo.png"
+          alt="Rij-Vrij"
+          class="h-11 lg:h-12 w-auto object-contain transition-opacity group-hover:opacity-85"
+          width="120" height="120"
+          loading="eager" fetchpriority="high" decoding="sync"
+        />
+        <span class="font-extrabold text-xl lg:text-2xl leading-none select-none" style="letter-spacing: -0.02em">
+          <span style={`color: ${green}`}>Rij</span><span style={`color: ${gold}`}>-Vrij</span>
+        </span>
       </a>
 
       <!-- Desktop nav -->
-      <div class="hidden lg:flex items-center gap-1" id="desktop-nav">
+      <div class="hidden lg:flex items-center gap-0.5" id="desktop-nav">
 
-        <!-- Over ons dropdown -->
-        <div class="relative group" id="dropdown-overons">
-          <button
-            class="flex items-center gap-1 px-3 py-2 text-sm font-semibold text-white rounded-lg hover:opacity-90 transition-all"
-            style={`background-color: ${secondaryColor}`}
-            id="btn-overons"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
+        <!-- Over ons -->
+        <div class="relative" id="dropdown-overons">
+          <button class="nav-link flex items-center gap-1" id="btn-overons" aria-haspopup="true" aria-expanded="false">
             {p('Over ons', 'About')}
-            <Icon name="chevron-down" class="text-xs transition-transform" id="chevron-overons" />
+            <Icon name="chevron-down" class="text-[10px] transition-transform duration-200" id="chevron-overons" />
           </button>
-          <div
-            class="absolute top-full left-0 mt-1 w-52 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50 hidden"
-            id="menu-overons"
-          >
-            <a href={p('/over-ons', '/en/about')} class="block px-4 py-2.5 text-sm font-semibold text-gray-700 hover:text-white transition-colors rounded-lg mx-1 nav-dropdown-item" style={`--hover-bg: ${primaryColor}`}>{p('Over ons', 'About us')}</a>
-            <a href={p('/autisme-adhd', '/en/autism-adhd')} class="block px-4 py-2.5 text-sm font-semibold text-gray-700 hover:text-white transition-colors rounded-lg mx-1 nav-dropdown-item" style={`--hover-bg: ${primaryColor}`}>{p('Autisme & ADHD', 'Autism & ADHD')}</a>
+          <div class="nav-dropdown hidden" id="menu-overons">
+            <a href={p('/over-ons', '/en/about')} class="nav-dropdown-item">{p('Over ons', 'About us')}</a>
+            <a href={p('/autisme-adhd', '/en/autism-adhd')} class="nav-dropdown-item">{p('Autisme & ADHD', 'Autism & ADHD')}</a>
           </div>
         </div>
 
-        <a href={p('/prijzen', '/en/prices')} class="px-3 py-2 text-sm font-semibold text-white rounded-lg hover:opacity-90 transition-all" style={`background-color: ${secondaryColor}`}>{p('Tarieven', 'Prices')}</a>
+        <a href={p('/diensten', '/en/services')} class="nav-link">{p('Opfrislessen', 'Refresher lessons')}</a>
+        <a href={p('/prijzen', '/en/prices')} class="nav-link">{p('Tarieven', 'Prices')}</a>
 
-        <!-- Lesgebied dropdown -->
+        <!-- Lesgebied -->
         <div class="relative" id="dropdown-lesgebied">
-          <button
-            class="flex items-center gap-1 px-3 py-2 text-sm font-semibold text-white rounded-lg hover:opacity-90 transition-all"
-            style={`background-color: ${secondaryColor}`}
-            id="btn-lesgebied"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
+          <button class="nav-link flex items-center gap-1" id="btn-lesgebied" aria-haspopup="true" aria-expanded="false">
             {p('Lesgebied', 'Areas')}
-            <Icon name="chevron-down" class="text-xs transition-transform" id="chevron-lesgebied" />
+            <Icon name="chevron-down" class="text-[10px] transition-transform duration-200" id="chevron-lesgebied" />
           </button>
-          <div
-            class="absolute top-full left-0 mt-1 w-[400px] bg-white rounded-xl shadow-xl border border-gray-100 p-2 z-50 hidden"
-            id="menu-lesgebied"
-          >
+          <div class="nav-dropdown hidden w-[420px]" id="menu-lesgebied">
             <div class="grid grid-cols-2 gap-0.5">
               {navbarLesgebieden.map((g) => (
-                <a
-                  href={isEN ? `/en/area/${g.slug}` : `/lesgebied/${g.slug}`}
-                  class="flex items-center gap-2 px-3 py-2 text-xs font-semibold text-gray-700 hover:text-white transition-colors rounded-lg nav-dropdown-item"
-                >
-                  <Icon name="map-pin" class="text-xs flex-shrink-0" />
+                <a href={isEN ? `/en/area/${g.slug}` : `/lesgebied/${g.slug}`} class="nav-dropdown-item flex items-center gap-2">
+                  <Icon name="map-pin" class="opacity-40 flex-shrink-0" style="font-size:10px" />
                   {g.naam}
                 </a>
               ))}
             </div>
-            <div class="border-t border-gray-100 mt-1.5 pt-1.5">
-              <a
-                href={isEN ? '/en/areas' : '/lesgebied'}
-                class="flex items-center gap-1.5 px-3 py-2 text-xs font-semibold transition-colors rounded-lg nav-dropdown-item"
-                style={`color: ${primaryColor}`}
-              >
-                <Icon name="map" class="text-xs flex-shrink-0" />{p('Alle lesgebieden →', 'All areas →')}
+            <div class="border-t mt-1 pt-1" style="border-color: #e4ddd0">
+              <a href={isEN ? '/en/areas' : '/lesgebied'} class="flex items-center gap-1.5 px-3 py-2 text-xs font-bold transition-colors hover:opacity-80" style={`color: ${gold}`}>
+                <Icon name="map" style="font-size:11px" />
+                {p('Alle lesgebieden bekijken →', 'View all areas →')}
               </a>
             </div>
           </div>
         </div>
 
-        <a href={p('/onmyway-app', '/en/onmyway')} class="px-3 py-2 text-sm font-semibold text-white rounded-lg hover:opacity-90 transition-all" style={`background-color: ${secondaryColor}`}>OnMyWay</a>
+        <a href={p('/faq', '/en/faq')} class="nav-link">FAQ</a>
 
-        <!-- Examens dropdown -->
-        <div class="relative" id="dropdown-examens">
-          <button
-            class="flex items-center gap-1 px-3 py-2 text-sm font-semibold text-white rounded-lg hover:opacity-90 transition-all"
-            style={`background-color: ${secondaryColor}`}
-            id="btn-examens"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            {p('Examens', 'Exams')}
-            <Icon name="chevron-down" class="text-xs transition-transform" id="chevron-examens" />
-          </button>
-          <div
-            class="absolute top-full left-0 mt-1 w-52 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50 hidden"
-            id="menu-examens"
-          >
-            <a href={p('/examen-theorie', '/en/theory-exam')} class="block px-4 py-2.5 text-sm font-semibold text-gray-700 hover:text-white transition-colors rounded-lg mx-1 nav-dropdown-item">{p('Theorie', 'Theory')}</a>
-            <a href={p('/examen-praktijk', '/en/practical-exam')} class="block px-4 py-2.5 text-sm font-semibold text-gray-700 hover:text-white transition-colors rounded-lg mx-1 nav-dropdown-item">{p('Praktijk', 'Practical')}</a>
-            <a href={p('/rijschool-machtigen', '/en/authorize')} class="block px-4 py-2.5 text-sm font-semibold text-gray-700 hover:text-white transition-colors rounded-lg mx-1 nav-dropdown-item">{p('Rijschool machtigen', 'Authorize school')}</a>
-            <a href={p('/gezondheidsverklaring', '/en/health-declaration')} class="block px-4 py-2.5 text-sm font-semibold text-gray-700 hover:text-white transition-colors rounded-lg mx-1 nav-dropdown-item">{p('Gezondheidsverklaring', 'Health declaration')}</a>
-          </div>
-        </div>
-
-        <a href={p('/vacatures', '/en/vacancies')} class="px-3 py-2 text-sm font-semibold text-white rounded-lg hover:opacity-90 transition-all" style={`background-color: ${secondaryColor}`}>{p('Vacatures', 'Vacancies')}</a>
-        <a href={p('/faq', '/en/faq')} class="px-3 py-2 text-sm font-semibold text-white rounded-lg hover:opacity-90 transition-all" style={`background-color: ${secondaryColor}`}>FAQ</a>
-
-        <!-- Contact CTA -->
+        <!-- CTA knop: goud gevuld, groene tekst -->
         <a
           href={p('/contact', '/en/contact')}
-          class="ml-2 px-4 py-2 text-sm font-semibold text-white rounded-lg hover:opacity-90 transition-all shadow-md flex items-center gap-2"
-          style={`background-color: ${primaryColor}`}
+          class="ml-3 px-5 py-2.5 text-sm font-bold flex items-center gap-2 transition-all duration-150 hover:-translate-y-0.5"
+          style={`background-color: ${gold}; color: ${green}; border-radius: 4px; box-shadow: 0 2px 12px rgba(172,136,77,0.25)`}
         >
-          <Icon name="envelope" class="text-xs" />
-          Contact
+          <Icon name="calendar-check" style="font-size:11px" />
+          {p('Plan opfrisles', 'Book lesson')}
         </a>
 
-        <!-- Language switcher -->
+        <!-- Taalwisselaar -->
         <a
           href={alternateUrl}
-          class="ml-1 px-3 py-2 text-xs font-bold border-2 rounded-lg transition-all hover:opacity-80"
-          style={`border-color: ${primaryColor}; color: ${primaryColor}`}
-          title={isEN ? 'Nederlands' : 'English'}
+          class="ml-1 px-3 py-2 text-xs font-bold transition-all hover:opacity-75"
+          style={`border: 2px solid ${green}; color: ${green}; border-radius: 4px`}
         >
           {isEN ? 'NL' : 'EN'}
         </a>
       </div>
 
-      <!-- Hamburger button -->
-      <div class="flex items-center gap-3">
-        <button
-          id="mobile-menu-toggle"
-          class="lg:hidden text-gray-700 hover:opacity-75 focus:outline-none p-2"
-          aria-label="Menu"
-        >
-          <Icon name="bars" class="text-xl" id="hamburger-icon" />
-        </button>
-      </div>
+      <!-- Hamburger -->
+      <button id="mobile-menu-toggle" class="lg:hidden p-2 rounded transition-colors hover:bg-gray-100" aria-label="Menu">
+        <Icon name="bars" class="text-xl" style={`color: ${green}`} />
+      </button>
     </div>
   </div>
 
-  <!-- Mobile menu -->
-  <div class="lg:hidden border-t border-gray-100 bg-white shadow-lg max-h-[80vh] overflow-y-auto hidden" id="mobile-menu">
-    <div class="px-3 py-3 space-y-1">
+  <!-- Mobiel menu -->
+  <div class="lg:hidden border-t bg-white shadow-lg max-h-[80vh] overflow-y-auto hidden" id="mobile-menu" style="border-color: #e4ddd0">
+    <div class="px-3 py-3 space-y-0.5">
 
-      <!-- Over ons mobile -->
       <div>
-        <button
-          class="flex items-center justify-between w-full px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
-          id="mobile-btn-overons"
-        >
+        <button class="mobile-nav-btn w-full flex items-center justify-between" id="mobile-btn-overons">
           {p('Over ons', 'About')}
-          <Icon name="chevron-down" class="text-xs transition-transform" id="mobile-chevron-overons" />
+          <Icon name="chevron-down" class="text-xs transition-transform duration-200" id="mobile-chevron-overons" />
         </button>
-        <div class="ml-4 mt-1 space-y-1 border-l-2 pl-3 hidden" id="mobile-menu-overons" style={`border-color: ${primaryColor}`}>
-          <a href={p('/over-ons', '/en/about')} class="block px-3 py-2 text-sm text-gray-600 hover:text-gray-900 rounded-lg hover:bg-gray-50 transition-colors">{p('Over ons', 'About us')}</a>
-          <a href={p('/autisme-adhd', '/en/autism-adhd')} class="block px-3 py-2 text-sm text-gray-600 hover:text-gray-900 rounded-lg hover:bg-gray-50 transition-colors">{p('Autisme & ADHD', 'Autism & ADHD')}</a>
+        <div class="ml-4 mt-1 space-y-0.5 border-l-2 pl-3 hidden" id="mobile-menu-overons" style={`border-color: ${gold}`}>
+          <a href={p('/over-ons', '/en/about')} class="mobile-nav-sub">{p('Over ons', 'About us')}</a>
+          <a href={p('/autisme-adhd', '/en/autism-adhd')} class="mobile-nav-sub">{p('Autisme & ADHD', 'Autism & ADHD')}</a>
         </div>
       </div>
 
-      <a href={p('/prijzen', '/en/prices')} class="block px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-lg transition-colors">{p('Tarieven', 'Prices')}</a>
+      <a href={p('/diensten', '/en/services')} class="mobile-nav-btn block">{p('Opfrislessen', 'Refresher lessons')}</a>
+      <a href={p('/prijzen', '/en/prices')} class="mobile-nav-btn block">{p('Tarieven', 'Prices')}</a>
 
-      <!-- Lesgebied mobile -->
       <div>
-        <button
-          class="flex items-center justify-between w-full px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
-          id="mobile-btn-lesgebied"
-        >
+        <button class="mobile-nav-btn w-full flex items-center justify-between" id="mobile-btn-lesgebied">
           {p('Lesgebied', 'Areas')}
-          <Icon name="chevron-down" class="text-xs transition-transform" id="mobile-chevron-lesgebied" />
+          <Icon name="chevron-down" class="text-xs transition-transform duration-200" id="mobile-chevron-lesgebied" />
         </button>
-        <div class="ml-4 mt-1 space-y-1 border-l-2 pl-3 hidden" id="mobile-menu-lesgebied" style={`border-color: ${primaryColor}`}>
+        <div class="ml-4 mt-1 space-y-0.5 border-l-2 pl-3 hidden" id="mobile-menu-lesgebied" style={`border-color: ${gold}`}>
           {navbarLesgebieden.map((g) => (
-            <a href={isEN ? `/en/area/${g.slug}` : `/lesgebied/${g.slug}`} class="block px-3 py-2 text-sm text-gray-600 hover:text-gray-900 rounded-lg hover:bg-gray-50 transition-colors">{g.naam}</a>
+            <a href={isEN ? `/en/area/${g.slug}` : `/lesgebied/${g.slug}`} class="mobile-nav-sub">{g.naam}</a>
           ))}
-          <a href={isEN ? '/en/areas' : '/lesgebied'} class="block px-3 py-2 text-sm font-semibold hover:bg-gray-50 rounded-lg transition-colors" style={`color: ${primaryColor}`}>
-            <Icon name="map" class="mr-1 text-xs" />{p('Alle lesgebieden', 'All areas')}
+          <a href={isEN ? '/en/areas' : '/lesgebied'} class="mobile-nav-sub font-bold" style={`color: ${gold}`}>
+            {p('Alle lesgebieden →', 'All areas →')}
           </a>
         </div>
       </div>
 
-      <a href={p('/onmyway-app', '/en/onmyway')} class="block px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-lg transition-colors">OnMyWay</a>
+      <a href={p('/faq', '/en/faq')} class="mobile-nav-btn block">FAQ</a>
 
-      <!-- Examens mobile -->
-      <div>
-        <button
-          class="flex items-center justify-between w-full px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
-          id="mobile-btn-examens"
-        >
-          {p('Examens', 'Exams')}
-          <Icon name="chevron-down" class="text-xs transition-transform" id="mobile-chevron-examens" />
-        </button>
-        <div class="ml-4 mt-1 space-y-1 border-l-2 pl-3 hidden" id="mobile-menu-examens" style={`border-color: ${primaryColor}`}>
-          <a href={p('/examen-theorie', '/en/theory-exam')} class="block px-3 py-2 text-sm text-gray-600 hover:text-gray-900 rounded-lg hover:bg-gray-50 transition-colors">{p('Theorie', 'Theory')}</a>
-          <a href={p('/examen-praktijk', '/en/practical-exam')} class="block px-3 py-2 text-sm text-gray-600 hover:text-gray-900 rounded-lg hover:bg-gray-50 transition-colors">{p('Praktijk', 'Practical')}</a>
-          <a href={p('/rijschool-machtigen', '/en/authorize')} class="block px-3 py-2 text-sm text-gray-600 hover:text-gray-900 rounded-lg hover:bg-gray-50 transition-colors">{p('Rijschool machtigen', 'Authorize school')}</a>
-          <a href={p('/gezondheidsverklaring', '/en/health-declaration')} class="block px-3 py-2 text-sm text-gray-600 hover:text-gray-900 rounded-lg hover:bg-gray-50 transition-colors">{p('Gezondheidsverklaring', 'Health declaration')}</a>
-        </div>
-      </div>
-
-      <a href={p('/vacatures', '/en/vacancies')} class="block px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-lg transition-colors">{p('Vacatures', 'Vacancies')}</a>
-      <a href={p('/faq', '/en/faq')} class="block px-3 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-lg transition-colors">FAQ</a>
-
-      <div class="pt-2 border-t border-gray-100 mt-2">
-        <a href="tel:0152224012" class="flex items-center gap-2 px-3 py-2.5 text-sm text-gray-700 hover:bg-gray-50 rounded-lg">
-          <Icon name="phone" class="text-xs" style={`color: ${primaryColor}`} />
-          {contactPhone}
+      <div class="pt-3 mt-2 border-t space-y-2" style="border-color: #e4ddd0">
+        <a href="tel:0152224012" class="flex items-center gap-2 px-3 py-2.5 text-sm transition-colors hover:bg-gray-50" style={`color: ${green}`}>
+          <Icon name="phone" style="font-size:11px" /> {contactPhone}
         </a>
-        <a href={`mailto:${contactEmail}`} class="flex items-center gap-2 px-3 py-2.5 text-sm text-gray-700 hover:bg-gray-50 rounded-lg">
-          <Icon name="envelope" class="text-xs" style={`color: ${primaryColor}`} />
-          {contactEmail}
+        <a href={`mailto:${contactEmail}`} class="flex items-center gap-2 px-3 py-2.5 text-sm transition-colors hover:bg-gray-50" style={`color: ${green}`}>
+          <Icon name="envelope" style="font-size:11px" /> {contactEmail}
         </a>
         <a
           href={p('/contact', '/en/contact')}
-          class="block text-white text-sm font-semibold text-center mt-2 px-4 py-3 rounded-lg shadow-md"
-          style={`background-color: ${secondaryColor}`}
+          class="block text-center text-sm font-bold px-4 py-3"
+          style={`background-color: ${gold}; color: ${green}; border-radius: 4px`}
         >
-          {p('Plan je proefles', 'Book a trial lesson')}
+          {p('Plan je opfrisles', 'Book a refresher lesson')}
         </a>
         <a
           href={alternateUrl}
-          class="block text-center mt-2 px-4 py-2.5 text-sm font-bold rounded-lg border-2 transition-all"
-          style={`border-color: ${primaryColor}; color: ${primaryColor}`}
+          class="block text-center text-sm font-bold px-4 py-2.5 border-2 transition-all"
+          style={`border-color: ${green}; color: ${green}; border-radius: 4px`}
         >
-          {isEN ? '🇳🇱 Nederlands' : '🇬🇧 English'}
+          {isEN ? 'NL' : 'EN'}
         </a>
       </div>
     </div>
   </div>
 </nav>
 
-<script>
-  const primaryColor = '#0391b0';
+<style>
+  .nav-link {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #1a1a18;
+    border-radius: 4px;
+    transition: color 0.12s, background-color 0.12s;
+    white-space: nowrap;
+  }
+  .nav-link:hover { color: #223927; background-color: rgba(34,57,39,0.06); }
 
-  // Mobile menu toggle
-  const mobileToggle = document.getElementById('mobile-menu-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const hamburgerIcon = document.getElementById('hamburger-icon');
-
-  mobileToggle?.addEventListener('click', () => {
-    const isOpen = !mobileMenu?.classList.contains('hidden');
-    if (isOpen) {
-      mobileMenu?.classList.add('hidden');
-      hamburgerIcon?.classList.remove('fa-times');
-      hamburgerIcon?.classList.add('fa-bars');
-    } else {
-      mobileMenu?.classList.remove('hidden');
-      hamburgerIcon?.classList.remove('fa-bars');
-      hamburgerIcon?.classList.add('fa-times');
-    }
-  });
-
-  // Mobile submenu toggles
-  function setupMobileSubmenu(btnId: string, menuId: string, chevronId: string) {
-    const btn = document.getElementById(btnId);
-    const menu = document.getElementById(menuId);
-    const chevron = document.getElementById(chevronId);
-    btn?.addEventListener('click', () => {
-      const isOpen = !menu?.classList.contains('hidden');
-      if (isOpen) {
-        menu?.classList.add('hidden');
-        chevron?.classList.remove('rotate-180');
-      } else {
-        menu?.classList.remove('hidden');
-        chevron?.classList.add('rotate-180');
-      }
-    });
+  .nav-dropdown {
+    position: absolute;
+    top: calc(100% + 0.375rem);
+    left: 0;
+    min-width: 13rem;
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 8px 32px rgba(34,57,39,0.12), 0 1px 4px rgba(34,57,39,0.06);
+    border: 1px solid #e4ddd0;
+    border-top: 3px solid #ac884d;
+    padding: 0.5rem;
+    z-index: 50;
   }
 
-  setupMobileSubmenu('mobile-btn-overons', 'mobile-menu-overons', 'mobile-chevron-overons');
-  setupMobileSubmenu('mobile-btn-examens', 'mobile-menu-examens', 'mobile-chevron-examens');
+  .nav-dropdown-item {
+    display: block;
+    padding: 0.625rem 0.875rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #374151;
+    border-radius: 3px;
+    transition: background-color 0.12s, color 0.12s;
+  }
+  .nav-dropdown-item:hover { background-color: #223927; color: white; }
+
+  .mobile-nav-btn {
+    padding: 0.625rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #1a1a18;
+    border-radius: 4px;
+    transition: background-color 0.12s;
+  }
+  .mobile-nav-btn:hover { background-color: rgba(34,57,39,0.05); }
+
+  .mobile-nav-sub {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    color: #4B5563;
+    border-radius: 3px;
+    transition: background-color 0.12s, color 0.12s;
+  }
+  .mobile-nav-sub:hover { background-color: rgba(34,57,39,0.05); color: #223927; }
+</style>
+
+<script>
+  document.getElementById('mobile-menu-toggle')?.addEventListener('click', () => {
+    document.getElementById('mobile-menu')?.classList.toggle('hidden');
+  });
+
+  function setupMobileSubmenu(btnId: string, menuId: string, chevronId: string) {
+    const btn    = document.getElementById(btnId);
+    const menu   = document.getElementById(menuId);
+    const chevron = document.getElementById(chevronId);
+    btn?.addEventListener('click', () => {
+      const open = !menu?.classList.contains('hidden');
+      menu?.classList.toggle('hidden', open);
+      chevron?.classList.toggle('rotate-180', !open);
+    });
+  }
+  setupMobileSubmenu('mobile-btn-overons',   'mobile-menu-overons',   'mobile-chevron-overons');
   setupMobileSubmenu('mobile-btn-lesgebied', 'mobile-menu-lesgebied', 'mobile-chevron-lesgebied');
 
-  // Desktop dropdown hover
   function setupDesktopDropdown(btnId: string, menuId: string, chevronId: string) {
-    const btn = document.getElementById(btnId);
-    const menu = document.getElementById(menuId);
+    const btn    = document.getElementById(btnId);
+    const menu   = document.getElementById(menuId);
     const chevron = document.getElementById(chevronId);
-    let timeout: ReturnType<typeof setTimeout>;
-
     const parent = btn?.parentElement;
-
-    const show = () => {
-      clearTimeout(timeout);
-      menu?.classList.remove('hidden');
-      chevron?.classList.add('rotate-180');
-    };
-    const hide = () => {
-      timeout = setTimeout(() => {
-        menu?.classList.add('hidden');
-        chevron?.classList.remove('rotate-180');
-      }, 150);
-    };
-
+    let t: ReturnType<typeof setTimeout>;
+    const show = () => { clearTimeout(t); menu?.classList.remove('hidden'); chevron?.classList.add('rotate-180'); };
+    const hide = () => { t = setTimeout(() => { menu?.classList.add('hidden'); chevron?.classList.remove('rotate-180'); }, 150); };
     parent?.addEventListener('mouseenter', show);
     parent?.addEventListener('mouseleave', hide);
     menu?.addEventListener('mouseenter', show);
     menu?.addEventListener('mouseleave', hide);
   }
-
-  setupDesktopDropdown('btn-overons', 'menu-overons', 'chevron-overons');
-  setupDesktopDropdown('btn-examens', 'menu-examens', 'chevron-examens');
+  setupDesktopDropdown('btn-overons',   'menu-overons',   'chevron-overons');
   setupDesktopDropdown('btn-lesgebied', 'menu-lesgebied', 'chevron-lesgebied');
-
-  // Dropdown item hover colors
-  document.querySelectorAll('.nav-dropdown-item').forEach((el) => {
-    (el as HTMLElement).addEventListener('mouseenter', () => {
-      (el as HTMLElement).style.backgroundColor = primaryColor;
-      (el as HTMLElement).style.color = 'white';
-    });
-    (el as HTMLElement).addEventListener('mouseleave', () => {
-      (el as HTMLElement).style.backgroundColor = '';
-      (el as HTMLElement).style.color = '';
-    });
-  });
 </script>

@@ -1,0 +1,141 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: #faf8f4;
+    color: #1a1a18;
+    font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    color: #1a1a18;
+    line-height: 1.15;
+    font-weight: 700;
+  }
+}
+
+@layer components {
+
+  /* ── KNOPPEN ──────────────────────────────────────────── */
+
+  /* Goud gevuld, groene tekst — primaire actie */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 font-bold text-sm tracking-wide transition-all duration-150;
+    background-color: #ac884d;
+    color: #223927;
+    border-radius: 4px;
+    border: 2px solid transparent;
+  }
+  .btn-primary:hover {
+    background-color: #8f6f39;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(172,136,77,0.30);
+  }
+
+  /* Groen gevuld, wit — tweede actie op lichte achtergrond */
+  .btn-green {
+    @apply inline-flex items-center gap-2 px-6 py-3 font-bold text-sm tracking-wide text-white transition-all duration-150;
+    background-color: #223927;
+    border-radius: 4px;
+    border: 2px solid transparent;
+  }
+  .btn-green:hover {
+    background-color: #1a2d1f;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(34,57,39,0.25);
+  }
+
+  /* Outline groen — op witte achtergrond */
+  .btn-outline {
+    @apply inline-flex items-center gap-2 px-6 py-3 font-bold text-sm tracking-wide bg-transparent transition-all duration-150;
+    color: #223927;
+    border: 2px solid #223927;
+    border-radius: 4px;
+  }
+  .btn-outline:hover {
+    background-color: #223927;
+    color: white;
+  }
+
+  /* Outline wit — op donkere achtergrond */
+  .btn-outline-white {
+    @apply inline-flex items-center gap-2 px-6 py-3 font-bold text-sm tracking-wide bg-transparent text-white transition-all duration-150;
+    border: 2px solid rgba(255,255,255,0.55);
+    border-radius: 4px;
+  }
+  .btn-outline-white:hover {
+    background-color: rgba(255,255,255,0.12);
+    border-color: white;
+  }
+
+  /* ── KAARTEN ─────────────────────────────────────────── */
+
+  /* Kaart met gouden linker accent — kenmerk Dutch Design */
+  .card-dutch {
+    @apply bg-white p-6 transition-all duration-150;
+    border-left: 4px solid #ac884d;
+    border-radius: 0 4px 4px 0;
+    box-shadow: 0 2px 12px rgba(34,57,39,0.08);
+  }
+  .card-dutch:hover {
+    box-shadow: 0 6px 28px rgba(34,57,39,0.14);
+    transform: translateY(-2px);
+  }
+
+  /* Standaard kaart */
+  .card {
+    @apply bg-white p-6 transition-all duration-150;
+    border-radius: 4px;
+    box-shadow: 0 2px 12px rgba(34,57,39,0.08);
+  }
+  .card:hover {
+    box-shadow: 0 6px 28px rgba(34,57,39,0.14);
+    transform: translateY(-2px);
+  }
+
+  /* ── SECTIE HELPERS ──────────────────────────────────── */
+
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Gouden balk onder kopje */
+  .gold-bar {
+    display: block;
+    width: 3rem;
+    height: 4px;
+    background-color: #ac884d;
+    margin-bottom: 1.5rem;
+  }
+  .gold-bar-center {
+    display: block;
+    width: 3rem;
+    height: 4px;
+    background-color: #ac884d;
+    margin: 0 auto 1.5rem;
+  }
+
+  /* Diagonale sectie (hero bottom edge) */
+  .section-diagonal {
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 3rem), 0 100%);
+  }
+
+  /* Badge */
+  .badge {
+    @apply inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 tracking-widest uppercase;
+    background-color: rgba(172,136,77,0.12);
+    color: #ac884d;
+    border-radius: 2px;
+  }
+  .badge-green {
+    @apply inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 tracking-widest uppercase;
+    background-color: rgba(34,57,39,0.08);
+    color: #223927;
+    border-radius: 2px;
+  }
+}

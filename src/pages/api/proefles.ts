@@ -1,6 +1,6 @@
 ﻿import type { APIRoute } from 'astro';
 
-const LOGO    = 'https://Rij-Vrij.com/RijVrij-logo-png.png';
+const LOGO    = 'https://rij-vrij.nl/RijVrij-logo-png.png';
 const PRIMARY = '#0391b0';
 const SECONDARY = '#790f34';
 
@@ -42,7 +42,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
         </table>
       </div>
       <div style="background:linear-gradient(135deg,${PRIMARY} 0%,${SECONDARY} 100%);border-radius:0 0 12px 12px;padding:14px 32px;text-align:center;margin-top:-1px">
-        <p style="color:rgba(255,255,255,0.8);font-size:12px;margin:0">Rij-Vrij Rijschool &bull; <a href="https://Rij-Vrij.com" style="color:#fff;text-decoration:underline">Rij-Vrij.com</a></p>
+        <p style="color:rgba(255,255,255,0.8);font-size:12px;margin:0">Rij-Vrij Rijschool &bull; <a href="https://rij-vrij.nl" style="color:#fff;text-decoration:underline">rij-vrij.nl</a></p>
       </div>
     </div>`;
 
@@ -54,8 +54,8 @@ export const POST: APIRoute = async ({ request, locals }) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: 'Rij-Vrij Rijschool <noreply@Rij-Vrij.com>',
-        to: ['leads@Rij-Vrij.com'],
+        from: 'Rij-Vrij Rijschool <noreply@rij-vrij.nl>',
+        to: ['leads@rij-vrij.nl'],
         subject: `Proefles aanvraag van ${naam}`,
         html,
       }),
