@@ -9,7 +9,6 @@
     "global_fetch_strictly_public",
     "nodejs_compat"
   ],
-  "main": "dist/_worker.js",
   "assets": {
     "binding": "ASSETS",
     "directory": "dist"
