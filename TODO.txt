@@ -1,0 +1,40 @@
+﻿TEKSTEN AANPASSEN (voor papa)
+------------------------------
+Stap 1: Ga naar de pagina die je wilt aanpassen, voeg ?labels=1 toe aan het einde van de URL.
+         Voorbeeld:  https://Rij-Vrij.com/?labels=1
+                     https://Rij-Vrij.com/over-ons?labels=1
+                     https://Rij-Vrij.com/prijzen?labels=1
+
+Stap 2: Je ziet nu oranje nummertjes naast elke tekst.
+         Klik op een nummertje om de huidige tekst te zien.
+         Onderaan de pagina staat een knop "Download lijst" — handig overzicht.
+
+Stap 3: Stuur Luuk een berichtje met:
+         - De paginanaam (bijv. "Home" of "Over ons")
+         - Het nummer (bijv. 12)
+         - De nieuwe tekst (bijv. "Rijschool voor RijVrij rijlessen in Pijnacker")
+
+Stap 4: Als je klaar bent, verwijder ?labels=1 uit de URL — alles is dan weer normaal.
+
+Voorbeeld berichtje:
+  "Pagina Home, nummer 5: 'Rijden met plezier bij Rij-Vrij'
+   Pagina Over ons, nummer 3: 'Peter is rijinstructeur en eigenaar...'"
+
+---------------------
+GOOGLE SEARCH CONSOLE
+---------------------
+1. Ga naar https://search.google.com/search-console
+2. Voeg property toe: https://Rij-Vrij.com
+3. Verifieer eigendom (bijv. via HTML-tag in Layout.astro of DNS-record bij Cloudflare)
+4. Ga naar Sitemaps (linkermenu)
+5. Voer in: sitemap-index.xml
+6. Klik op Verzenden
+
+Doe dit nadat de site live is op Rij-Vrij.com.
+
+---------------------
+NOG TE MAKEN BESTANDEN
+---------------------
+- public/favicon.png         (bijv. 32x32px, logo icoon)
+- public/apple-touch-icon.png (180x180px, voor iPhone homescreen)
+- public/og-image.png        (1200x630px, preview bij delen op social media)

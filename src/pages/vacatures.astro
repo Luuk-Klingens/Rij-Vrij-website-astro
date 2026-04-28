@@ -1,0 +1,338 @@
+﻿---
+import Layout from '../layouts/Layout.astro';
+
+const primaryColor = '#0391b0';
+const secondaryColor = '#790f34';
+
+const vacature = {
+  id: 'rij-instructeur',
+  titel: 'Rij-instructeur (B) M/V',
+  type: 'Fulltime / Parttime',
+  locatie: 'Regio Haaglanden, Delft, Rotterdam & Zoetermeer',
+  beschikbaar: 'Per direct',
+  eisen: [
+    'Geldige WRM bevoegdheid',
+    'Bij voorkeur in het bezit van het RIS diploma, of bereid zijn deze te halen.',
+    'Goede communicatieve vaardigheden (NL/Eng)',
+    'Geduldig, betrokken en resultaatgericht',
+  ],
+  aanbod: [
+    'Competitief uurtarief, passend bij ervaring',
+    'Gevulde agenda',
+    'Nette les-auto (max 5 jaar oud, RijVrij)',
+    'Ruimte voor eigen inbreng en groei',
+    'Wij doen de administratie en ondersteunen jou waar nodig.',
+  ],
+  omschrijving: 'Rij-Vrij Rijschool is een groeiende rijschool in de regio Haaglanden, Delft, Rotterdam en Zoetermeer. Wij zoeken een enthousiaste rij-instructeur M/V, die onze leerlingen begeleiden naar hun rijbewijs. Het les aanbod is zeer divers, denk hierbij aan bijvoorbeeld leerlingen met autisme en/of adhd of mensen die een opfris traject willen volgen. Bij ons staat kwaliteit centraal: wij gaan niet voor de snelste route, maar voor de slimste en/of beste. Ben jij die instructeur?',
+};
+import Icon from '../components/Icon.astro';
+---
+
+<Layout
+  title="Vacatures"
+  description="Bekijk de openstaande vacatures bij Rij-Vrij Rijschool. Momenteel gezocht: Rij-instructeur (B) M/V in Regio Haaglanden, Delft en Zoetermeer."
+>
+  <div class="bg-white">
+
+    <!-- Hero -->
+    <section class="py-20" style={`background: linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`}>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <p class="text-white text-sm font-semibold uppercase tracking-widest mb-3">Kom ons team versterken</p>
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Vacatures</h1>
+        <p class="text-xl text-white max-w-2xl mx-auto">
+          Wij zijn op zoek naar gedreven instructeurs, die net als wij, geloven in persoonlijke aandacht en kwaliteit.
+        </p>
+      </div>
+    </section>
+
+    <!-- Vacature kaart -->
+    <section class="py-16 bg-gray-50">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Openstaande vacatures</h2>
+
+        <div class="bg-white rounded-2xl border-2 shadow-sm overflow-hidden" style={`border-color: ${primaryColor}`}>
+          <!-- Header kaart -->
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-6 border-b border-gray-100">
+            <div>
+              <h3 class="text-xl font-bold text-gray-900">{vacature.titel}</h3>
+              <div class="flex flex-wrap gap-3 mt-2">
+                <span class="inline-flex items-center gap-1.5 text-sm text-gray-600">
+                  <Icon name="map-marker-alt" class="text-xs" style={`color:${primaryColor}`} />
+                  {vacature.locatie}
+                </span>
+                <span class="inline-flex items-center gap-1.5 text-sm text-gray-600">
+                  <Icon name="clock" class="text-xs" style={`color:${primaryColor}`} />
+                  {vacature.type}
+                </span>
+                <span class="inline-flex items-center gap-1.5 text-sm text-gray-600">
+                  <Icon name="calendar-check" class="text-xs" style={`color:${primaryColor}`} />
+                  {vacature.beschikbaar}
+                </span>
+              </div>
+            </div>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-semibold text-white self-start" style={`background-color:${primaryColor}`}>
+              <Icon name="circle" class="text-xs" /> Open
+            </span>
+          </div>
+
+          <!-- Body kaart -->
+          <div class="p-6 space-y-8">
+            <div>
+              <h4 class="font-semibold text-gray-900 mb-2">Over de functie</h4>
+              <p class="text-gray-600 leading-relaxed">{vacature.omschrijving}</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                <h4 class="font-semibold text-gray-900 mb-3">Wat wij vragen</h4>
+                <ul class="space-y-2">
+                  {vacature.eisen.map(e => (
+                    <li class="flex items-start gap-2 text-sm text-gray-600">
+                      <Icon name="check-circle" class="mt-0.5 flex-shrink-0" style={`color:${primaryColor}`} />
+                      {e}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900 mb-3">Wat wij bieden</h4>
+                <ul class="space-y-2">
+                  {vacature.aanbod.map(a => (
+                    <li class="flex items-start gap-2 text-sm text-gray-600">
+                      <Icon name="star" class="mt-0.5 flex-shrink-0 text-yellow-400" />
+                      {a}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div class="text-center pt-2">
+              <button
+                id="open-modal"
+                data-vacature={vacature.titel}
+                class="inline-flex items-center gap-2 text-white px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition-all shadow-md cursor-pointer"
+                style={`background-color:${primaryColor}`}
+              >
+                <Icon name="paper-plane" />
+                Solliciteer direct
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Modal overlay -->
+  <div id="sollicitatie-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4" style="background:rgba(0,0,0,0.55)">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+
+      <!-- Modal header -->
+      <div class="flex items-center justify-between p-6 border-b border-gray-100">
+        <div>
+          <h2 id="modal-title" class="text-xl font-bold text-gray-900">Solliciteer: <span id="modal-vacature-naam"></span></h2>
+          <p class="text-sm text-gray-500 mt-0.5">Na het indienen nemen wij zo spoedig mogelijk contact met je op.</p>
+        </div>
+        <button id="close-modal" class="text-gray-400 hover:text-gray-600 transition-colors p-1 rounded-lg hover:bg-gray-100 cursor-pointer" aria-label="Sluiten">
+          <Icon name="times" class="text-xl" />
+        </button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="p-6">
+        <!-- Success/Error meldingen -->
+        <div id="modal-success" class="hidden mb-5 p-4 bg-green-50 border border-green-200 rounded-xl text-green-800 text-sm flex items-center gap-3">
+          <Icon name="check-circle" class="text-green-500 text-lg flex-shrink-0" />
+          <p><strong>Sollicitatie verzonden!</strong> Wij nemen zo snel mogelijk contact met je op.</p>
+        </div>
+        <div id="modal-error" class="hidden mb-5 p-4 bg-red-50 border border-red-200 rounded-xl text-red-800 text-sm flex items-center gap-3">
+          <Icon name="exclamation-circle" class="text-red-500 text-lg flex-shrink-0" />
+          <p id="modal-error-text">Er ging iets mis. Probeer het later opnieuw.</p>
+        </div>
+
+        <form id="sollicitatie-form" class="space-y-4">
+          <input type="hidden" name="vacature" id="form-vacature" value="" />
+
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-1.5" for="naam">
+              Volledige naam <span class="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              id="naam"
+              name="naam"
+              required
+              placeholder="Jan de Vries"
+              class="w-full px-4 py-3 rounded-lg border border-gray-200 text-gray-900 text-sm focus:outline-none focus:ring-2 focus:border-transparent transition"
+              style={`--tw-ring-color:${primaryColor}`}
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-1.5" for="email">
+              E-mailadres <span class="text-red-500">*</span>
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="jan@example.com"
+              class="w-full px-4 py-3 rounded-lg border border-gray-200 text-gray-900 text-sm focus:outline-none focus:ring-2 focus:border-transparent transition"
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-1.5" for="telefoon">
+              Telefoonnummer <span class="text-red-500">*</span>
+            </label>
+            <input
+              type="tel"
+              id="telefoon"
+              name="telefoon"
+              required
+              placeholder="06 12 34 56 78"
+              class="w-full px-4 py-3 rounded-lg border border-gray-200 text-gray-900 text-sm focus:outline-none focus:ring-2 focus:border-transparent transition"
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-1.5" for="adres">
+              Adres <span class="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              id="adres"
+              name="adres"
+              required
+              placeholder="Straatnaam 1, 1234 AB"
+              class="w-full px-4 py-3 rounded-lg border border-gray-200 text-gray-900 text-sm focus:outline-none focus:ring-2 focus:border-transparent transition"
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-1.5" for="woonplaats">
+              Woonplaats <span class="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              id="woonplaats"
+              name="woonplaats"
+              required
+              placeholder="Pijnacker"
+              class="w-full px-4 py-3 rounded-lg border border-gray-200 text-gray-900 text-sm focus:outline-none focus:ring-2 focus:border-transparent transition"
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-1.5" for="motivatie">
+              Motivatie <span class="text-red-500">*</span>
+            </label>
+            <textarea
+              id="motivatie"
+              name="motivatie"
+              required
+              rows="5"
+              placeholder="Vertel ons waarom jij de perfecte instructeur voor Rij-Vrij bent..."
+              class="w-full px-4 py-3 rounded-lg border border-gray-200 text-gray-900 text-sm focus:outline-none focus:ring-2 focus:border-transparent transition resize-none"
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            id="submit-btn"
+            class="w-full text-white py-3.5 rounded-lg font-bold text-base hover:opacity-90 transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
+            style={`background-color:${primaryColor}`}
+          >
+            <Icon name="paper-plane" />
+            <span id="submit-label">Sollicitatie versturen</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  const modal    = document.getElementById('sollicitatie-modal') as HTMLDivElement;
+  const openBtn  = document.getElementById('open-modal') as HTMLButtonElement;
+  const closeBtn = document.getElementById('close-modal') as HTMLButtonElement;
+  const form     = document.getElementById('sollicitatie-form') as HTMLFormElement;
+  const btn      = document.getElementById('submit-btn') as HTMLButtonElement;
+  const label    = document.getElementById('submit-label') as HTMLSpanElement;
+  const success  = document.getElementById('modal-success') as HTMLDivElement;
+  const errorBox = document.getElementById('modal-error') as HTMLDivElement;
+  const errorText = document.getElementById('modal-error-text') as HTMLParagraphElement;
+  const modalVacatureNaam = document.getElementById('modal-vacature-naam') as HTMLSpanElement;
+  const formVacature = document.getElementById('form-vacature') as HTMLInputElement;
+
+  function openModal() {
+    const vacatureNaam = openBtn.dataset.vacature ?? '';
+    modalVacatureNaam.textContent = vacatureNaam;
+    formVacature.value = vacatureNaam;
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+    document.body.style.overflow = '';
+    success.classList.add('hidden');
+    errorBox.classList.add('hidden');
+  }
+
+  openBtn?.addEventListener('click', openModal);
+  closeBtn?.addEventListener('click', closeModal);
+
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    btn.disabled = true;
+    label.textContent = 'Verzenden...';
+    success.classList.add('hidden');
+    errorBox.classList.add('hidden');
+
+    try {
+      const res = await fetch('/api/solliciteer', {
+        method: 'POST',
+        body: new FormData(form),
+      });
+
+      let json: { ok: boolean; error?: string } | null = null;
+      try {
+        json = await res.json();
+      } catch {
+        errorText.textContent = `Serverfout (${res.status}). Probeer het later opnieuw.`;
+        errorBox.classList.remove('hidden');
+        return;
+      }
+
+      if (json?.ok) {
+        form.reset();
+        formVacature.value = modalVacatureNaam.textContent ?? '';
+        success.classList.remove('hidden');
+        success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      } else {
+        errorText.textContent = json?.error ?? 'Er ging iets mis.';
+        errorBox.classList.remove('hidden');
+      }
+    } catch {
+      errorText.textContent = 'Geen verbinding. Controleer je internetverbinding.';
+      errorBox.classList.remove('hidden');
+    } finally {
+      btn.disabled = false;
+      label.textContent = 'Sollicitatie versturen';
+    }
+  });
+</script>

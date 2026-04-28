@@ -1,0 +1,146 @@
+﻿---
+import Layout from '../../layouts/Layout.astro';
+
+export const prerender = true;
+
+const primaryColor = '#0391b0';
+const secondaryColor = '#790f34';
+
+const aanpak = [
+  { icon: 'fa-user', title: 'You come first', text: 'Your learning style, your safety and your pace set the rhythm of every lesson.' },
+  { icon: 'fa-handshake', title: 'Fixed instructor', text: 'Always the same familiar instructor for maximum continuity and familiarity.' },
+  { icon: 'fa-calendar-check', title: 'Clear structure', text: 'Predictable lessons with a fixed structure so you always know what to expect.' },
+  { icon: 'fa-shield-alt', title: 'Fewer stimuli', text: 'Special attention to sensory stimuli and maintaining concentration during the drive.' },
+  { icon: 'fa-file-alt', title: 'Adapted exams', text: 'If needed: extended exam or English-language exam.' },
+  { icon: 'fa-car', title: 'Automatic licence', text: 'No gear changes — full focus on traffic. Saves an average of 10 lessons.' },
+];
+
+const silvyReview = {
+  name: 'Shiyanna Lucifer (Lucy)',
+  photo: 'https://lh3.googleusercontent.com/a-/ALV-UjXHdmykFII6CFC4APW09O8hck0gu4kHT0hqYQNenZcnmTQmkxiS=s128-c0x00000000-cc-rp-mo',
+  text: 'Wonderful driving school! Peter is very calm, patient and above all honest! I also had great conversations with him about all sorts of things. There was a relaxed atmosphere in the car and everything was open for discussion. This greatly boosted my confidence behind the wheel. At the end of this driving adventure I passed first time thanks to Peter\'s superb guidance! This was with the added challenge of my ADHD, but Peter handled it brilliantly. He could read me like a book and scheduled a break before I even realised I needed one. Thank you so much Peter, without your help I would never have passed straight away! Best of luck with your driving school in the future!',
+  date: '6 months ago',
+};
+import Icon from '../../components/Icon.astro';
+---
+
+<Layout
+  title="Driving Lessons with Autism & ADHD"
+  description="Rij-Vrij Driving School specialises in driving lessons for students with autism or ADHD. Patience, structure and adaptation to your pace. Certified instructor in Pijnacker."
+>
+  <div class="bg-white">
+
+    <section class="py-20" style={`background: linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`}>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <p class="text-white text-sm font-semibold uppercase tracking-widest mb-3">Certified specialist</p>
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Autism &amp; ADHD</h1>
+        <p class="text-xl text-white max-w-2xl mx-auto">
+          Driving lessons your way. Rij-Vrij guides people with autism or ADHD with knowledge, patience and structure.
+        </p>
+        <div class="mt-8 inline-flex items-center gap-3 bg-white/20 backdrop-blur-sm border border-white/30 text-white px-6 py-3 rounded-xl text-sm font-semibold">
+          <Icon name="certificate" />
+          Registered with rijles-en-autisme.nl, part of Spectrum Brabant
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 bg-white">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+
+          <div class="space-y-5 text-gray-700 leading-relaxed">
+            <p>
+              People with autism (ASD), ADHD or similar conditions can drive just as well as anyone else. Because their brains sometimes process information differently, learning to drive may require a little more time or explanation. With the right support during driving lessons, it is perfectly possible for them to obtain their driving licence.
+            </p>
+            <p>
+              Rij-Vrij Driving School specialises in supporting people with autism and ADHD. We are proud of this. As a certified specialist we are registered with <a href="https://www.rijles-en-autisme.nl" target="_blank" rel="noopener noreferrer" class="font-semibold hover:underline" style={`color: ${primaryColor}`}>rijles-en-autisme.nl</a>, which is part of Spectrum Brabant — a centre for care and education that includes a specialist centre for autism and ADHD.
+            </p>
+            <p>
+              People diagnosed with AD(H)D and/or autism who want to obtain their driving licence are no longer referred for a medical examination for these conditions from 1 December 2025.
+            </p>
+            <p>
+              The aim is that AD(H)D and autism will be removed from the CBR Health Declaration on 1 April 2026. During the transition period, people with AD(H)D and/or autism who have no other conditions will not be referred for a medical examination, providing clarity and preventing unnecessary waiting times.
+            </p>
+            <p>
+              In short, the path to your driving licence has been simplified — and Rij-Vrij is your certified specialist and partner every step of the way!
+            </p>
+            <p class="font-semibold" style={`color: ${primaryColor}`}>See you behind the wheel soon!</p>
+          </div>
+
+          <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 shadow-sm">
+            <p class="text-xs font-bold uppercase tracking-widest mb-5" style={`color: ${primaryColor}`}>Lucy said this about us</p>
+            <div class="flex gap-1 mb-4">
+              {[...Array(5)].map(() => <Icon name="star" class="text-yellow-400 text-lg" />)}
+            </div>
+            <p class="text-gray-700 text-sm leading-relaxed italic mb-6">"{silvyReview.text}"</p>
+            <div class="flex items-center gap-3 border-t border-gray-200 pt-5">
+              <img src={silvyReview.photo} alt={silvyReview.name} width="48" height="48" loading="lazy" class="rounded-full object-cover flex-shrink-0" style="width:48px;height:48px" />
+              <div>
+                <p class="font-semibold text-gray-900 text-sm">{silvyReview.name}</p>
+                <p class="text-xs text-gray-500">{silvyReview.date} · Google Review</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 bg-white">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Why automatic lessons work so well</h2>
+        <p class="text-gray-600 leading-relaxed mb-8">
+          The automatic driving licence is particularly suitable for people with autism or ADHD. Without gear changes you can fully concentrate on traffic, reducing sensory overload and creating a calmer driving experience.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <div class="flex-1 rounded-xl p-5 text-center" style={`background: ${primaryColor}10`}>
+            <div class="text-3xl font-black mb-1" style={`color: ${primaryColor}`}>10</div>
+            <div class="text-sm text-gray-600">fewer lessons on average when driving automatic</div>
+          </div>
+          <div class="flex-1 rounded-xl p-5 text-center" style={`background: ${secondaryColor}10`}>
+            <div class="text-3xl font-black mb-1" style={`color: ${secondaryColor}`}>100%</div>
+            <div class="text-sm text-gray-600">focus on traffic</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 bg-gray-50">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-3">Our approach</h2>
+          <p class="text-gray-600 max-w-xl mx-auto">Every lesson is tailored to your needs. This is what lessons at Rij-Vrij look like for you.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {aanpak.map((item) => (
+            <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100 overflow-hidden flex flex-col">
+              <div class="flex items-center justify-center py-7" style={`background-color: ${primaryColor}`}>
+                <i class={`fas ${item.icon} text-4xl text-white`}></i>
+              </div>
+              <div class="p-6 flex flex-col flex-grow">
+                <h3 class="font-bold text-gray-900 mb-2 text-center">{item.title}</h3>
+                <p class="text-gray-600 text-sm leading-relaxed text-center">{item.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 bg-white">
+      <div class="max-w-2xl mx-auto px-4 text-center">
+        <h3 class="text-2xl font-bold text-gray-900 mb-3">Ready to get started?</h3>
+        <p class="text-gray-600 mb-6">Book a free trial lesson or get in touch. We are happy to help you on your way.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/en/#proefles-cta" class="inline-block text-white px-7 py-3 rounded-lg font-semibold hover:opacity-90 transition-all shadow-md" style={`background-color: ${primaryColor}`}>
+            <Icon name="calendar-check" class="mr-2" />Book free trial lesson
+          </a>
+          <a href="/en/contact" class="inline-block text-white px-7 py-3 rounded-lg font-semibold hover:opacity-90 transition-all shadow-md" style={`background-color: ${secondaryColor}`}>
+            <Icon name="envelope" class="mr-2" />Get in touch
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</Layout>

@@ -1,0 +1,469 @@
+﻿---
+import Layout from '../layouts/Layout.astro';
+import ReviewsCarousel from '../components/ReviewsCarousel.astro';
+import lesgebieden from '../data/lesgebieden';
+
+const primaryColor = '#0391b0';
+const primaryColorDark = '#016d84'; // toegankelijke variant: 5.97:1 contrast op wit
+const secondaryColor = '#790f34';
+
+const waaromCards: { icon: string; title: string; highlight: string; text: string; html?: string }[] = [
+  { icon: 'fa-car', title: 'RijVrij = makkelijker rijden', highlight: 'makkelijker', text: 'Zonder schakelen kun je je volledig concentreren op het verkeer. Daardoor leer je sneller en heb je gemiddeld 10-30% minder lessen nodig.' },
+  { icon: 'fa-trophy', title: 'Hoog slagingspercentage', highlight: 'slagingspercentage', text: 'Onze bewezen lesmethode en gecertificeerde instructeurs zorgen voor een uitstekend resultaat bij het CBR praktijkexamen.' },
+  { icon: 'fa-mobile-alt', title: 'OnMyWay inbegrepen', highlight: 'OnMyWay', text: "Oefen theorie via video's en maak 50 praktijkexamens. Volg je voortgang en plan je lessen eenvoudig via de app." },
+  { icon: 'fa-handshake', title: 'Transparant & eerlijk', highlight: 'Transparant', text: 'Wat wij beloven, maken wij waar. Duidelijke tarieven, eerlijk advies over jouw voortgang en geen verborgen kosten.' },
+  { icon: 'fa-heart', title: 'Erkend specialist autisme & ADHD', highlight: 'autisme & ADHD', text: 'Onze instructeurs hebben speciale expertise in het begeleiden van leerlingen met autisme of ADHD. Op jouw tempo, met geduld en begrip.', html: 'Onze instructeurs hebben speciale expertise in het begeleiden van leerlingen met autisme of ADHD. Op jouw tempo, met geduld en begrip. Wij zijn <a href="https://rijles-en-autisme.nl" target="_blank" rel="noopener noreferrer" style="color:#016d84" class="underline font-medium">erkend specialist via Rijles-en-Autisme.nl</a>, onderdeel van Spectrum Brabant.' },
+  { icon: 'fa-clock', title: 'Geen wachttijden', highlight: 'Geen wachttijden', text: 'Je kunt direct starten. Geen lange wachtrij, vandaag aanmelden betekent snel van start met jouw RijVrij rijlessen.' },
+];
+
+const proeflesBullets = [
+  'Stap direct achter het stuur in een moderne RijVrij',
+  'Maak kennis met je instructeur en de lesmethode',
+  'Gratis en vrijblijvend advies over jouw rijbewijs',
+  'Proefles €49,- of gratis bij afname van een startpakket!',
+];
+
+const packages = [
+  {
+    name: 'Start10',
+    description: '10 lessen van 90 minuten',
+    price: '1.399',
+    isPopular: false,
+    features: ['10 rijlessen van 90 minuten', 'CBR praktijkexamen inbegrepen', 'Gratis proefles t.w.v. €49,-', 'Gratis theorieopleiding t.w.v. €59,-', 'Direct starten!'],
+  },
+  {
+    name: 'Populair20',
+    description: '20 lessen van 90 minuten',
+    price: '2.399',
+    isPopular: true,
+    features: ['20 rijlessen van 90 minuten', 'CBR praktijkexamen inbegrepen', 'Gratis proefles t.w.v. €49,-', 'Gratis theorieopleiding t.w.v. €59,-', 'Gratis in twee termijnen betalen', 'Direct starten!'],
+  },
+  {
+    name: 'Compleet30',
+    description: '30 lessen van 90 minuten',
+    price: '3.299',
+    isPopular: false,
+    features: ['30 rijlessen van 90 minuten', 'CBR praktijkexamen inbegrepen', 'Gratis proefles t.w.v. €49,-', 'Gratis theorieopleiding t.w.v. €59,-', 'Gratis in drie termijnen betalen', 'Direct starten!'],
+  },
+];
+
+const stats = [
+  { value: '70%', label: "van nieuwe auto's is RijVrij", sub: 'De toekomst is RijVrij' },
+  { value: '10-30%', label: 'minder rijlessen nodig', sub: 'Sneller & goedkoper je rijbewijs' },
+  { value: '15+', label: 'lesgebieden', sub: 'Regio Haaglanden, Delft en Zoetermeer' },
+];
+
+import Icon from '../components/Icon.astro';
+---
+
+<Layout
+  title="Autorijschool Rij-Vrij – Regio Haaglanden, Delft & Zoetermeer"
+  description="Rij-Vrij Rijschool (ook bekend als RijVrij Rijschool) geeft RijVrij rijlessen in regio Haaglanden, Delft en Zoetermeer. Hoog slagingspercentage, geen wachttijden. Specialist autisme & ADHD. Plan gratis je proefles!"
+>
+  <!-- Hero-afbeelding vroeg laden zodat LCP snel is -->
+  <link slot="head" rel="preload" as="image" href="/hero-768.webp" type="image/webp" imagesrcset="/hero-768.webp 768w, /hero-1080.webp 1080w, /hero-1440.webp 1440w" imagesizes="100vw" fetchpriority="high" />
+
+  <!-- LocalBusiness schema -->
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "DrivingSchool",
+    "name": "Rij-Vrij Rijschool",
+    "alternateName": ["RijVrij Rijschool", "RijVrij", "Rij Vrij Rijschool", "Autorijschool Rij-Vrij", "Autorijschool RijVrij"],
+    "description": "Rij-Vrij Rijschool (RijVrij) verzorgt RijVrij rijlessen in de regio Haaglanden, Delft en Zoetermeer. Specialist in rijlessen voor leerlingen met autisme & ADHD. Geen wachttijden, direct starten.",
+    "url": "https://Rij-Vrij.com",
+    "telephone": "+31152224012",
+    "email": "info@Rij-Vrij.com",
+    "image": "https://Rij-Vrij.com/og-image.png",
+    "priceRange": "€€",
+    "sameAs": [
+      "https://www.facebook.com/profile.php?id=61569989527327",
+      "https://www.instagram.com/autorijschool_auto_maat/",
+      "https://www.tiktok.com/@autorijschool.auto_maat"
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Hankweg 39",
+      "addressLocality": "Pijnacker",
+      "postalCode": "2641 WV",
+      "addressCountry": "NL",
+      "addressRegion": "Zuid-Holland"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 52.0169,
+      "longitude": 4.4306
+    },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "21:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "17:00" }
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "9.7",
+      "ratingCount": "47",
+      "bestRating": "10"
+    },
+    "availableLanguage": [
+      { "@type": "Language", "name": "Dutch" },
+      { "@type": "Language", "name": "English" }
+    ],
+    "areaServed": lesgebieden.flatMap(g => [
+      { "@type": "City", "name": g.naam, "containedInPlace": { "@type": "AdministrativeArea", "name": "Zuid-Holland" } },
+      ...g.buurtwijken.map(wijk => ({ "@type": "Place", "name": `${wijk}, ${g.naam}` }))
+    ]),
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "RijVrij rijlessen pakketten",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "name": "Start10 – 10 rijlessen RijVrij",
+          "description": "10 rijlessen van 90 minuten met RijVrij. CBR praktijkexamen inbegrepen. Gratis proefles en theorieopleiding.",
+          "price": "1399",
+          "priceCurrency": "EUR",
+          "itemOffered": { "@type": "Service", "name": "RijVrij rijlessen – Start10 pakket" }
+        },
+        {
+          "@type": "Offer",
+          "name": "Populair20 – 20 rijlessen RijVrij",
+          "description": "20 rijlessen van 90 minuten met RijVrij. Meest gekozen pakket. CBR praktijkexamen inbegrepen. Betaling in 2 termijnen.",
+          "price": "2399",
+          "priceCurrency": "EUR",
+          "itemOffered": { "@type": "Service", "name": "RijVrij rijlessen – Populair20 pakket" }
+        },
+        {
+          "@type": "Offer",
+          "name": "Compleet30 – 30 rijlessen RijVrij",
+          "description": "30 rijlessen van 90 minuten met RijVrij. CBR praktijkexamen inbegrepen. Betaling in 3 termijnen.",
+          "price": "3299",
+          "priceCurrency": "EUR",
+          "itemOffered": { "@type": "Service", "name": "RijVrij rijlessen – Compleet30 pakket" }
+        },
+        {
+          "@type": "Offer",
+          "name": "Proefles RijVrij rijles",
+          "description": "Vrijblijvende proefles RijVrij rijden in de regio Haaglanden, Delft en Zoetermeer. Gratis bij afname van een rijpakket.",
+          "price": "49",
+          "priceCurrency": "EUR",
+          "itemOffered": { "@type": "Service", "name": "Proefles RijVrij rijles" }
+        },
+        {
+          "@type": "Offer",
+          "name": "Rijlessen autisme & ADHD",
+          "description": "Gespecialiseerde rijlessen voor leerlingen met autisme of ADHD. Erkend specialist via Rijles-en-Autisme.nl.",
+          "itemOffered": { "@type": "Service", "name": "Rijlessen autisme ADHD specialist" }
+        },
+        {
+          "@type": "Offer",
+          "name": "Opfriscursus rijles RijVrij",
+          "description": "Opfristraject voor rijbewijsbezitters die meer zelfvertrouwen achter het stuur willen. RijVrij, op maat.",
+          "itemOffered": { "@type": "Service", "name": "Opfriscursus RijVrij rijles" }
+        }
+      ]
+    }
+  })} />
+
+  <div class="bg-white">
+
+    <!-- Hero Section -->
+    <section class="relative min-h-[600px] flex items-center justify-center overflow-hidden">
+      <img
+        src="/hero-1440.webp"
+        srcset="/hero-768.webp 768w, /hero-1080.webp 1080w, /hero-1440.webp 1440w"
+        sizes="100vw"
+        alt=""
+        aria-hidden="true"
+        width="1440"
+        height="647"
+        fetchpriority="high"
+        loading="eager"
+        decoding="sync"
+        class="absolute inset-0 w-full h-full object-cover"
+      />
+      <div class="absolute inset-0" style={`background-color: ${primaryColor}; opacity: 0.78`}></div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+        <div class="inline-block bg-white/20 backdrop-blur-sm text-white text-sm font-semibold px-4 py-2 rounded-full mb-6 border border-white/30">
+          <Icon name="check-circle" class="mr-2" />
+          Geen wachttijden, direct van start
+        </div>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-white">
+          Rijden met Rij-Vrij
+        </h1>
+        <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-white font-semibold">
+          De slimme weg naar jouw rijbewijs! Omdat je het leren schakelen overslaat, met een RijVrij, rijd je makkelijker, haal je sneller je rijbewijs en bespaar je op het totale aantal lessen. Geen wachttijden, start vandaag nog!
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="#proefles-cta"
+            class="inline-block text-white px-8 py-4 rounded-lg text-lg font-semibold hover:opacity-90 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
+            style={`background-color: ${secondaryColor}`}
+          >
+            <Icon name="calendar-check" class="mr-2" />
+            Plan mijn proefles
+          </a>
+          <a
+            href="tel:0152224012"
+            class="inline-block bg-white/20 backdrop-blur-sm border border-white/40 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white/30 transition-all"
+          >
+            <Icon name="phone" class="mr-2" />
+            015-2224012
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="py-16 bg-white border-b border-gray-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+          {stats.map((stat) => (
+            <div class="p-8 rounded-xl text-white" style={`background-color: ${primaryColorDark}`}>
+              <div class="text-4xl md:text-5xl font-bold mb-2">{stat.value}</div>
+              <div class="text-lg font-semibold mb-1">{stat.label}</div>
+              <div class="text-white text-sm">{stat.sub}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="py-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Waarom rijles bij Rij-Vrij de slimste keuze is voor jou
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {waaromCards.map((item) => (
+            <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100 overflow-hidden flex flex-col">
+              <div class="flex items-center justify-center py-7" style={`background-color: ${primaryColor}`}>
+                <Icon name={item.icon.replace('fa-', '')} class="text-4xl text-white" />
+              </div>
+              <div class="p-6 flex flex-col flex-grow">
+                <h3 class="text-lg font-bold text-gray-900 mb-3 text-center">{item.title}</h3>
+                <p class="text-gray-600 text-sm leading-relaxed text-center" set:html={item.html ?? item.text}></p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="py-20 bg-white overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+            Wat zeggen onze leerlingen?
+          </h2>
+          <div class="flex items-center justify-center gap-1 mb-1">
+            {[...Array(5)].map(() => (
+              <Icon name="star" class="text-yellow-400 text-xl" />
+            ))}
+          </div>
+          <p class="text-sm text-gray-500">5 sterren op Google</p>
+        </div>
+      </div>
+
+      <!-- Carousel loopt buiten de max-breedte voor full-width effect -->
+      <div class="px-4 sm:px-6 lg:px-8 mb-8">
+        <ReviewsCarousel />
+      </div>
+
+      <div class="text-center">
+        <a
+          href="/reviews"
+          class="font-semibold hover:underline inline-flex items-center gap-2"
+          style={`color: ${primaryColorDark}`}
+        >
+          Bekijk deze reviews volledig <Icon name="arrow-right" />
+        </a>
+      </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section class="py-20" style="background-color: #f0f9fc">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Kies jouw rijpakket bij Rij-Vrij
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Haal jouw rijbewijs sneller en voor minder geld met RijVrij rijlessen. Kies het pakket dat bij jou past en start vandaag nog!
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {packages.map((pkg) => (
+            <div
+              class={`bg-white rounded-xl border-2 p-8 flex flex-col relative ${pkg.isPopular ? 'shadow-xl scale-105' : 'border-gray-200 shadow-sm'}`}
+              style={pkg.isPopular ? `border-color: ${primaryColor}` : ''}
+            >
+              {pkg.isPopular && (
+                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                  <span
+                    class="text-white px-4 py-1 rounded-full text-sm font-semibold shadow-lg"
+                    style={`background-color: ${primaryColorDark}`}
+                  >
+                    Meest gekozen
+                  </span>
+                </div>
+              )}
+
+              <h3 class="text-2xl font-bold text-gray-900 mb-2 text-center">{pkg.name}</h3>
+              <p class="text-gray-600 text-sm text-center mb-4">{pkg.description}</p>
+
+              <div class="text-center mb-6">
+                <div class="text-4xl font-bold mb-1" style={`color: ${primaryColor}`}>
+                  €{pkg.price},-
+                </div>
+              </div>
+
+              <div class="flex-grow space-y-3 mb-8">
+                {pkg.features.map((feature) => (
+                  <div class="flex items-start text-sm text-gray-700">
+                    <Icon name="check-circle" class="mr-3 mt-0.5 flex-shrink-0" style={`color: ${primaryColor}`} />
+                    <span>{feature}</span>
+                  </div>
+                ))}
+              </div>
+
+              <a
+                href="#proefles-cta"
+                class="text-white px-6 py-3 rounded-lg text-center font-semibold hover:opacity-90 transition-all block shadow-md hover:shadow-lg w-full"
+                style={`background-color: ${pkg.isPopular ? primaryColorDark : secondaryColor}`}
+              >
+                Plan mijn proefles
+              </a>
+            </div>
+          ))}
+        </div>
+
+        <p class="text-center text-sm text-gray-500 mt-8">
+          Losse proefles (60 min): <strong>€49,-</strong> &nbsp;|&nbsp; Losse les (90 min): <strong>€109,-</strong>
+        </p>
+      </div>
+    </section>
+
+    <!-- Proefles CTA Section -->
+    <section id="proefles-cta" class="py-20 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          class="rounded-2xl p-8 md:p-12 shadow-xl"
+          style={`background: linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`}
+        >
+          <div class="text-center mb-8">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
+              Plan direct je proefles bij Rij-Vrij
+            </h2>
+            <div class="space-y-2 text-white/90 text-lg">
+              {proeflesBullets.map((bullet, i) => (
+                <p class={i === proeflesBullets.length - 1 ? 'font-semibold mt-4 pt-3 border-t border-white/20' : ''}>
+                  <Icon name="check" class="mr-2" />{bullet}
+                </p>
+              ))}
+            </div>
+          </div>
+
+          <form id="proefles-form" class="mt-8 space-y-3 max-w-md mx-auto">
+            <div id="proefles-success" class="hidden p-4 bg-white/20 border border-white/40 rounded-xl text-white text-sm flex items-center gap-3">
+              <Icon name="check-circle" class="text-lg flex-shrink-0" />
+              <p><strong>Aanvraag verstuurd!</strong> Wij nemen zo snel mogelijk contact met je op.</p>
+            </div>
+            <div id="proefles-error" class="hidden p-4 bg-white/20 border border-red-300/60 rounded-xl text-white text-sm flex items-center gap-3">
+              <Icon name="exclamation-circle" class="text-lg flex-shrink-0" />
+              <p id="proefles-error-text">Er ging iets mis. Probeer het later opnieuw.</p>
+            </div>
+            <input
+              type="text"
+              name="naam"
+              required
+              placeholder="Volledige naam"
+              class="w-full px-4 py-3 rounded-lg bg-white/15 border border-white/30 text-white placeholder-white/60 text-sm focus:outline-none focus:bg-white/25 transition"
+            />
+            <input
+              type="tel"
+              name="telefoon"
+              required
+              placeholder="Telefoonnummer"
+              class="w-full px-4 py-3 rounded-lg bg-white/15 border border-white/30 text-white placeholder-white/60 text-sm focus:outline-none focus:bg-white/25 transition"
+            />
+            <input
+              type="text"
+              name="adres"
+              required
+              placeholder="Adres"
+              class="w-full px-4 py-3 rounded-lg bg-white/15 border border-white/30 text-white placeholder-white/60 text-sm focus:outline-none focus:bg-white/25 transition"
+            />
+            <input
+              type="text"
+              name="woonplaats"
+              required
+              placeholder="Woonplaats"
+              class="w-full px-4 py-3 rounded-lg bg-white/15 border border-white/30 text-white placeholder-white/60 text-sm focus:outline-none focus:bg-white/25 transition"
+            />
+            <button
+              type="submit"
+              id="proefles-btn"
+              class="w-full bg-white font-bold py-3 rounded-lg hover:opacity-90 transition-all shadow-lg cursor-pointer"
+              style={`color: ${primaryColorDark}`}
+            >
+              <Icon name="calendar-check" class="mr-2" />
+              <span id="proefles-label">Proefles aanvragen</span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</Layout>
+
+<script>
+  const form    = document.getElementById('proefles-form') as HTMLFormElement;
+  const btn     = document.getElementById('proefles-btn') as HTMLButtonElement;
+  const label   = document.getElementById('proefles-label') as HTMLSpanElement;
+  const success = document.getElementById('proefles-success') as HTMLDivElement;
+  const errorBox = document.getElementById('proefles-error') as HTMLDivElement;
+  const errorText = document.getElementById('proefles-error-text') as HTMLParagraphElement;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    btn.disabled = true;
+    label.textContent = 'Verzenden...';
+    success.classList.add('hidden');
+    errorBox.classList.add('hidden');
+
+    try {
+      const res = await fetch('/api/proefles', {
+        method: 'POST',
+        body: new FormData(form),
+      });
+
+      let json: { ok: boolean; error?: string } | null = null;
+      try { json = await res.json(); } catch {
+        errorText.textContent = `Serverfout (${res.status}). Probeer het later opnieuw.`;
+        errorBox.classList.remove('hidden');
+        return;
+      }
+
+      if (json?.ok) {
+        form.reset();
+        success.classList.remove('hidden');
+      } else {
+        errorText.textContent = json?.error ?? 'Er ging iets mis.';
+        errorBox.classList.remove('hidden');
+      }
+    } catch {
+      errorText.textContent = 'Geen verbinding. Controleer je internetverbinding.';
+      errorBox.classList.remove('hidden');
+    } finally {
+      btn.disabled = false;
+      label.textContent = 'Proefles aanvragen';
+    }
+  });
+</script>

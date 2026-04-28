@@ -1,0 +1,224 @@
+﻿---
+import Layout from '../layouts/Layout.astro';
+
+const primaryColor = '#0391b0';
+const secondaryColor = '#790f34';
+
+const features = [
+  { icon: 'fa-play-circle', title: 'Theorie via videos', text: 'Duidelijke uitleg bij alle verkeersregels en situaties. Leer op jouw eigen tempo.' },
+  { icon: 'fa-clipboard-check', title: '50 oefenexamens', text: 'Oefen net zoveel als je wilt totdat je klaar bent voor het echte theorie-examen.' },
+  { icon: 'fa-chart-line', title: 'Voortgang bijhouden', text: 'Zie in een oogopslag hoe ver je bent en waar je nog aan moet werken.' },
+  { icon: 'fa-calendar-alt', title: 'Lessen inplannen', text: 'Beheer je eigen lesagenda direct vanuit de app. Altijd overzicht.' },
+  { icon: 'fa-pencil-alt', title: 'Zelfreflectie', text: 'Vul je zelfreflectieformulier in voor het CBR praktijkexamen via de app.' },
+  { icon: 'fa-mobile-alt', title: 'iOS & Android', text: 'Beschikbaar voor alle telefoons. Overal en altijd leren, ook onderweg.' },
+];
+
+const steps = [
+  { num: '1', text: 'Je ontvangt van je instructeur een persoonlijke inlogcode' },
+  { num: '2', text: 'Download de On My Way app in de App Store of Google Play' },
+  { num: '3', text: 'Log in en begin direct met leren op jouw tempo' },
+];
+import Icon from '../components/Icon.astro';
+---
+
+<Layout title="On My Way app">
+  <div class="bg-white">
+
+    <!-- Header -->
+    <section class="py-20" style={`background: linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`}>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <p class="text-white text-sm font-semibold uppercase tracking-widest mb-3">Gratis bij elk pakket</p>
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">On My Way app</h1>
+        <p class="text-xl text-white max-w-2xl mx-auto">
+          Alles voor je theorie en praktijkexamen in één app. Gratis inbegrepen bij alle Rij-Vrij pakketten.
+        </p>
+        <div class="mt-8 inline-block bg-white/20 backdrop-blur-sm border border-white/30 text-white font-bold text-xl px-8 py-4 rounded-2xl">
+          <Icon name="gift" class="mr-2" />
+          Normaal €59,- <span class="text-base font-normal">nu gratis bij elk pakket</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features grid -->
+    <section class="py-20 bg-white">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-3">Wat biedt de app?</h2>
+          <p class="text-gray-600 max-w-xl mx-auto">
+            Alles wat je nodig hebt voor je theorie- en praktijkexamen, in één overzichtelijke app.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {features.map((f) => (
+            <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100 overflow-hidden flex flex-col">
+              <div class="flex items-center justify-center py-7" style={`background-color: ${primaryColor}`}>
+                <i class={`fas ${f.icon} text-4xl text-white`}></i>
+              </div>
+              <div class="p-6 flex flex-col flex-grow">
+                <h3 class="text-base font-bold text-gray-900 mb-2 text-center">{f.title}</h3>
+                <p class="text-gray-600 text-sm leading-relaxed text-center">{f.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Media: screenshots + video -->
+    <section class="py-20 bg-gray-50">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-3">Bekijk de app in actie</h2>
+          <p class="text-gray-600 max-w-xl mx-auto">Zo ziet de On My Way app er in de praktijk uit.</p>
+        </div>
+
+        <!-- YouTube facade (laadt pas bij klik) -->
+        <div class="rounded-2xl overflow-hidden shadow-lg border border-gray-100 mb-10">
+          <div
+            id="yt-facade"
+            class="relative cursor-pointer group"
+            style="aspect-ratio: 16/9; background: #000"
+            data-videoid="KKAK8eKj4Ao"
+          >
+            <img
+              src="https://img.youtube.com/vi/KKAK8eKj4Ao/maxresdefault.jpg"
+              alt="On My Way app demonstratie video"
+              width="1280"
+              height="720"
+              loading="lazy"
+              decoding="async"
+              class="w-full h-full object-cover"
+            />
+            <!-- Play knop -->
+            <div class="absolute inset-0 flex items-center justify-center">
+              <div class="w-20 h-20 rounded-full bg-red-600 flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform">
+                <svg viewBox="0 0 24 24" class="w-9 h-9 fill-white ml-1" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Screenshots -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div class="rounded-2xl overflow-hidden shadow-md border border-gray-100">
+            <img
+              src="/onmyway/1.webp"
+              alt="On My Way app scherm , theorie en voortgang"
+              width="391"
+              height="262"
+              loading="lazy"
+              decoding="async"
+              class="w-full h-auto"
+            />
+          </div>
+          <div class="rounded-2xl overflow-hidden shadow-md border border-gray-100 flex items-center bg-white">
+            <img
+              src="/onmyway/2.webp"
+              alt="On My Way app scherm , oefenexamens"
+              width="400"
+              height="136"
+              loading="lazy"
+              decoding="async"
+              class="w-full h-auto"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hoe werkt het -->
+    <section class="py-20 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-3">Hoe werkt het?</h2>
+          <p class="text-gray-600">In drie stappen aan de slag met de On My Way app.</p>
+        </div>
+
+        <div class="space-y-4">
+          {steps.map((step) => (
+            <div class="flex items-center gap-6 bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+              <div
+                class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 text-white font-bold text-lg"
+                style={`background-color: ${primaryColor}`}
+              >
+                {step.num}
+              </div>
+              <p class="text-gray-700 font-medium">{step.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Gratis inbegrepen banner -->
+    <section class="py-12 bg-white border-y border-gray-100">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          class="rounded-2xl p-8 flex flex-col sm:flex-row items-center gap-6"
+          style={`background: linear-gradient(135deg, ${primaryColor}12 0%, ${secondaryColor}10 100%)`}
+        >
+          <div
+            class="w-16 h-16 rounded-2xl flex items-center justify-center flex-shrink-0"
+            style={`background-color: ${primaryColor}`}
+          >
+            <Icon name="check" class="text-white text-2xl" />
+          </div>
+          <div>
+            <h3 class="text-xl font-bold text-gray-900 mb-1">Gratis inbegrepen bij elk pakket</h3>
+            <p class="text-gray-600 text-sm leading-relaxed">
+              De On My Way app (normaal €59,-) is volledig gratis inbegrepen bij alle startpakketten van Rij-Vrij.
+              Je hebt geen apart theorieboek nodig.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 bg-white">
+      <div class="max-w-2xl mx-auto px-4 text-center">
+        <h3 class="text-3xl font-bold text-gray-900 mb-3">Klaar om te beginnen?</h3>
+        <p class="text-gray-600 mb-8">
+          Plan een gratis proefles en ontvang direct toegang tot de On My Way app.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="/#proefles-cta"
+            class="inline-block text-white px-8 py-4 rounded-lg font-bold hover:opacity-90 transition-all shadow-md"
+            style={`background-color: ${primaryColor}`}
+          >
+            <Icon name="calendar-check" class="mr-2" />
+            Plan gratis proefles
+          </a>
+          <a
+            href="/prijzen"
+            class="inline-block text-white px-8 py-4 rounded-lg font-bold hover:opacity-90 transition-all shadow-md"
+            style={`background-color: ${secondaryColor}`}
+          >
+            <Icon name="tags" class="mr-2" />
+            Bekijk pakketten
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</Layout>
+
+<script>
+  const facade = document.getElementById('yt-facade');
+  facade?.addEventListener('click', () => {
+    const id = facade.dataset.videoid;
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://www.youtube.com/embed/${id}?autoplay=1`;
+    iframe.allow = 'autoplay; encrypted-media';
+    iframe.allowFullscreen = true;
+    iframe.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;border:0';
+    facade.style.position = 'relative';
+    facade.innerHTML = '';
+    facade.appendChild(iframe);
+  });
+</script>

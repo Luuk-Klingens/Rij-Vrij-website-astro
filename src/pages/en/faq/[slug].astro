@@ -1,0 +1,101 @@
+﻿---
+import Layout from '../../../layouts/Layout.astro';
+import { allFaqItems } from '../../../data/faq';
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return allFaqItems.map((item) => ({
+    params: { slug: item.slug },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props;
+
+const primaryColor = '#0391b0';
+const secondaryColor = '#790f34';
+
+const catItems = allFaqItems.filter((q) => q.categorie === item.categorie && q.slug !== item.slug);
+const otherItems = allFaqItems.filter((q) => q.categorie !== item.categorie && q.slug !== item.slug);
+const related = [...catItems, ...otherItems].slice(0, 3);
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [{
+    "@type": "Question",
+    "name": item.vraagEN,
+    "acceptedAnswer": { "@type": "Answer", "text": item.antwoordEN }
+  }]
+};
+import Icon from '../../../components/Icon.astro';
+---
+
+<Layout
+  title={item.vraagEN}
+  description={item.antwoordEN.slice(0, 155)}
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+  <div class="bg-white">
+
+    <section class="py-14" style={`background: linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`}>
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <a href="/en/faq/" class="inline-flex items-center gap-2 text-white/80 hover:text-white text-sm font-medium mb-6 transition-colors">
+          <Icon name="arrow-left" class="text-xs" />
+          All frequently asked questions
+        </a>
+        <p class="text-white/70 text-xs font-semibold uppercase tracking-widest mb-2">{item.categorieEN}</p>
+        <h1 class="text-2xl md:text-3xl font-bold text-white leading-snug">{item.vraagEN}</h1>
+      </div>
+    </section>
+
+    <section class="py-14 bg-white">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-gray-50 border border-gray-100 rounded-2xl p-8">
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={`background-color: ${primaryColor}`}>
+              <Icon name="comment-alt" class="text-sm text-white" />
+            </div>
+            <span class="font-bold text-gray-900">Answer</span>
+          </div>
+          <p class="text-gray-700 leading-relaxed text-base">{item.antwoordEN}</p>
+        </div>
+
+        {related.length > 0 && (
+          <div class="mt-12">
+            <h2 class="text-lg font-bold text-gray-900 mb-4">Related questions</h2>
+            <div class="space-y-2">
+              {related.map((q) => (
+                <a
+                  href={`/en/faq/${q.slug}/`}
+                  class="flex items-center justify-between p-4 bg-white border border-gray-100 rounded-xl hover:border-blue-200 hover:shadow-sm transition-all group"
+                >
+                  <span class="font-medium text-gray-800 group-hover:text-blue-600 transition-colors text-sm pr-4">{q.vraagEN}</span>
+                  <Icon name="chevron-right" class="text-xs flex-shrink-0" style={`color: ${primaryColor}`} />
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
+
+    <section class="py-12 border-t border-gray-100" style={`background: linear-gradient(135deg, ${primaryColor}08 0%, ${secondaryColor}08 100%)`}>
+      <div class="max-w-2xl mx-auto px-4 text-center">
+        <h3 class="text-xl font-bold text-gray-900 mb-2">Ready to get started?</h3>
+        <p class="text-gray-600 text-sm mb-6">Book your free trial lesson today and discover automatic driving lessons at Rij-Vrij.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/en/#proefles-cta" class="inline-block text-white px-7 py-3 rounded-lg font-semibold hover:opacity-90 transition-all shadow-md" style={`background-color: ${primaryColor}`}>
+            <Icon name="calendar-check" class="mr-2" />Book my trial lesson
+          </a>
+          <a href="/en/contact" class="inline-block text-white px-7 py-3 rounded-lg font-semibold hover:opacity-90 transition-all shadow-md" style={`background-color: ${secondaryColor}`}>
+            <Icon name="envelope" class="mr-2" />Ask a question
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</Layout>

@@ -1,0 +1,144 @@
+﻿---
+const primaryColor = '#0391b0';
+const contactPhone = '015-2224012';
+const contactEmail = 'info@Rij-Vrij.com';
+const contactAddress = 'Hankweg 39, 2641 WV Pijnacker';
+const currentYear = 2026;
+const facebookUrl = 'https://www.facebook.com/profile.php?id=61569989527327';
+const instagramUrl = 'https://www.instagram.com/autorijschool_auto_maat/';
+const tiktokUrl = 'https://www.tiktok.com/@autorijschool.auto_maat';
+import Icon from './Icon.astro';
+---
+
+<footer class="bg-gray-900 text-white py-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row gap-16 mb-8">
+
+      <!-- Logo & lesgebieden -->
+      <div class="shrink-0">
+        <img
+          src="/RijVrij-logo-png.png"
+          alt="Rij-Vrij Rijschool, RijVrij rijlessen Pijnacker & Delft"
+          class="h-10 w-auto object-contain mb-4"
+          width="213"
+          height="56"
+          loading="lazy"
+        />
+        <ul class="space-y-1.5 text-base text-gray-400">
+          <li><a href="/lesgebied/bergschenhoek" class="hover:text-white transition-colors">RijVrij Bergschenhoek</a></li>
+          <li><a href="/lesgebied/berkel-en-rodenrijs" class="hover:text-white transition-colors">RijVrij Berkel en Rodenrijs</a></li>
+          <li><a href="/lesgebied/bleiswijk" class="hover:text-white transition-colors">RijVrij Bleiswijk</a></li>
+          <li><a href="/lesgebied/delfgauw" class="hover:text-white transition-colors">RijVrij Delfgauw</a></li>
+          <li><a href="/lesgebied/delft" class="hover:text-white transition-colors">RijVrij Delft</a></li>
+          <li><a href="/lesgebied/leidschenveen" class="hover:text-white transition-colors">RijVrij Leidschenveen</a></li>
+          <li><a href="/lesgebied/nootdorp" class="hover:text-white transition-colors">RijVrij Nootdorp</a></li>
+          <li><a href="/lesgebied/pijnacker" class="hover:text-white transition-colors">RijVrij Pijnacker</a></li>
+          <li><a href="/lesgebied/rijswijk" class="hover:text-white transition-colors">RijVrij Rijswijk</a></li>
+          <li><a href="/lesgebied/voorburg" class="hover:text-white transition-colors">RijVrij Voorburg</a></li>
+          <li><a href="/lesgebied/ypenburg" class="hover:text-white transition-colors">RijVrij Ypenburg</a></li>
+          <li><a href="/lesgebied/zoetermeer" class="hover:text-white transition-colors">RijVrij Zoetermeer</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Details + Legal -->
+      <div class="flex flex-col sm:flex-row flex-1 justify-start gap-16">
+      <div>
+        <h2 class="text-xl font-semibold mb-5">Contact Details</h2>
+        <ul class="space-y-4 text-base text-gray-400">
+          <li class="flex items-center gap-2">
+            <Icon name="envelope" class="w-4 text-center" style={`color: ${primaryColor}`} />
+            <a href="mailto:info@Rij-Vrij.com" class="hover:text-white transition-colors">info@Rij-Vrij.com</a>
+          </li>
+          <li class="flex items-center gap-2">
+            <Icon name="phone" class="w-4 text-center" style={`color: ${primaryColor}`} />
+            <a href="tel:0152224012" class="hover:text-white transition-colors">015 – 222 40 12</a>
+          </li>
+          <li class="flex items-start gap-2">
+            <Icon name="map-marker-alt" class="w-4 text-center mt-0.5" style={`color: ${primaryColor}`} />
+            <span>Hankweg 39<br />2641 WV PIJNACKER</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <Icon name="clock" class="w-4 text-center" style={`color: ${primaryColor}`} />
+            <span>Ma – Vr: 8:00 – 17:00</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Legal -->
+      <div>
+        <h2 class="text-xl font-semibold mb-5">Legal</h2>
+        <ul class="space-y-4 text-base text-gray-400">
+          <li class="flex items-center gap-2">
+            <Icon name="building" class="w-4 text-center" style={`color: ${primaryColor}`} />
+            <span>KVK: 62968157</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <Icon name="file-invoice" class="w-4 text-center" style={`color: ${primaryColor}`} />
+            <span>BTW: NL004762677B86</span>
+          </li>
+          <li class="flex items-center gap-2">
+            <Icon name="file-contract" class="w-4 text-center" style={`color: ${primaryColor}`} />
+            <a href="/algemene-voorwaarden" class="hover:text-white transition-colors">Algemene voorwaarden</a>
+          </li>
+          <li class="flex items-center gap-2">
+            <Icon name="shield-alt" class="w-4 text-center" style={`color: ${primaryColor}`} />
+            <a href="/privacy-voorwaarden" class="hover:text-white transition-colors">Privacy voorwaarden</a>
+          </li>
+          <li class="flex items-center gap-2">
+            <Icon name="graduation-cap" class="w-4 text-center" style={`color: ${primaryColor}`} />
+            <span>CBR Opleidersnummer 1460F3</span>
+          </li>
+        </ul>
+      </div>
+      </div>
+
+      <!-- Social Media -->
+      <div class="shrink-0 mr-12">
+        <h2 class="text-xl font-semibold mb-5">Volg ons</h2>
+        <div class="flex flex-col gap-3">
+          <a href={facebookUrl} target="_blank" rel="noopener noreferrer"
+             class="flex items-center gap-4 bg-gray-800 hover:bg-gray-700 rounded-xl px-5 py-3 transition-colors group">
+            <Icon name="facebook" class="text-2xl text-blue-400" />
+            <div>
+              <p class="font-semibold text-white text-sm">Facebook</p>
+              <p class="text-xs text-gray-400 group-hover:text-gray-300 transition-colors">Rij-Vrij Rijschool</p>
+            </div>
+          </a>
+          <a href={instagramUrl} target="_blank" rel="noopener noreferrer"
+             class="flex items-center gap-4 bg-gray-800 hover:bg-gray-700 rounded-xl px-5 py-3 transition-colors group">
+            <Icon name="instagram" class="text-2xl text-pink-400" />
+            <div>
+              <p class="font-semibold text-white text-sm">Instagram</p>
+              <p class="text-xs text-gray-400 group-hover:text-gray-300 transition-colors">@autorijschool_auto_maat</p>
+            </div>
+          </a>
+          <a href={tiktokUrl} target="_blank" rel="noopener noreferrer"
+             class="flex items-center gap-4 bg-gray-800 hover:bg-gray-700 rounded-xl px-5 py-3 transition-colors group">
+            <Icon name="tiktok" class="text-2xl text-white" />
+            <div>
+              <p class="font-semibold text-white text-sm">TikTok</p>
+              <p class="text-xs text-gray-400 group-hover:text-gray-300 transition-colors">@autorijschool.auto_maat</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-400 gap-4">
+      <div class="flex items-center gap-4">
+        <p>&copy; {currentYear} Rij-Vrij.com</p>
+        <a href={facebookUrl} target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="Facebook">
+          <Icon name="facebook" class="text-xl" />
+        </a>
+        <a href={instagramUrl} target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="Instagram">
+          <Icon name="instagram" class="text-xl" />
+        </a>
+        <a href={tiktokUrl} target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors" aria-label="TikTok">
+          <Icon name="tiktok" class="text-xl" />
+        </a>
+      </div>
+      <p>Website made &amp; managed by <a href="https://luukklingens.com" target="_blank" rel="noopener noreferrer" class="font-bold hover:text-white transition-colors">Luuk Klingens</a></p>
+    </div>
+  </div>
+</footer>

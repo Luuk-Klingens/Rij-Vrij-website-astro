@@ -1,0 +1,251 @@
+﻿---
+import Layout from '../layouts/Layout.astro';
+
+const primaryColor = '#0391b0';
+const secondaryColor = '#790f34';
+
+const startPakketten = [
+  {
+    name: 'Start10',
+    description: '10 lessen van 90 minuten',
+    price: '1.399',
+    isPopular: false,
+    features: [
+      '10 rijlessen van 90 minuten',
+      'CBR praktijkexamen inbegrepen',
+      'Vaste rij-instructeur',
+      'Gratis proefles t.w.v. €49,-',
+      'Gratis theorieopleiding t.w.v. €59,-',
+      'Pakketvoordeel van €124,-',
+      'Direct starten!',
+    ],
+    termijn: null,
+  },
+  {
+    name: 'Populair20',
+    description: '20 lessen van 90 minuten',
+    price: '2.399',
+    isPopular: true,
+    features: [
+      '20 rijlessen van 90 minuten',
+      'CBR praktijkexamen inbegrepen',
+      'Vaste rij-instructeur',
+      'Gratis proefles t.w.v. €49,-',
+      'Gratis theorieopleiding t.w.v. €59,-',
+      'Gratis in twee termijnen betalen',
+      'Pakketvoordeel van €214,-',
+      'Direct starten!',
+    ],
+    termijn: '2 termijnen',
+  },
+  {
+    name: 'Compleet30',
+    description: '30 lessen van 90 minuten',
+    price: '3.299',
+    isPopular: false,
+    features: [
+      '30 rijlessen van 90 minuten',
+      'CBR praktijkexamen inbegrepen',
+      'Vaste rij-instructeur',
+      'Gratis proefles t.w.v. €49,-',
+      'Gratis theorieopleiding t.w.v. €59,-',
+      'Gratis in drie termijnen betalen',
+      'Pakketvoordeel van €404,-',
+      'Direct starten!',
+    ],
+    termijn: '3 termijnen',
+  },
+];
+
+const vervolgPakketten = [
+  {
+    name: 'Verder 10',
+    description: '10 lessen van 90 minuten',
+    price: '1.299',
+    features: ['10 rijlessen van 90 minuten', 'CBR praktijkexamen inbegrepen', 'Pakketvoordeel van €116,-'],
+  },
+  {
+    name: 'Verder 15',
+    description: '15 lessen van 90 minuten',
+    price: '1.799',
+    features: ['15 rijlessen van 90 minuten', 'CBR praktijkexamen inbegrepen', 'Pakketvoordeel van €161,-'],
+  },
+  {
+    name: 'Verder 20',
+    description: '20 lessen van 90 minuten',
+    price: '2.299',
+    features: ['20 rijlessen van 90 minuten', 'CBR praktijkexamen inbegrepen', 'Pakketvoordeel van €206,-'],
+  },
+];
+
+const tariefSections = [
+  {
+    title: 'Losse rijlessen',
+    items: [
+      { naam: 'Proefles van 60 minuten', prijs: '€ 49,00', note: '* Bij aanschaf van de pakketten B, C, E en F is de proefles gratis!' },
+      { naam: 'Rijles van 90 minuten', prijs: '€ 109,00', note: '' },
+    ],
+  },
+  {
+    title: 'Tarieven theorie leermiddelen',
+    items: [
+      { naam: 'Theorie leren via On My Way Theorieopleiding', prijs: '€ 59,00', note: '' },
+    ],
+  },
+  {
+    title: 'Tarieven examens',
+    items: [
+      { naam: 'Praktijkexamen (CBR) (incl. gebruik auto)', prijs: '€ 325,00', note: '' },
+      { naam: 'Tussentijdse toets (CBR) (incl. gebruik auto)', prijs: '€ 275,00', note: '' },
+      { naam: 'Faalangst praktijkexamen (CBR) (incl. gebruik auto)', prijs: '€ 395,00', note: '' },
+      { naam: 'Bnor praktijkexamen (CBR) (incl. gebruik auto)', prijs: '€ 360,00', note: '' },
+    ],
+  },
+];
+import Icon from '../components/Icon.astro';
+---
+
+<Layout
+  title="Tarieven & Rijpakketten"
+  description="Bekijk de tarieven en rijpakketten van Rij-Vrij Rijschool. Startpakket vanaf €1.299 met gratis proefles en On My Way app. Transparante prijzen, geen verborgen kosten."
+>
+  <div class="bg-white">
+
+    <!-- Header -->
+    <section class="py-16" style={`background: linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`}>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Tarieven</h1>
+        <p class="text-xl text-white max-w-3xl mx-auto">Zie onderstaand een overzicht van onze tarieven per 1 januari 2026.</p>
+      </div>
+    </section>
+
+    <!-- Startpakketten -->
+    <section class="py-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-3">Startpakketten</h2>
+          <p class="text-gray-600">Begin jouw rijlessen, inclusief proefles, theorie & CBR-examen.</p>
+        </div>
+        <div class="flex flex-wrap justify-center gap-6">
+          {startPakketten.map((pkg) => (
+            <div
+              class={`bg-white rounded-xl border-2 p-6 flex flex-col relative w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] max-w-sm ${pkg.isPopular ? 'shadow-xl' : 'border-gray-200 shadow-sm'}`}
+              style={pkg.isPopular ? `border-color: ${primaryColor}` : ''}
+            >
+              {pkg.isPopular && (
+                <div class="text-center mb-4">
+                  <span class="text-white px-4 py-1 rounded-full text-xs font-semibold" style={`background-color: ${primaryColor}`}>
+                    Meest gekozen
+                  </span>
+                </div>
+              )}
+              <h3 class="text-xl font-bold text-gray-900 mb-1 text-center">{pkg.name}</h3>
+              <p class="text-gray-600 text-xs text-center mb-4">{pkg.description}</p>
+              <div class="text-3xl font-bold mb-1 text-center" style={`color: ${primaryColor}`}>€ {pkg.price},-</div>
+              {pkg.termijn && (
+                <p class="text-xs text-center text-gray-500 mb-2">Betaling in {pkg.termijn} mogelijk</p>
+              )}
+              <div class="flex-grow space-y-2 mb-6 mt-4">
+                {pkg.features.map((feature) => (
+                  <div class="flex items-start text-sm text-gray-700">
+                    <Icon name="check-circle" class="mr-2 mt-0.5 flex-shrink-0" style={`color: ${primaryColor}`} />
+                    <span>{feature}</span>
+                  </div>
+                ))}
+              </div>
+              <a
+                href="/#proefles-cta"
+                class="text-white px-4 py-3 rounded-lg text-center font-semibold hover:opacity-90 transition-colors block w-full"
+                style={`background-color: ${pkg.isPopular ? primaryColor : secondaryColor}`}
+              >
+                Meld je nu aan!
+              </a>
+            </div>
+          ))}
+        </div>
+
+        <!-- Gezondheidsverklaring notice -->
+        <div class="mt-8 max-w-2xl mx-auto flex items-start gap-3 bg-blue-100 border border-blue-300 rounded-xl px-5 py-4 text-sm text-blue-900">
+          <Icon name="info-circle" class="mt-0.5 text-blue-600 flex-shrink-0" />
+          <p>
+            <strong>Let op:</strong> alle startpakketten zijn exclusief de gezondheidsverklaring t.w.v. <strong>€ 45,25</strong>, welke je zelf invult via <a href="https://mijn.cbr.nl" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-700">mijn.cbr.nl</a>.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Vervolgpakketten -->
+    <section class="py-16 bg-white border-t border-gray-100">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10">
+          <h2 class="text-3xl font-bold text-gray-900 mb-3">Vervolgpakketten</h2>
+          <p class="text-gray-600">Al rijlessen gehad elders? Start verder met een vervolg pakket.</p>
+        </div>
+        <div class="flex flex-wrap justify-center gap-6">
+          {vervolgPakketten.map((pkg) => (
+            <div class="bg-white rounded-xl border-2 border-gray-200 shadow-sm p-6 flex flex-col w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] max-w-sm">
+              <h3 class="text-xl font-bold text-gray-900 mb-1 text-center">{pkg.name}</h3>
+              <p class="text-gray-600 text-xs text-center mb-4">{pkg.description}</p>
+              <div class="text-3xl font-bold mb-4 text-center" style={`color: ${primaryColor}`}>€ {pkg.price},-</div>
+              <div class="flex-grow space-y-2 mb-6">
+                {pkg.features.map((feature) => (
+                  <div class="flex items-start text-sm text-gray-700">
+                    <Icon name="check-circle" class="mr-2 mt-0.5 flex-shrink-0" style={`color: ${primaryColor}`} />
+                    <span>{feature}</span>
+                  </div>
+                ))}
+              </div>
+              <a
+                href="/contact"
+                class="text-white px-4 py-3 rounded-lg text-center font-semibold hover:opacity-90 transition-colors block w-full"
+                style={`background-color: ${secondaryColor}`}
+              >
+                Neem contact op
+              </a>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Tarieven tabel -->
+    <section class="py-16 bg-gray-50 border-t border-gray-100">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+        {tariefSections.map((section) => (
+          <div class="bg-white border border-gray-200 rounded-2xl p-6">
+            <h3 class="text-2xl font-bold text-gray-900 mb-6">{section.title}</h3>
+            <div class="space-y-4">
+              {section.items.map((item) => (
+                <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-3 border-b border-gray-100 pb-4 last:border-b-0 last:pb-0">
+                  <div class="max-w-3xl">
+                    <p class="font-semibold text-gray-900">{item.naam}</p>
+                    {item.note && <p class="text-sm text-gray-600 mt-1">{item.note}</p>}
+                  </div>
+                  <div class="text-lg font-bold whitespace-nowrap" style={`color: ${primaryColor}`}>{item.prijs}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-12 bg-gray-50 border-t border-gray-100">
+      <div class="max-w-2xl mx-auto px-4 text-center">
+        <h3 class="text-2xl font-bold text-gray-900 mb-3">Klaar om te beginnen?</h3>
+        <p class="text-gray-600 mb-6">Plan vandaag nog je proefles en ontdek hoe snel je met een RijVrij je rijbewijs haalt.</p>
+        <a
+          href="/#proefles-cta"
+          class="inline-block text-white px-8 py-4 rounded-lg font-bold hover:opacity-90 transition-all shadow-md"
+          style={`background-color: ${primaryColor}`}
+        >
+          <Icon name="calendar-check" class="mr-2" />
+          Plan mijn proefles
+        </a>
+      </div>
+    </section>
+
+  </div>
+</Layout>

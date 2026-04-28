@@ -1,0 +1,140 @@
+﻿---
+import Layout from '../layouts/Layout.astro';
+
+const primaryColor = '#0391b0';
+const secondaryColor = '#790f34';
+const opleidersnummer = '1460F3';
+
+const stappen = [
+  'Ga naar mijn.cbr.nl en log in met je DigiD',
+  'Ga naar "Mijn rijvaardigheid" en kies "Rijschool machtigen"',
+  `Voer het CBR opleidersnummer in: ${opleidersnummer}`,
+  'Selecteer bij rijbewijs categorie B: "Praktijkexamen personenauto & Tussentijdse toets personenauto"',
+  'Bevestig de machtiging',
+];
+
+const nodig = [
+  { icon: 'fa-id-badge', text: 'Een DigiD account (aanvragen via digid.nl als je die nog niet hebt)' },
+];
+import Icon from '../components/Icon.astro';
+---
+
+<Layout title="Rijschool machtigen">
+  <div class="bg-white">
+
+    <!-- Header -->
+    <section class="py-20" style={`background: linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`}>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <p class="text-white text-sm font-semibold uppercase tracking-widest mb-3">Via MijnCBR met DigiD</p>
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Rijschool machtigen</h1>
+        <p class="text-xl text-white max-w-2xl mx-auto">
+          Machtig Rij-Vrij zodat wij jouw CBR-examen voor je kunnen aanvragen.
+        </p>
+      </div>
+    </section>
+
+    <!-- Opleidersnummer -->
+    <section class="py-10 bg-gray-50 border-b border-gray-100">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col sm:flex-row items-center gap-6 bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+          <div class="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0" style={`background-color: ${primaryColor}15`}>
+            <Icon name="hashtag" class="text-2xl" style={`color: ${primaryColor}`} />
+          </div>
+          <div>
+            <p class="text-xs font-semibold uppercase tracking-widest text-gray-600 mb-1">CBR Opleidersnummer Rij-Vrij</p>
+            <p class="text-3xl font-black text-gray-900 tracking-widest">{opleidersnummer}</p>
+            <p class="text-gray-600 text-sm mt-1">Gebruik dit nummer bij stap 3 hieronder</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Wat heb je nodig + Stappen -->
+    <section class="py-16 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div>
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+              <span class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style={`background-color: ${primaryColor}`}>
+                <Icon name="list-check" class="text-white text-sm" />
+              </span>
+              Wat heb je nodig?
+            </h2>
+            <div class="space-y-3">
+              {nodig.map((item) => (
+                <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100">
+                  <div class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style={`background-color: ${primaryColor}15`}>
+                    <i class={`fas ${item.icon} text-sm`} style={`color: ${primaryColor}`}></i>
+                  </div>
+                  <span class="text-gray-700 text-sm leading-relaxed pt-1">{item.text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Stappen -->
+          <div>
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+              <span class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style={`background-color: ${secondaryColor}`}>
+                <Icon name="shoe-prints" class="text-white text-sm" />
+              </span>
+              Hoe machtig je ons?
+            </h2>
+            <div class="space-y-3">
+              {stappen.map((stap, i) => (
+                <div class="flex items-start gap-4 bg-gray-50 rounded-xl p-4 border border-gray-100">
+                  <div
+                    class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 text-white font-bold text-sm"
+                    style={`background-color: ${primaryColor}`}
+                  >
+                    {i + 1}
+                  </div>
+                  <p class="text-gray-700 text-sm leading-relaxed pt-1">{stap}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 p-5 bg-amber-50 border border-amber-100 rounded-xl flex items-start gap-3">
+          <Icon name="exclamation-triangle" class="text-amber-600 mt-0.5 flex-shrink-0" />
+          <p class="text-amber-800 text-sm leading-relaxed">
+            Selecteer de juiste opties om verwarring te voorkomen. Je instructeur helpt je als je er niet uitkomt.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Klaar -->
+    <section class="py-10 bg-gray-50 border-y border-gray-100">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex items-start gap-4">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style={`background-color: ${primaryColor}15`}>
+          <Icon name="check-double" style={`color: ${primaryColor}`} />
+        </div>
+        <div>
+          <p class="font-semibold text-gray-900 mb-1">Klaar met machtigen?</p>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Zodra de machtiging is doorgegeven, kan Rij-Vrij jouw examen voor je inplannen. Neem contact op als je vragen hebt.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 bg-white">
+      <div class="max-w-2xl mx-auto px-4 text-center">
+        <h3 class="text-2xl font-bold text-gray-900 mb-3">Vragen?</h3>
+        <p class="text-gray-600 mb-6">Wij helpen je graag stap voor stap. Neem gerust contact op.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact" class="inline-block text-white px-7 py-3 rounded-lg font-semibold hover:opacity-90 transition-all shadow-md" style={`background-color: ${primaryColor}`}>
+            <Icon name="envelope" class="mr-2" />Neem contact op
+          </a>
+          <a href="/examen-praktijk" class="inline-block text-white px-7 py-3 rounded-lg font-semibold hover:opacity-90 transition-all shadow-md" style={`background-color: ${secondaryColor}`}>
+            <Icon name="flag-checkered" class="mr-2" />Over het praktijkexamen
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</Layout>

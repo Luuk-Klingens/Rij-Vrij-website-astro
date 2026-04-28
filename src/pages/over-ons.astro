@@ -1,0 +1,200 @@
+﻿---
+import Layout from '../layouts/Layout.astro';
+const primaryColor = '#0391b0';
+const secondaryColor = '#790f34';
+
+const bio = [
+  'Rijinstructeur en eigenaar van Autorijschool Rij-Vrij. In het verleden heb ik veel ervaring opgedaan in het onderwijzen, coachen en begeleiden van mensen in een andere sector (financiële dienstverlening). Sinds 2024 ben ik full-time actief in de rijschoolbranche en in januari 2025 heb ik mijn eigen rijschool opgericht.',
+  'Autorijden is mijn passie, en niets is mooier dan die passie te delen met anderen.',
+  'Bij Rij-Vrij sta jij centraal! Je leerstijl, je veiligheid en jouw tempo bepalen het ritme. Of je nu de allereerste keer achter het stuur zit of al rijlessen gehad hebt, we zorgen er samen voor dat je veilig en vol vertrouwen de weg op gaat.',
+  'Dus, als je klaar bent om de eerste stap te zetten naar je roze pasje, en dat op een ontspannen, leuke en leerzame manier, dan ben je bij mij aan het juiste adres.',
+  'Neem gerust contact op voor meer informatie of om een proefles te plannen.',
+];
+
+const waarden = [
+  { icon: 'fa-user', title: 'Jouw tempo', text: 'Je leerstijl en jouw tempo bepalen het ritme van de lessen. Geen druk, geen haast.' },
+  { icon: 'fa-shield-alt', title: 'Jouw veiligheid', text: 'Veiligheid staat bij ons altijd voorop. Wij zorgen dat je vol vertrouwen de weg op gaat.' },
+  { icon: 'fa-heart', title: 'Jouw plezier', text: 'Rijles bij Rij-Vrij is ontspannen, leuk en leerzaam. We maken er samen een positieve ervaring van.' },
+];
+import Icon from '../components/Icon.astro';
+---
+
+<Layout
+  title="Over Ons"
+  description="Maak kennis met Peter, rijinstructeur en eigenaar van Rij-Vrij Rijschool. Gecertificeerd instructeur met ervaring in autisme & ADHD begeleiding. Gevestigd in Pijnacker."
+>
+  <div class="bg-white">
+
+    <!-- Header -->
+    <section class="py-20" style={`background: linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`}>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <p class="text-white text-sm font-semibold uppercase tracking-widest mb-3">Over ons</p>
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Even Voorstellen</h1>
+        <p class="text-xl text-white max-w-2xl mx-auto">De mens achter Rij-Vrij</p>
+      </div>
+    </section>
+
+    <!-- Introductie Peter -->
+    <section class="py-20">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+          <!-- Tekst -->
+          <div>
+            <div
+              class="inline-flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full mb-6"
+              style={`background-color: ${primaryColor}15; color: ${primaryColor}`}
+            >
+              <Icon name="user-circle" />
+              Rijinstructeur &amp; Eigenaar
+            </div>
+
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+              Hoi, ik ben <span style={`color: ${primaryColor}`}>Peter</span>
+            </h2>
+
+            <div class="space-y-5 text-gray-700 leading-relaxed">
+              {bio.map((alinea, i) => (
+                <p class={i === 1 ? 'text-lg font-medium text-gray-800' : ''}>{alinea}</p>
+              ))}
+              <p class="font-semibold text-gray-800 text-lg">Tot snel achter het stuur!</p>
+            </div>
+
+            <div class="mt-8 flex flex-col sm:flex-row gap-4">
+              <a
+                href="/contact"
+                class="inline-block text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-all shadow-md text-center"
+                style={`background-color: ${primaryColor}`}
+              >
+                <Icon name="envelope" class="mr-2" />
+                Neem contact op
+              </a>
+              <a
+                href="/#proefles-cta"
+                class="inline-block text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-all shadow-md text-center"
+                style={`background-color: ${secondaryColor}`}
+              >
+                <Icon name="calendar-check" class="mr-2" />
+                Plan een proefles
+              </a>
+            </div>
+          </div>
+
+          <!-- Foto Peter + Telstar -->
+          <div class="flex flex-col items-center gap-10">
+            <div class="relative w-full max-w-sm">
+              <div
+                class="absolute -inset-3 rounded-2xl opacity-15"
+                style={`background-color: ${primaryColor}`}
+              ></div>
+              <img
+                src="/peter.png"
+                alt="Peter, gecertificeerd rijinstructeur en eigenaar van Rij-Vrij Rijschool Pijnacker"
+                class="relative w-full rounded-2xl shadow-xl object-cover"
+                width="400"
+                height="500"
+                loading="lazy"
+              />
+              <div
+                class="absolute -bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap text-white text-sm font-semibold px-5 py-2 rounded-xl shadow-lg"
+                style={`background-color: ${secondaryColor}`}
+              >
+                <Icon name="star" class="mr-2" />
+                Peter, Rijinstructeur &amp; Eigenaar
+              </div>
+            </div>
+
+            <!-- Telstar -->
+            <div class="mt-4 text-center">
+              <p class="text-sm font-semibold text-gray-700 mb-3">Telstar 13 mei 2025</p>
+              <img
+                src="/telstar.png"
+                alt="Telstar Online artikel over Rij-Vrij Rijschool: De slimme weg naar je rijbewijs"
+                class="w-full max-w-xs object-contain mx-auto opacity-90 hover:opacity-100 transition-opacity rounded-lg shadow-md"
+                width="400"
+                height="300"
+                loading="lazy"
+              />
+              <a
+                href="https://www.telstar-online.nl/nieuws/zakelijk/160987/autorijschool-Rij-Vrij-de-slimme-weg-naar-je-rijbewijs-"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="telstar-link inline-flex items-center gap-2 mt-4 text-sm font-semibold px-4 py-2 rounded-lg border-2 hover:text-white transition-all"
+                style={`border-color: ${primaryColor}; color: ${primaryColor}`}
+              >
+                <Icon name="external-link-alt" class="text-xs" />
+                Lees het artikel
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Waarden -->
+    <section class="py-16 bg-gray-50">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-2xl md:text-3xl font-bold text-gray-900">Jij staat centraal bij Rij-Vrij</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {waarden.map((item) => (
+            <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100 overflow-hidden flex flex-col">
+              <div class="flex items-center justify-center py-7" style={`background-color: ${primaryColor}`}>
+                <i class={`fas ${item.icon} text-4xl text-white`}></i>
+              </div>
+              <div class="p-6 flex flex-col flex-grow">
+                <h3 class="text-lg font-bold text-gray-900 mb-3 text-center">{item.title}</h3>
+                <p class="text-gray-600 text-sm leading-relaxed text-center">{item.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 bg-white">
+      <div class="max-w-2xl mx-auto px-4 text-center">
+        <h3 class="text-2xl font-bold text-gray-900 mb-3">Klaar om te beginnen?</h3>
+        <p class="text-gray-600 mb-6">
+          Neem contact op voor meer informatie of plan direct een proefles. Wij staan voor je klaar.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="/contact"
+            class="inline-block text-white px-8 py-4 rounded-lg font-bold hover:opacity-90 transition-all shadow-md"
+            style={`background-color: ${primaryColor}`}
+          >
+            <Icon name="envelope" class="mr-2" />
+            Meer informatie
+          </a>
+          <a
+            href="/#proefles-cta"
+            class="inline-block text-white px-8 py-4 rounded-lg font-bold hover:opacity-90 transition-all shadow-md"
+            style={`background-color: ${secondaryColor}`}
+          >
+            <Icon name="calendar-check" class="mr-2" />
+            Proefles plannen
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</Layout>
+
+<script>
+  const primaryColor = '#0391b0';
+  document.querySelectorAll('.telstar-link').forEach((el) => {
+    (el as HTMLElement).addEventListener('mouseenter', () => {
+      (el as HTMLElement).style.backgroundColor = primaryColor;
+      (el as HTMLElement).style.color = 'white';
+    });
+    (el as HTMLElement).addEventListener('mouseleave', () => {
+      (el as HTMLElement).style.backgroundColor = '';
+      (el as HTMLElement).style.color = primaryColor;
+    });
+  });
+</script>

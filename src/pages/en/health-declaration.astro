@@ -1,0 +1,114 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+export const prerender = true;
+
+const primaryColor = '#0391b0';
+const secondaryColor = '#790f34';
+const kosten = '€45.25';
+
+const stappen = [
+  'Log in to mijn.cbr.nl with your DigiD',
+  'Go to "Gezondheidsverklaring aanvragen" (Request health declaration)',
+  'Answer the questions honestly',
+  'Submit the declaration in good time so the CBR can process it before your exam',
+];
+import Icon from '../../components/Icon.astro';
+---
+
+<Layout
+  title="Health Declaration"
+  description="Everything about the CBR health declaration required for your practical exam. Costs €45.25. Apply via mijn.cbr.nl. Good news for autism & ADHD."
+>
+  <div class="bg-white">
+
+    <section class="py-20" style={`background: linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`}>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <p class="text-white text-sm font-semibold uppercase tracking-widest mb-3">Required for your exam</p>
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Health Declaration</h1>
+        <p class="text-xl text-white max-w-2xl mx-auto">
+          A valid health declaration is required to apply for a practical exam at the CBR.
+        </p>
+        <div class="mt-8 inline-block bg-white/20 backdrop-blur-sm border border-white/30 text-white font-bold text-xl px-8 py-4 rounded-2xl">
+          {kosten} <span class="text-base font-normal">via mijn.cbr.nl</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div>
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+              <span class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style={`background-color: ${primaryColor}`}>
+                <Icon name="laptop" class="text-white text-sm" />
+              </span>
+              How to apply?
+            </h2>
+            <p class="text-gray-600 text-sm mb-4 leading-relaxed">
+              You apply for the health declaration yourself via mijn.cbr.nl. This is separate from the driving school — it is your own responsibility.
+            </p>
+            <div class="space-y-3">
+              {stappen.map((stap, i) => (
+                <div class="flex items-start gap-4 bg-gray-50 rounded-xl p-4 border border-gray-100">
+                  <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 text-white font-bold text-sm" style={`background-color: ${primaryColor}`}>
+                    {i + 1}
+                  </div>
+                  <p class="text-gray-700 text-sm leading-relaxed pt-1">{stap}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div class="space-y-6">
+            <div class="bg-gray-50 rounded-xl p-6 border border-gray-100">
+              <h3 class="font-bold text-gray-900 mb-2 flex items-center gap-2">
+                <Icon name="euro-sign" style={`color: ${primaryColor}`} />
+                Costs
+              </h3>
+              <p class="text-gray-600 text-sm leading-relaxed">
+                The health declaration costs <strong>{kosten}</strong> and is processed directly by the CBR. This amount is not included in our driving packages.
+              </p>
+            </div>
+
+            <div class="rounded-xl p-6" style={`background: ${primaryColor}10`}>
+              <h3 class="font-bold text-gray-900 mb-2 flex items-center gap-2">
+                <Icon name="star" style={`color: ${primaryColor}`} />
+                Good news for autism and ADHD
+              </h3>
+              <p class="text-gray-600 text-sm leading-relaxed">
+                From 1 December 2025, people with ADHD or autism are no longer referred for additional medical examinations. AD(H)D and autism are expected to be fully removed from the Health Declaration on 1 April 2026.
+              </p>
+              <a href="/en/autism-adhd" class="inline-flex items-center gap-1 mt-3 text-sm font-semibold hover:underline" style={`color: ${primaryColor}`}>
+                Read more about autism and ADHD <Icon name="arrow-right" class="text-xs" />
+              </a>
+            </div>
+
+            <div class="p-5 bg-amber-50 border border-amber-100 rounded-xl flex items-start gap-3">
+              <Icon name="exclamation-triangle" class="text-amber-600 mt-0.5 flex-shrink-0" />
+              <p class="text-amber-800 text-sm leading-relaxed">
+                Apply for the health declaration in good time. The CBR needs processing time before your exam can take place.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 bg-gray-50 border-t border-gray-100">
+      <div class="max-w-2xl mx-auto px-4 text-center">
+        <h3 class="text-2xl font-bold text-gray-900 mb-3">Questions about the application?</h3>
+        <p class="text-gray-600 mb-6">We are happy to help. Feel free to get in touch.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/en/contact" class="inline-block text-white px-7 py-3 rounded-lg font-semibold hover:opacity-90 transition-all shadow-md" style={`background-color: ${primaryColor}`}>
+            <Icon name="envelope" class="mr-2" />Get in touch
+          </a>
+          <a href="/en/practical-exam" class="inline-block text-white px-7 py-3 rounded-lg font-semibold hover:opacity-90 transition-all shadow-md" style={`background-color: ${secondaryColor}`}>
+            <Icon name="flag-checkered" class="mr-2" />About the practical exam
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</Layout>

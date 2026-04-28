@@ -1,0 +1,215 @@
+﻿---
+import Layout from '../../layouts/Layout.astro';
+
+export const prerender = true;
+
+const primaryColor = '#0391b0';
+const secondaryColor = '#790f34';
+
+const vacature = {
+  id: 'rij-instructeur',
+  titel: 'Driving Instructor (B) M/F',
+  type: 'Full-time / Part-time',
+  locatie: 'Haaglanden, Delft, Rotterdam & Zoetermeer region',
+  beschikbaar: 'Immediately',
+  eisen: [
+    'Valid WRM authorisation',
+    'Preferably in possession of the RIS diploma, or willing to obtain it.',
+    'Good communication skills (NL/Eng)',
+    'Patient, engaged and results-oriented',
+  ],
+  aanbod: [
+    'Competitive hourly rate commensurate with experience',
+    'Full schedule',
+    'Clean lesson car (max 5 years old, automatic)',
+    'Room for your own input and growth',
+    'We handle the administration and support you where needed.',
+  ],
+  omschrijving: 'Rij-Vrij Driving School is a growing driving school in the Haaglanden, Delft, Rotterdam and Zoetermeer region. We are looking for an enthusiastic driving instructor M/F to guide our students towards their driving licence. The range of lessons is very diverse — think of students with autism and/or ADHD, or people who want to follow a refresher course. Quality is central to us: we don\'t aim for the fastest route, but the smartest and/or best. Are you that instructor?',
+};
+import Icon from '../../components/Icon.astro';
+---
+
+<Layout
+  title="Vacancies"
+  description="View current vacancies at Rij-Vrij Driving School. Currently recruiting: Driving Instructor (B) M/F in the Haaglanden, Delft and Zoetermeer region."
+>
+  <div class="bg-white">
+
+    <section class="py-20" style={`background: linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`}>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <p class="text-white text-sm font-semibold uppercase tracking-widest mb-3">Join our team</p>
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Vacancies</h1>
+        <p class="text-xl text-white max-w-2xl mx-auto">
+          We are looking for dedicated instructors who, like us, believe in personal attention and quality.
+        </p>
+      </div>
+    </section>
+
+    <section class="py-16 bg-gray-50">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Open positions</h2>
+
+        <div class="bg-white rounded-2xl border-2 shadow-sm overflow-hidden" style={`border-color: ${primaryColor}`}>
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-6 border-b border-gray-100">
+            <div>
+              <h3 class="text-xl font-bold text-gray-900">{vacature.titel}</h3>
+              <div class="flex flex-wrap gap-3 mt-2">
+                <span class="inline-flex items-center gap-1.5 text-sm text-gray-600">
+                  <Icon name="map-marker-alt" class="text-xs" style={`color:${primaryColor}`} />
+                  {vacature.locatie}
+                </span>
+                <span class="inline-flex items-center gap-1.5 text-sm text-gray-600">
+                  <Icon name="clock" class="text-xs" style={`color:${primaryColor}`} />
+                  {vacature.type}
+                </span>
+                <span class="inline-flex items-center gap-1.5 text-sm text-gray-600">
+                  <Icon name="calendar-check" class="text-xs" style={`color:${primaryColor}`} />
+                  {vacature.beschikbaar}
+                </span>
+              </div>
+            </div>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-semibold text-white self-start" style={`background-color:${primaryColor}`}>
+              <Icon name="circle" class="text-xs" /> Open
+            </span>
+          </div>
+
+          <div class="p-6 space-y-8">
+            <div>
+              <h4 class="font-semibold text-gray-900 mb-3">About this position</h4>
+              <p class="text-gray-700 text-sm leading-relaxed">{vacature.omschrijving}</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 class="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                  <Icon name="check-circle" class="text-sm" style={`color:${primaryColor}`} />
+                  Requirements
+                </h4>
+                <ul class="space-y-2">
+                  {vacature.eisen.map((eis) => (
+                    <li class="flex items-start gap-2 text-sm text-gray-700">
+                      <Icon name="check" class="text-xs mt-1 flex-shrink-0" style={`color:${primaryColor}`} />
+                      {eis}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h4 class="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                  <Icon name="star" class="text-sm" style={`color:${secondaryColor}`} />
+                  What we offer
+                </h4>
+                <ul class="space-y-2">
+                  {vacature.aanbod.map((item) => (
+                    <li class="flex items-start gap-2 text-sm text-gray-700">
+                      <Icon name="check" class="text-xs mt-1 flex-shrink-0" style={`color:${secondaryColor}`} />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div class="border-t border-gray-100 pt-6">
+              <button
+                id="open-modal"
+                class="w-full sm:w-auto inline-flex items-center justify-center gap-2 text-white px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition-all shadow-md"
+                style={`background-color: ${primaryColor}`}
+              >
+                <Icon name="paper-plane" />
+                Apply now
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Application modal -->
+    <div id="modal-overlay" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
+      <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+        <div class="flex items-center justify-between p-6 border-b border-gray-100">
+          <h2 class="text-xl font-bold text-gray-900">Apply for {vacature.titel}</h2>
+          <button id="close-modal" class="text-gray-400 hover:text-gray-600 transition-colors">
+            <Icon name="times" class="text-xl" />
+          </button>
+        </div>
+        <form id="solliciteer-form" class="p-6 space-y-4">
+          <input type="hidden" name="vacature" value={vacature.titel} />
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-1">Full name *</label>
+            <input type="text" name="naam" required class="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:outline-none" />
+          </div>
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-1">Email address *</label>
+            <input type="email" name="email" required class="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:outline-none" />
+          </div>
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-1">Phone number *</label>
+            <input type="tel" name="telefoon" required class="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:outline-none" />
+          </div>
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-1">Address *</label>
+            <input type="text" name="adres" required class="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:outline-none" />
+          </div>
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-1">City *</label>
+            <input type="text" name="woonplaats" required class="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:outline-none" />
+          </div>
+          <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-1">Motivation *</label>
+            <textarea name="motivatie" required rows="4" class="w-full px-4 py-2.5 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:outline-none resize-none"></textarea>
+          </div>
+          <button type="submit" id="solliciteer-submit" class="w-full text-white py-3 rounded-lg font-semibold hover:opacity-90 transition-all" style={`background-color: ${primaryColor}`}>
+            <Icon name="paper-plane" class="mr-2" />Submit application
+          </button>
+          <p id="solliciteer-msg" class="text-center text-sm font-medium hidden"></p>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</Layout>
+
+<script>
+  const openBtn = document.getElementById('open-modal');
+  const closeBtn = document.getElementById('close-modal');
+  const overlay = document.getElementById('modal-overlay');
+  const form = document.getElementById('solliciteer-form') as HTMLFormElement | null;
+  const submitBtn = document.getElementById('solliciteer-submit') as HTMLButtonElement | null;
+  const msg = document.getElementById('solliciteer-msg') as HTMLElement | null;
+
+  openBtn?.addEventListener('click', () => overlay?.classList.remove('hidden'));
+  closeBtn?.addEventListener('click', () => overlay?.classList.add('hidden'));
+  overlay?.addEventListener('click', (e) => { if (e.target === overlay) overlay.classList.add('hidden'); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') overlay?.classList.add('hidden'); });
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!submitBtn || !msg) return;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    const data = new FormData(form);
+    try {
+      const res = await fetch('/api/solliciteer', { method: 'POST', body: data });
+      let json: { success?: boolean; error?: string } = {};
+      try { json = await res.json(); } catch { json = {}; }
+      if (res.ok && json.success) {
+        form.innerHTML = `<p class="text-center text-green-700 font-semibold py-8">Thank you for your application! We will contact you as soon as possible.</p>`;
+      } else {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<Icon name="paper-plane" class="mr-2" />Submit application';
+        msg.textContent = json.error || `Server error (${res.status}). Please try again.`;
+        msg.classList.remove('hidden');
+        msg.className = 'text-center text-sm font-medium text-red-600';
+      }
+    } catch {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<Icon name="paper-plane" class="mr-2" />Submit application';
+      msg.textContent = 'No connection. Please try again later.';
+      msg.classList.remove('hidden');
+      msg.className = 'text-center text-sm font-medium text-red-600';
+    }
+  });
+</script>

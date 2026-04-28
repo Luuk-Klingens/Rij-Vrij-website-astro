@@ -1,0 +1,73 @@
+﻿---
+import Layout from '../../layouts/Layout.astro';
+
+export const prerender = true;
+
+const primaryColor = '#0391b0';
+const secondaryColor = '#790f34';
+
+const features = [
+  { icon: 'fa-video', title: 'Video lessons', text: 'Learn the theory through clear instructional videos. At your own pace, whenever it suits you.' },
+  { icon: 'fa-clipboard-check', title: '50 practice exams', text: 'Practise with 50 complete practice exams that mirror the real CBR theory test.' },
+  { icon: 'fa-chart-line', title: 'Track your progress', text: 'See exactly how you are doing and which topics need more attention.' },
+  { icon: 'fa-mobile-alt', title: 'Available anywhere', text: 'Use the app on your phone, tablet or computer — at home, on the go or in the car.' },
+  { icon: 'fa-gift', title: 'Included free', text: 'The On My Way app is included free of charge with every Rij-Vrij starter package.' },
+  { icon: 'fa-language', title: 'Multiple languages', text: 'The app is also available in English — perfect for international students.' },
+];
+import Icon from '../../components/Icon.astro';
+---
+
+<Layout
+  title="On My Way Theory App"
+  description="Study theory with the On My Way app — included free with every Rij-Vrij package. 50 practice exams, video lessons and progress tracking. Available in English."
+>
+  <div class="bg-white">
+
+    <section class="py-20" style={`background: linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`}>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <p class="text-white text-sm font-semibold uppercase tracking-widest mb-3">Theory training</p>
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">On My Way App</h1>
+        <p class="text-xl text-white max-w-2xl mx-auto">
+          Study for your theory exam with the best app — included free with every Rij-Vrij package.
+        </p>
+        <div class="mt-8 inline-flex items-center gap-3 bg-white/20 backdrop-blur-sm border border-white/30 text-white px-6 py-3 rounded-xl text-sm font-semibold">
+          <Icon name="gift" />
+          Free with every starter package (worth €59)
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 bg-gray-50">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-3">Everything you need to pass your theory test</h2>
+          <p class="text-gray-600 max-w-2xl mx-auto">The On My Way app gives you all the tools to pass your CBR theory exam with confidence.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {features.map((item) => (
+            <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100 overflow-hidden flex flex-col">
+              <div class="flex items-center justify-center py-7" style={`background-color: ${primaryColor}`}>
+                <i class={`fas ${item.icon} text-4xl text-white`}></i>
+              </div>
+              <div class="p-6 flex flex-col flex-grow">
+                <h3 class="font-bold text-gray-900 mb-2 text-center">{item.title}</h3>
+                <p class="text-gray-600 text-sm leading-relaxed text-center">{item.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="py-12 bg-white border-t border-gray-100">
+      <div class="max-w-2xl mx-auto px-4 text-center">
+        <h3 class="text-xl font-bold text-gray-900 mb-2">Start learning today</h3>
+        <p class="text-gray-600 text-sm mb-6">Book a trial lesson and receive free access to the On My Way app immediately.</p>
+        <a href="/en/#proefles-cta" class="inline-block text-white px-7 py-3 rounded-lg font-semibold hover:opacity-90 transition-all shadow-md" style={`background-color: ${primaryColor}`}>
+          <Icon name="calendar-check" class="mr-2" />Book free trial lesson
+        </a>
+      </div>
+    </section>
+
+  </div>
+</Layout>

@@ -1,0 +1,142 @@
+﻿---
+import Layout from '../layouts/Layout.astro';
+
+const primaryColor = '#0391b0';
+const secondaryColor = '#790f34';
+
+const meenemen = [
+  { icon: 'fa-id-card', text: 'Geldig identiteitsbewijs (ID-kaart of paspoort)' },
+  { icon: 'fa-envelope-open-text', text: 'Oproepkaart van het CBR' },
+  { icon: 'fa-check-circle', text: 'Geldig uitslagformulier theorie-examen' },
+  { icon: 'fa-file-alt', text: 'Uitslagformulier Tussentijdse Toets (indien van toepassing)' },
+];
+
+const beoordeeld = [
+  { icon: 'fa-shield-alt', title: 'Veiligheid', text: 'Veilig rijgedrag in alle verkeerssituaties' },
+  { icon: 'fa-cog', title: 'Techniek', text: 'Correct gebruik van het voertuig' },
+  { icon: 'fa-eye', title: 'Omgevingsbewustzijn', text: 'Inschatten van gevaren en medeweggebruikers' },
+];
+import Icon from '../components/Icon.astro';
+---
+
+<Layout title="Praktijkexamen">
+  <div class="bg-white">
+
+    <!-- Header -->
+    <section class="py-20" style={`background: linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`}>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <p class="text-white text-sm font-semibold uppercase tracking-widest mb-3">De laatste stap</p>
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Praktijkexamen</h1>
+        <p class="text-xl text-white max-w-2xl mx-auto">
+          Het praktijkexamen is de laatste stap naar je rijbewijs. Rij-Vrij bereidt je optimaal voor en regelt het examen voor je.
+        </p>
+        <div class="mt-8 flex justify-center gap-6 flex-wrap">
+          <div class="bg-white/20 backdrop-blur-sm border border-white/30 text-white px-6 py-3 rounded-xl text-center">
+            <div class="text-3xl font-bold">45</div>
+            <div class="text-sm">minuten</div>
+          </div>
+          <div class="bg-white/20 backdrop-blur-sm border border-white/30 text-white px-6 py-3 rounded-xl text-center">
+            <div class="text-3xl font-bold">2</div>
+            <div class="text-sm">examenlocaties</div>
+          </div>
+          <div class="bg-white/20 backdrop-blur-sm border border-white/30 text-white px-6 py-3 rounded-xl text-center">
+            <div class="text-3xl font-bold">Code 78</div>
+            <div class="text-sm">RijVrij-rijbewijs</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Wat meenemen -->
+    <section class="py-16 bg-gray-50">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-8 text-center">Wat moet je meenemen?</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {meenemen.map((item) => (
+            <div class="flex items-start gap-4 bg-white rounded-xl p-5 shadow-sm border border-gray-100">
+              <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style={`background-color: ${primaryColor}15`}>
+                <i class={`fas ${item.icon} text-sm`} style={`color: ${primaryColor}`}></i>
+              </div>
+              <p class="text-gray-700 text-sm leading-relaxed pt-1">{item.text}</p>
+            </div>
+          ))}
+        </div>
+        <div class="mt-4 p-4 bg-amber-50 border border-amber-100 rounded-xl flex items-start gap-3">
+          <Icon name="exclamation-triangle" class="text-amber-600 mt-0.5 flex-shrink-0" />
+          <p class="text-amber-800 text-sm font-medium">Zonder deze documenten gaat het examen niet door!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Verloop + Beoordeeld -->
+    <section class="py-16 bg-white">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div>
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+              <span class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style={`background-color: ${primaryColor}`}>
+                <Icon name="route" class="text-white text-sm" />
+              </span>
+              Verloop van het examen
+            </h2>
+            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+              Het praktijkexamen duurt ongeveer 45 minuten en wordt afgenomen bij het CBR in Rijswijk of Zoetermeer. Een CBR examinator beoordeelt jouw rijvaardigheid.
+            </p>
+            <div class="space-y-3">
+              {beoordeeld.map((item) => (
+                <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100">
+                  <div class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style={`background-color: ${primaryColor}15`}>
+                    <i class={`fas ${item.icon} text-sm`} style={`color: ${primaryColor}`}></i>
+                  </div>
+                  <div>
+                    <p class="font-semibold text-gray-900 text-sm">{item.title}</p>
+                    <p class="text-gray-600 text-xs mt-0.5">{item.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div class="space-y-6">
+<div class="rounded-xl p-6" style={`background: ${secondaryColor}10`}>
+              <h3 class="font-bold text-gray-900 mb-2 flex items-center gap-2">
+                <Icon name="car" style={`color: ${secondaryColor}`} />
+                RijVrij-rijbewijs: code 78
+              </h3>
+              <p class="text-gray-600 text-sm leading-relaxed">
+                Wanneer je examen doet in een RijVrij, krijg je code 78 op je rijbewijs. Wil je later overstappen naar handgeschakeld? Dan hoef je alleen het praktijkexamen opnieuw te doen.
+              </p>
+            </div>
+
+            <div class="rounded-xl p-6 bg-gray-50 border border-gray-100">
+              <h3 class="font-bold text-gray-900 mb-2 flex items-center gap-2">
+                <Icon name="clock" style={`color: ${primaryColor}`} />
+                Gemiddeld aantal lessen
+              </h3>
+              <p class="text-gray-600 text-sm leading-relaxed">
+                Gemiddeld zo'n 43 rijuren (CBR-onderzoek 2021). Met een RijVrij heb je doorgaans 10-30% minder lessen nodig.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 bg-gray-50 border-t border-gray-100">
+      <div class="max-w-2xl mx-auto px-4 text-center">
+        <h3 class="text-2xl font-bold text-gray-900 mb-3">Klaar om te oefenen?</h3>
+        <p class="text-gray-600 mb-6">Plan een proefles en ga samen met ons op weg naar je rijbewijs.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/#proefles-cta" class="inline-block text-white px-7 py-3 rounded-lg font-semibold hover:opacity-90 transition-all shadow-md" style={`background-color: ${primaryColor}`}>
+            <Icon name="calendar-check" class="mr-2" />Plan gratis proefles
+          </a>
+          <a href="/rijschool-machtigen" class="inline-block text-white px-7 py-3 rounded-lg font-semibold hover:opacity-90 transition-all shadow-md" style={`background-color: ${secondaryColor}`}>
+            <Icon name="file-signature" class="mr-2" />Rijschool machtigen
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</Layout>

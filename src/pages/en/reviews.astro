@@ -1,0 +1,74 @@
+﻿---
+import Layout from '../../layouts/Layout.astro';
+import GoogleReviews from '../../components/GoogleReviews.astro';
+
+export const prerender = true;
+
+const primaryColor = '#0391b0';
+const secondaryColor = '#790f34';
+import Icon from '../../components/Icon.astro';
+---
+
+<Layout
+  title="Reviews & Experiences"
+  description="Read what students say about Rij-Vrij Driving School. Average 5 stars on Google. View experiences and leave your own review."
+>
+  <div class="bg-white">
+
+    <section class="py-16" style={`background: linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`}>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">What our students say</h1>
+        <p class="text-white/90 max-w-3xl mx-auto mt-4 text-lg">
+          Discover what our students say about their experience at Rij-Vrij.
+        </p>
+      </div>
+    </section>
+
+    <section class="py-20 bg-gray-50">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-12">
+        <div class="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6" style={`background-color: ${primaryColor}15`}>
+          <Icon name="star" class="text-3xl" style={`color: ${primaryColor}`} />
+        </div>
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">Our students rate us highly</h2>
+        <p class="text-gray-600 leading-relaxed mb-8 max-w-2xl mx-auto">
+          Rij-Vrij receives excellent ratings on Google. We stand for personal contact, a high pass rate and driving lessons that truly match your pace and learning style.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+            <div class="flex justify-center gap-1 mb-2">
+              {[...Array(5)].map(() => <Icon name="star" class="text-yellow-400 text-2xl" />)}
+            </div>
+            <p class="text-gray-600 text-sm font-medium">5 stars on Google</p>
+            <p class="text-xs text-gray-500 mt-1">Average rating</p>
+          </div>
+          <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+            <div class="text-4xl font-black mb-2" style={`color: ${primaryColor}`}>100%</div>
+            <p class="text-gray-600 text-sm font-medium">Would recommend us</p>
+            <Icon name="thumbs-up" class="mt-2 text-2xl" style={`color: ${primaryColor}`} />
+          </div>
+          <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-100">
+            <Icon name="handshake" class="text-3xl mb-2" style={`color: ${primaryColor}`} />
+            <p class="text-gray-600 text-sm font-medium">Transparent & honest</p>
+            <p class="text-xs text-gray-400 mt-2">No hidden costs</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <GoogleReviews />
+      </div>
+    </section>
+
+    <section class="py-12 bg-white border-t border-gray-100">
+      <div class="max-w-2xl mx-auto px-4 text-center">
+        <h3 class="text-xl font-bold text-gray-900 mb-2">Ready to experience it yourself?</h3>
+        <p class="text-gray-600 text-sm mb-6">Book a free trial lesson and discover Rij-Vrij for yourself.</p>
+        <a href="/en/#proefles-cta" class="inline-block text-white px-7 py-3 rounded-lg font-semibold hover:opacity-90 transition-all shadow-md" style={`background-color: ${primaryColor}`}>
+          <Icon name="calendar-check" class="mr-2" />Book free trial lesson
+        </a>
+      </div>
+    </section>
+
+  </div>
+</Layout>

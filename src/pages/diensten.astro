@@ -1,0 +1,117 @@
+﻿---
+import Layout from '../layouts/Layout.astro';
+
+const primaryColor = '#0391b0';
+const secondaryColor = '#790f34';
+
+const services = [
+  {
+    icon: 'fa-redo',
+    title: 'Opfriscursus autorijden',
+    description: 'Een complete opfriscursus om weer vertrouwen te krijgen achter het stuur. Perfect voor mensen die al een tijd niet hebben gereden.',
+    features: ['60 minuten les', 'Verkeersregels opfrissen', 'Praktische rijvaardigheid'],
+  },
+  {
+    icon: 'fa-road',
+    title: 'Opfriscursus snelweg',
+    description: 'Specifiek gericht op het rijden op de snelweg, met aandacht voor invoegen, uitvoegen en veilig inhalen.',
+    features: ['90 minuten les', 'Snelwegtechnieken', 'Verkeersveiligheid'],
+  },
+  {
+    icon: 'fa-parking',
+    title: 'Opfriscursus parkeren',
+    description: 'Opfrisles voor het parkeren, inclusief file parkeren, haaks parkeren en parkeren in smalle straten.',
+    features: ['60 minuten les', 'Parkeertechnieken', 'Stadspecifieke situaties'],
+  },
+  {
+    icon: 'fa-user-check',
+    title: 'CBR Rijtest (ouderen)',
+    description: 'Speciale training voor de CBR rijtest voor ouderen, inclusief alle benodigde vaardigheden en tips.',
+    features: ['90 minuten les', 'CBR specifieke training', 'Examen voorbereiding'],
+  },
+  {
+    icon: 'fa-gift',
+    title: 'Opfris rijles cadeau geven',
+    description: 'Geef een opfris rijles cadeau aan iemand die je dierbaar is. Een praktisch en waardevol cadeau!',
+    features: ['Cadeaubon beschikbaar', 'Flexibele inwisseling', 'Persoonlijke boodschap'],
+  },
+  {
+    icon: 'fa-euro-sign',
+    title: 'Tarieven',
+    description: 'Transparante en eerlijke prijzen voor al onze diensten. Geen verborgen kosten.',
+    features: ['Vanaf €74 per les', 'Voordeelpakketten', 'Geen verborgen kosten'],
+  },
+];
+import Icon from '../components/Icon.astro';
+---
+
+<Layout
+  title="Diensten"
+  description="Bekijk alle diensten van Rij-Vrij Rijschool: opfriscursussen, angstrijders begeleiding, rijvaardigheidstest en meer. RijVrij rijlessen op maat in Pijnacker & Delft."
+>
+  <div class="bg-white">
+
+    <!-- Header -->
+    <section class="py-16" style={`background: linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`}>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Opfriscursus autorijden</h1>
+        <p class="text-xl text-white/90 max-w-4xl mx-auto">
+          Jij hebt de basis vaardigheden geleerd tijdens je rijlessen voor het behalen van je rijbewijs. Je hebt veel dingen tijdens die lessen niet geleerd die wij jou wel zullen aanleren waardoor je met plezier weer achter het stuur gaat en jezelf niet op visite voelt in het verkeer!
+        </p>
+      </div>
+    </section>
+
+    <!-- Diensten grid -->
+    <section class="py-20 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {services.map((service) => (
+            <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow border border-gray-200">
+              <div class="w-14 h-14 rounded-lg flex items-center justify-center mb-4" style={`background-color: ${primaryColor}`}>
+                <i class={`fas ${service.icon} text-white text-2xl`}></i>
+              </div>
+              <h3 class="text-xl font-semibold text-gray-900 mb-3">{service.title}</h3>
+              <p class="text-gray-600 mb-4">{service.description}</p>
+              <ul class="text-sm text-gray-600 space-y-2">
+                {service.features.map((feature) => (
+                  <li class="flex items-center">
+                    <Icon name="check" class="mr-2" style={`color: ${primaryColor}`} />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-12 bg-white border-t border-gray-100">
+      <div class="max-w-2xl mx-auto px-4 text-center">
+        <h3 class="text-2xl font-bold text-gray-900 mb-3">Interesse in een van onze diensten?</h3>
+        <p class="text-gray-600 mb-6">Neem contact op voor meer informatie of om een afspraak te maken.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="/contact"
+            class="inline-block text-white px-8 py-4 rounded-lg font-bold hover:opacity-90 transition-all shadow-md"
+            style={`background-color: ${primaryColor}`}
+          >
+            <Icon name="envelope" class="mr-2" />
+            Neem contact op
+          </a>
+          <a
+            href="tel:0152224012"
+            class="inline-block text-white px-8 py-4 rounded-lg font-bold hover:opacity-90 transition-all shadow-md"
+            style={`background-color: ${secondaryColor}`}
+          >
+            <Icon name="phone" class="mr-2" />
+            015-2224012
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</Layout>

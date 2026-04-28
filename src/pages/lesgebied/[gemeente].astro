@@ -1,0 +1,309 @@
+﻿---
+import Layout from '../../layouts/Layout.astro';
+import lesgebieden from '../../data/lesgebieden';
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return lesgebieden.map((g) => ({
+    params: { gemeente: g.slug },
+    props: { lesgebied: g },
+  }));
+}
+
+const { lesgebied } = Astro.props;
+
+const primaryColor = '#0391b0';
+const secondaryColor = '#790f34';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'DrivingSchool',
+  name: 'Rij-Vrij Rijschool',
+  alternateName: ['RijVrij Rijschool', 'RijVrij', 'Autorijschool Rij-Vrij', 'Autorijschool RijVrij'],
+  description: `Rij-Vrij Rijschool geeft RijVrij rijlessen in ${lesgebied.naam}. Hoog slagingspercentage, geen wachttijden. Specialist rijlessen autisme & ADHD in ${lesgebied.naam} en omgeving.`,
+  url: `https://Rij-Vrij.com/lesgebied/${lesgebied.slug}`,
+  telephone: '+31152224012',
+  email: 'info@Rij-Vrij.com',
+  image: 'https://Rij-Vrij.com/og-image.png',
+  priceRange: '€€',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Hankweg 39',
+    addressLocality: 'Pijnacker',
+    postalCode: '2641 WV',
+    addressCountry: 'NL',
+    addressRegion: 'Zuid-Holland',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 52.0169,
+    longitude: 4.4306,
+  },
+  areaServed: [
+    { '@type': 'City', name: lesgebied.naam, containedInPlace: { '@type': 'AdministrativeArea', name: 'Zuid-Holland' } },
+    ...lesgebied.buurtwijken.map(wijk => ({ '@type': 'Place', name: `${wijk}, ${lesgebied.naam}` })),
+  ],
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '9.7',
+    ratingCount: '47',
+    bestRating: '10',
+  },
+  openingHoursSpecification: [
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday'], opens: '08:00', closes: '21:00' },
+    { '@type': 'OpeningHoursSpecification', dayOfWeek: 'Saturday', opens: '08:00', closes: '17:00' },
+  ],
+  availableLanguage: [
+    { '@type': 'Language', name: 'Dutch' },
+    { '@type': 'Language', name: 'English' },
+  ],
+  sameAs: [
+    'https://www.facebook.com/profile.php?id=61569989527327',
+    'https://www.instagram.com/autorijschool_auto_maat/',
+    'https://www.tiktok.com/@autorijschool.auto_maat',
+  ],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: `RijVrij rijlessen in ${lesgebied.naam}`,
+    itemListElement: [
+      {
+        '@type': 'Offer',
+        name: `Rijlessen ${lesgebied.naam} – Start10`,
+        description: `10 rijlessen van 90 minuten in ${lesgebied.naam}. CBR praktijkexamen inbegrepen.`,
+        price: '1399',
+        priceCurrency: 'EUR',
+        itemOffered: { '@type': 'Service', name: `RijVrij rijlessen ${lesgebied.naam} – Start10 pakket` },
+      },
+      {
+        '@type': 'Offer',
+        name: `Rijlessen ${lesgebied.naam} – Populair20`,
+        description: `20 rijlessen van 90 minuten in ${lesgebied.naam}. CBR praktijkexamen inbegrepen. Meest gekozen.`,
+        price: '2399',
+        priceCurrency: 'EUR',
+        itemOffered: { '@type': 'Service', name: `RijVrij rijlessen ${lesgebied.naam} – Populair20 pakket` },
+      },
+      {
+        '@type': 'Offer',
+        name: `Rijlessen ${lesgebied.naam} – Compleet30`,
+        description: `30 rijlessen van 90 minuten in ${lesgebied.naam}. CBR praktijkexamen inbegrepen.`,
+        price: '3299',
+        priceCurrency: 'EUR',
+        itemOffered: { '@type': 'Service', name: `RijVrij rijlessen ${lesgebied.naam} – Compleet30 pakket` },
+      },
+      {
+        '@type': 'Offer',
+        name: `Proefles RijVrij ${lesgebied.naam}`,
+        description: `Vrijblijvende proefles RijVrij rijden in ${lesgebied.naam}. Gratis bij afname van een rijpakket.`,
+        price: '49',
+        priceCurrency: 'EUR',
+        itemOffered: { '@type': 'Service', name: `Proefles RijVrij rijles ${lesgebied.naam}` },
+      },
+      {
+        '@type': 'Offer',
+        name: `Rijles autisme & ADHD ${lesgebied.naam}`,
+        description: `Gespecialiseerde RijVrij rijlessen voor leerlingen met autisme of ADHD in ${lesgebied.naam}. Erkend specialist via Rijles-en-Autisme.nl.`,
+        itemOffered: { '@type': 'Service', name: `Rijlessen autisme ADHD ${lesgebied.naam}` },
+      },
+    ],
+  },
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: `RijVrij rijlessen ${lesgebied.naam}`,
+  alternateName: [
+    `Rijschool ${lesgebied.naam}`,
+    `Autorijschool ${lesgebied.naam}`,
+    `Rijles ${lesgebied.naam}`,
+    `Rijlessen ${lesgebied.naam}`,
+    `RijVrij Rijschool ${lesgebied.naam}`,
+  ],
+  description: `Rij-Vrij Rijschool verzorgt RijVrij rijlessen in ${lesgebied.naam}${lesgebied.buurtwijken.length ? ` in wijken als ${lesgebied.buurtwijken.slice(0, 3).join(', ')}` : ''}. Examen bij CBR ${lesgebied.examen.join(' of ')}. Geen wachttijden, direct starten.`,
+  provider: {
+    '@type': 'DrivingSchool',
+    name: 'Rij-Vrij Rijschool',
+    telephone: '+31152224012',
+    url: 'https://Rij-Vrij.com',
+  },
+  areaServed: {
+    '@type': 'City',
+    name: lesgebied.naam,
+    containedInPlace: { '@type': 'AdministrativeArea', name: 'Zuid-Holland' },
+  },
+  serviceType: 'Rijlessen',
+  audience: {
+    '@type': 'Audience',
+    audienceType: 'Rijbewijskandidaten in ' + lesgebied.naam,
+  },
+};
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://Rij-Vrij.com' },
+    { '@type': 'ListItem', position: 2, name: 'Lesgebieden', item: 'https://Rij-Vrij.com/lesgebied' },
+    { '@type': 'ListItem', position: 3, name: lesgebied.naam, item: `https://Rij-Vrij.com/lesgebied/${lesgebied.slug}` },
+  ],
+};
+import Icon from '../../components/Icon.astro';
+---
+
+<Layout title={`RijVrij rijles in ${lesgebied.naam}`} description={lesgebied.description}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(breadcrumb)} />
+
+  <div class="bg-white">
+
+    <!-- Header -->
+    <section class="py-20" style={`background: linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`}>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <!-- Breadcrumb -->
+        <nav class="text-white text-sm mb-6" aria-label="Breadcrumb">
+          <a href="/" class="hover:text-white transition-colors">Home</a>
+          <span class="mx-2">/</span>
+          <a href="/lesgebied" class="hover:text-white transition-colors">Lesgebieden</a>
+          <span class="mx-2">/</span>
+          <span class="text-white font-medium">{lesgebied.naam}</span>
+        </nav>
+        <p class="text-white text-sm font-semibold uppercase tracking-widest mb-3">Rijles in jouw buurt</p>
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">
+          RijVrij rijles in {lesgebied.naam}
+        </h1>
+        <p class="text-xl text-white max-w-2xl mx-auto">
+          {lesgebied.intro}
+        </p>
+        <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="/#proefles-cta"
+            class="inline-block text-white px-8 py-4 rounded-lg font-semibold hover:opacity-90 transition-all shadow-lg"
+            style={`background-color: ${secondaryColor}`}
+          >
+            <Icon name="calendar-check" class="mr-2" />Plan je proefles
+          </a>
+          <a
+            href="tel:0152224012"
+            class="inline-block bg-white/20 backdrop-blur-sm border border-white/40 text-white px-8 py-4 rounded-lg font-semibold hover:bg-white/30 transition-all"
+          >
+            <Icon name="phone" class="mr-2" />015-2224012
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Waarom Rij-Vrij in deze gemeente -->
+    <section class="py-20 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-3">
+            Waarom Rij-Vrij in {lesgebied.naam}?
+          </h2>
+          <p class="text-gray-600">
+            Ontdek wat rijles met Rij-Vrij jou oplevert in {lesgebied.naam}.
+          </p>
+        </div>
+        <ul class="space-y-4">
+          {lesgebied.highlights.map((punt) => (
+            <li class="flex items-start gap-4 p-5 rounded-xl border border-gray-100 bg-gray-50">
+              <div
+                class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5"
+                style={`background-color: ${primaryColor}`}
+              >
+                <Icon name="check" class="text-white text-sm" />
+              </div>
+              <p class="text-gray-800 font-medium">{punt}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <!-- Examenlocaties -->
+    <section class="py-16 bg-gray-50">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-2xl font-bold text-gray-900 mb-3">Examenlocaties vanuit {lesgebied.naam}</h2>
+        <p class="text-gray-600 mb-8 text-sm">
+          Vanuit {lesgebied.naam} doe je examen bij een van deze CBR-locaties. Wij rijden je erheen.
+        </p>
+        <div class={`grid gap-6 ${lesgebied.examen.length === 1 ? 'grid-cols-1 max-w-xs mx-auto' : 'grid-cols-1 sm:grid-cols-2'}`}>
+          {lesgebied.examen.map((stad) => (
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+              <div
+                class="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4"
+                style={`background-color: ${secondaryColor}15`}
+              >
+                <Icon name="flag-checkered" class="text-xl" style={`color: ${secondaryColor}`} />
+              </div>
+              <h3 class="text-lg font-bold text-gray-900">CBR {stad}</h3>
+              <p class="text-gray-600 text-sm mt-1">Zuid-Holland</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Bekende wijken -->
+    {lesgebied.buurtwijken.length > 0 && (
+      <section class="py-12 bg-white border-t border-gray-100">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 class="text-xl font-bold text-gray-900 mb-4">
+            Rijles in heel {lesgebied.naam}
+          </h2>
+          <p class="text-gray-600 text-sm mb-6">
+            We geven les door alle wijken en buurten van {lesgebied.naam}, waaronder:
+          </p>
+          <div class="flex flex-wrap justify-center gap-3">
+            {lesgebied.buurtwijken.map((wijk) => (
+              <span
+                class="px-4 py-2 rounded-full text-sm font-medium text-white"
+                style={`background-color: ${primaryColor}`}
+              >
+                {wijk}
+              </span>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- Pakkettenlink + CTA -->
+    <section class="py-16 bg-gray-50 border-t border-gray-100">
+      <div class="max-w-2xl mx-auto px-4 text-center">
+        <h2 class="text-2xl font-bold text-gray-900 mb-3">Klaar om te starten in {lesgebied.naam}?</h2>
+        <p class="text-gray-600 mb-8">
+          Kies een rijpakket of plan eerst een vrijblijvende proefles. We bellen je terug om alles door te spreken.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="/prijzen"
+            class="inline-block text-white px-8 py-4 rounded-lg font-semibold hover:opacity-90 transition-all shadow-md"
+            style={`background-color: ${primaryColor}`}
+          >
+            <Icon name="tags" class="mr-2" />Bekijk de pakketten
+          </a>
+          <a
+            href="/contact"
+            class="inline-block text-white px-8 py-4 rounded-lg font-semibold hover:opacity-90 transition-all shadow-md"
+            style={`background-color: ${secondaryColor}`}
+          >
+            <Icon name="envelope" class="mr-2" />Neem contact op
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Andere lesgebieden -->
+    <section class="py-12 bg-white border-t border-gray-100">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <p class="text-gray-600 text-sm mb-4">Rij-Vrij rijdt ook in andere gemeenten</p>
+        <a href="/lesgebied" class="text-sm font-semibold hover:underline" style={`color: ${primaryColor}`}>
+          <Icon name="map" class="mr-1" />Bekijk alle lesgebieden
+        </a>
+      </div>
+    </section>
+
+  </div>
+</Layout>

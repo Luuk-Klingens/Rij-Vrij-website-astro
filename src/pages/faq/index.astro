@@ -1,0 +1,86 @@
+﻿---
+import Layout from '../../layouts/Layout.astro';
+import { faqCategories, allFaqItems } from '../../data/faq';
+
+const primaryColor = '#0391b0';
+const secondaryColor = '#790f34';
+import Icon from '../../components/Icon.astro';
+---
+
+<Layout
+  title="Veelgestelde vragen"
+  description="Antwoorden op veelgestelde vragen over RijVrij rijlessen bij Rij-Vrij Rijschool. Over lessen, pakketten, proefles, examen, autisme & ADHD en meer."
+>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": allFaqItems.map(item => ({
+      "@type": "Question",
+      "name": item.vraag,
+      "acceptedAnswer": { "@type": "Answer", "text": item.antwoord }
+    }))
+  })} />
+
+  <div class="bg-white">
+
+    <!-- Hero -->
+    <section class="py-20" style={`background: linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`}>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <p class="text-white text-sm font-semibold uppercase tracking-widest mb-3">Antwoorden op jouw vragen</p>
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Veelgestelde vragen</h1>
+        <p class="text-xl text-white max-w-2xl mx-auto">
+          Alles over rijles bij Rij-Vrij. Staat jouw vraag er niet bij? Neem gerust contact op.
+        </p>
+      </div>
+    </section>
+
+    <!-- FAQ per categorie -->
+    <section class="py-20 bg-white">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+        {faqCategories.map((cat) => (
+          <div>
+            <div class="flex items-center gap-3 mb-5">
+              <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style={`background-color: ${primaryColor}`}>
+                <i class={`fas ${cat.icon} text-sm text-white`}></i>
+              </div>
+              <h2 class="text-xl font-bold text-gray-900">{cat.categorie}</h2>
+            </div>
+            <div class="space-y-2">
+              {cat.items.map((item) => (
+                <a
+                  href={`/faq/${item.slug}/`}
+                  class="flex items-center justify-between p-5 bg-white border border-gray-100 rounded-xl hover:border-blue-200 hover:shadow-sm transition-all group"
+                >
+                  <span class="font-medium text-gray-900 group-hover:text-blue-600 transition-colors pr-4">{item.vraag}</span>
+                  <div class="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 transition-all group-hover:bg-blue-50" style={`background-color: ${primaryColor}15`}>
+                    <Icon name="chevron-right" class="text-xs" style={`color: ${primaryColor}`} />
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-12 bg-gray-50 border-t border-gray-100">
+      <div class="max-w-2xl mx-auto px-4 text-center">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mx-auto mb-4" style={`background-color: ${primaryColor}15`}>
+          <Icon name="question" class="text-xl" style={`color: ${primaryColor}`} />
+        </div>
+        <h3 class="text-xl font-bold text-gray-900 mb-2">Staat jouw vraag er niet bij?</h3>
+        <p class="text-gray-600 text-sm mb-6">Neem contact op. Wij beantwoorden jouw vraag graag persoonlijk.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact" class="inline-block text-white px-7 py-3 rounded-lg font-semibold hover:opacity-90 transition-all shadow-md" style={`background-color: ${primaryColor}`}>
+            <Icon name="envelope" class="mr-2" />Stel je vraag
+          </a>
+          <a href="/#proefles-cta" class="inline-block text-white px-7 py-3 rounded-lg font-semibold hover:opacity-90 transition-all shadow-md" style={`background-color: ${secondaryColor}`}>
+            <Icon name="calendar-check" class="mr-2" />Plan een proefles
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</Layout>

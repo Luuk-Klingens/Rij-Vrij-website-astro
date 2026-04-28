@@ -1,0 +1,182 @@
+﻿---
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { getLang, getAlternateUrl } from '../i18n/utils';
+
+interface Props {
+  title: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title,
+  description = 'Rij-Vrij Rijschool (RijVrij) geeft RijVrij rijlessen in regio Haaglanden, Delft en Zoetermeer. Geen wachttijden, direct van start. Specialist autisme & ADHD.',
+  ogImage = '/og-image.png',
+} = Astro.props;
+
+const lang = getLang(Astro.url.pathname);
+const canonicalURL = new URL(Astro.url.pathname, 'https://Rij-Vrij.com');
+const alternateUrl = getAlternateUrl(Astro.url.pathname);
+const alternateAbsolute = new URL(alternateUrl, 'https://Rij-Vrij.com');
+const fullTitle = `${title} | Rij-Vrij Rijschool`;
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL.href} />
+    <link rel="alternate" hreflang={lang === 'nl' ? 'en' : 'nl'} href={alternateAbsolute.href} />
+    <link rel="alternate" hreflang={lang} href={canonicalURL.href} />
+    <link rel="alternate" hreflang="x-default" href={lang === 'nl' ? canonicalURL.href : alternateAbsolute.href} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL.href} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`https://Rij-Vrij.com${ogImage}`} />
+    <meta property="og:locale" content={lang === 'en' ? 'en_GB' : 'nl_NL'} />
+    <meta property="og:site_name" content="Rij-Vrij Rijschool" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`https://Rij-Vrij.com${ogImage}`} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+
+    <!-- Vroege verbindingen met externe origins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Google Fonts – niet-blokkerend -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      />
+    </noscript>
+
+    <style>
+      body { font-family: 'Inter', sans-serif; }
+    </style>
+
+    <!-- Pagina-specifieke head-tags (bv. preload LCP-afbeelding, JSON-LD schema) -->
+    <slot name="head" />
+  </head>
+  <body class="bg-white">
+    <Navbar />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+
+    <!-- Tekstlabels voor redactie: activeer met ?labels=1 in de URL -->
+    <script>
+    (function () {
+      if (!new URLSearchParams(window.location.search).has('labels')) return;
+
+      const SELECTORS = 'h1, h2, h3, h4, h5, h6, p, li, a, button, th, td, label, span';
+      const SKIP_TAGS = new Set(['SCRIPT', 'STYLE', 'NOSCRIPT', 'SVG', 'PATH']);
+
+      let counter = 0;
+      const log: {num: number; tekst: string; pagina: string}[] = [];
+      const pagina = document.title.split('|')[0].trim();
+
+      document.querySelectorAll<HTMLElement>(SELECTORS).forEach((el) => {
+        if (SKIP_TAGS.has(el.tagName)) return;
+        if (el.closest('[data-lbl]')) return;
+        const tekst = el.textContent?.replace(/\s+/g, ' ').trim() ?? '';
+        if (tekst.length < 2) return;
+
+        counter++;
+        el.setAttribute('data-lbl', String(counter));
+        log.push({ num: counter, tekst: tekst.substring(0, 80), pagina });
+
+        const badge = document.createElement('span');
+        badge.setAttribute('data-lbl-badge', '');
+        badge.textContent = String(counter);
+        badge.style.cssText = [
+          'display:inline-flex',
+          'align-items:center',
+          'justify-content:center',
+          'background:#f97316',
+          'color:#fff',
+          'font-size:10px',
+          'font-weight:700',
+          'font-family:monospace',
+          'min-width:17px',
+          'height:17px',
+          'border-radius:9px',
+          'padding:0 3px',
+          'margin-right:3px',
+          'vertical-align:middle',
+          'line-height:1',
+          'position:relative',
+          'z-index:10000',
+          'cursor:pointer',
+          'flex-shrink:0',
+        ].join(';');
+
+        badge.title = `#${counter}: ${tekst.substring(0, 60)}`;
+        badge.addEventListener('click', (e) => {
+          e.stopPropagation();
+          prompt(`Nummer ${counter} — huidige tekst:`, tekst);
+        });
+
+        el.insertBefore(badge, el.firstChild);
+      });
+
+      // Zwevend info-paneel onderaan
+      const panel = document.createElement('div');
+      panel.style.cssText = [
+        'position:fixed',
+        'bottom:0',
+        'left:0',
+        'right:0',
+        'background:#1e293b',
+        'color:#fff',
+        'font-size:13px',
+        'font-family:monospace',
+        'padding:10px 16px',
+        'z-index:99999',
+        'display:flex',
+        'align-items:center',
+        'justify-content:space-between',
+        'gap:12px',
+        'flex-wrap:wrap',
+      ].join(';');
+
+      panel.innerHTML = `
+        <span>🟠 <strong>${counter} tekstelementen</strong> genummerd op pagina "<strong>${pagina}</strong>"</span>
+        <span style="color:#f97316">Stuur: pagina + nummer + nieuwe tekst → dan pas ik het aan</span>
+        <button onclick="
+          const lines = ${JSON.stringify(log)}.map(r => r.num + '. ' + r.tekst).join('\\n');
+          const blob = new Blob([lines], {type:'text/plain'});
+          const a = document.createElement('a');
+          a.href = URL.createObjectURL(blob);
+          a.download = 'labels-${pagina.toLowerCase().replace(/\\s+/g,'-')}.txt';
+          a.click();
+        " style="background:#f97316;color:#fff;border:none;border-radius:6px;padding:5px 12px;cursor:pointer;font-size:12px;font-weight:700;">
+          ↓ Download lijst
+        </button>
+      `;
+      document.body.appendChild(panel);
+    })();
+    </script>
+  </body>
+</html>

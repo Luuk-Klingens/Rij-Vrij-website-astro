@@ -1,0 +1,142 @@
+﻿---
+import Layout from '../../layouts/Layout.astro';
+
+export const prerender = true;
+
+const primaryColor = '#0391b0';
+const secondaryColor = '#790f34';
+
+const meenemen = [
+  { icon: 'fa-id-card', text: 'Valid identity document (ID card or passport)' },
+  { icon: 'fa-envelope-open-text', text: 'CBR exam invitation letter' },
+  { icon: 'fa-check-circle', text: 'Valid theory exam certificate' },
+  { icon: 'fa-file-alt', text: 'Interim test result form (if applicable)' },
+];
+
+const beoordeeld = [
+  { icon: 'fa-shield-alt', title: 'Safety', text: 'Safe driving behaviour in all traffic situations' },
+  { icon: 'fa-cog', title: 'Technique', text: 'Correct use of the vehicle' },
+  { icon: 'fa-eye', title: 'Awareness', text: 'Assessing hazards and other road users' },
+];
+import Icon from '../../components/Icon.astro';
+---
+
+<Layout
+  title="Practical Exam"
+  description="Everything about the CBR practical driving exam. Rij-Vrij prepares you thoroughly and arranges the exam. Exam locations: Rijswijk and Zoetermeer."
+>
+  <div class="bg-white">
+
+    <section class="py-20" style={`background: linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`}>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <p class="text-white text-sm font-semibold uppercase tracking-widest mb-3">The final step</p>
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Practical Exam</h1>
+        <p class="text-xl text-white max-w-2xl mx-auto">
+          The practical exam is the final step to your driving licence. Rij-Vrij prepares you thoroughly and arranges everything.
+        </p>
+        <div class="mt-8 flex justify-center gap-6 flex-wrap">
+          <div class="bg-white/20 backdrop-blur-sm border border-white/30 text-white px-6 py-3 rounded-xl text-center">
+            <div class="text-3xl font-bold">45</div>
+            <div class="text-sm">minutes</div>
+          </div>
+          <div class="bg-white/20 backdrop-blur-sm border border-white/30 text-white px-6 py-3 rounded-xl text-center">
+            <div class="text-3xl font-bold">2</div>
+            <div class="text-sm">exam locations</div>
+          </div>
+          <div class="bg-white/20 backdrop-blur-sm border border-white/30 text-white px-6 py-3 rounded-xl text-center">
+            <div class="text-3xl font-bold">Code 78</div>
+            <div class="text-sm">automatic licence</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 bg-gray-50">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-8 text-center">What do you need to bring?</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {meenemen.map((item) => (
+            <div class="flex items-start gap-4 bg-white rounded-xl p-5 shadow-sm border border-gray-100">
+              <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style={`background-color: ${primaryColor}15`}>
+                <i class={`fas ${item.icon} text-sm`} style={`color: ${primaryColor}`}></i>
+              </div>
+              <p class="text-gray-700 text-sm leading-relaxed pt-1">{item.text}</p>
+            </div>
+          ))}
+        </div>
+        <div class="mt-4 p-4 bg-amber-50 border border-amber-100 rounded-xl flex items-start gap-3">
+          <Icon name="exclamation-triangle" class="text-amber-600 mt-0.5 flex-shrink-0" />
+          <p class="text-amber-800 text-sm font-medium">Without these documents your exam cannot proceed!</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 bg-white">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div>
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+              <span class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style={`background-color: ${primaryColor}`}>
+                <Icon name="route" class="text-white text-sm" />
+              </span>
+              How the exam works
+            </h2>
+            <p class="text-gray-600 text-sm leading-relaxed mb-4">
+              The practical exam lasts approximately 45 minutes and takes place at the CBR in Rijswijk or Zoetermeer. A CBR examiner assesses your driving ability.
+            </p>
+            <div class="space-y-3">
+              {beoordeeld.map((item) => (
+                <div class="flex items-start gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100">
+                  <div class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style={`background-color: ${primaryColor}15`}>
+                    <i class={`fas ${item.icon} text-sm`} style={`color: ${primaryColor}`}></i>
+                  </div>
+                  <div>
+                    <p class="font-semibold text-gray-900 text-sm">{item.title}</p>
+                    <p class="text-gray-600 text-xs mt-0.5">{item.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div class="space-y-6">
+            <div class="rounded-xl p-6" style={`background: ${secondaryColor}10`}>
+              <h3 class="font-bold text-gray-900 mb-2 flex items-center gap-2">
+                <Icon name="car" style={`color: ${secondaryColor}`} />
+                Automatic licence: code 78
+              </h3>
+              <p class="text-gray-600 text-sm leading-relaxed">
+                When you sit your exam in an automatic car, code 78 is added to your licence. Want to switch to manual later? You only need to redo the practical exam.
+              </p>
+            </div>
+            <div class="rounded-xl p-6 bg-gray-50 border border-gray-100">
+              <h3 class="font-bold text-gray-900 mb-2 flex items-center gap-2">
+                <Icon name="clock" style={`color: ${primaryColor}`} />
+                Average number of lessons
+              </h3>
+              <p class="text-gray-600 text-sm leading-relaxed">
+                On average around 43 driving hours (CBR research 2021). With an automatic you typically need 10-30% fewer lessons.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-16 bg-gray-50 border-t border-gray-100">
+      <div class="max-w-2xl mx-auto px-4 text-center">
+        <h3 class="text-2xl font-bold text-gray-900 mb-3">Ready to practise?</h3>
+        <p class="text-gray-600 mb-6">Book a trial lesson and start working towards your licence together.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/en/#proefles-cta" class="inline-block text-white px-7 py-3 rounded-lg font-semibold hover:opacity-90 transition-all shadow-md" style={`background-color: ${primaryColor}`}>
+            <Icon name="calendar-check" class="mr-2" />Book free trial lesson
+          </a>
+          <a href="/en/authorize" class="inline-block text-white px-7 py-3 rounded-lg font-semibold hover:opacity-90 transition-all shadow-md" style={`background-color: ${secondaryColor}`}>
+            <Icon name="file-signature" class="mr-2" />Authorise driving school
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</Layout>

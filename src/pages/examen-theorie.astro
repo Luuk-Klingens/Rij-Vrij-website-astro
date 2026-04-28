@@ -1,0 +1,143 @@
+﻿---
+import Layout from '../layouts/Layout.astro';
+
+const primaryColor = '#0391b0';
+const secondaryColor = '#790f34';
+
+const leeftijden = [
+  { leeftijd: 'Vanaf 16 jaar', tekst: 'Theorie-examen doen' },
+  { leeftijd: 'Vanaf 16,5 jaar', tekst: 'Rijlessen starten' },
+  { leeftijd: 'Vanaf 17 jaar', tekst: 'Praktijkexamen (2toDrive)' },
+  { leeftijd: 'Vanaf 18 jaar', tekst: 'Zelfstandig rijden' },
+];
+
+const tips = [
+  { icon: 'fa-mobile-alt', text: 'Gebruik de On My Way app dagelijks, ook al is het maar 15 minuten' },
+  { icon: 'fa-clipboard-check', text: 'Maak zo veel mogelijk oefenexamens voordat je het echte examen doet' },
+  { icon: 'fa-exclamation-triangle', text: 'Let goed op gevaarherkenning: hier zakken veel mensen op' },
+  { icon: 'fa-calendar-check', text: 'Plan je examen pas als je de oefenexamens consistent haalt' },
+];
+
+const inhoud = ['Verkeersregels', 'Verkeersborden', 'Gevaarherkenning', 'Rijomstandigheden'];
+import Icon from '../components/Icon.astro';
+---
+
+<Layout title="Theorie-examen">
+  <div class="bg-white">
+
+    <!-- Header -->
+    <section class="py-20" style={`background: linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`}>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <p class="text-white text-sm font-semibold uppercase tracking-widest mb-3">Stap 1 naar je rijbewijs</p>
+        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Theorie-examen</h1>
+        <p class="text-xl text-white max-w-2xl mx-auto">
+          Voordat je je praktijkexamen kunt doen, moet je eerst je theorie halen bij het CBR.
+        </p>
+      </div>
+    </section>
+
+    <!-- Leeftijden -->
+    <section class="py-16 bg-gray-50">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl font-bold text-gray-900 mb-8 text-center">Wanneer mag je wat?</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {leeftijden.map((item) => (
+            <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100 overflow-hidden flex flex-col">
+              <div class="flex items-center justify-center py-6" style={`background-color: ${primaryColor}`}>
+                <Icon name="birthday-cake" class="text-4xl text-white" />
+              </div>
+              <div class="p-5 flex flex-col flex-grow text-center">
+                <p class="font-bold text-gray-900 text-sm mb-1">{item.leeftijd}</p>
+                <p class="text-gray-600 text-xs">{item.tekst}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Inhoud examen + Tips -->
+    <section class="py-16 bg-white">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div>
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+              <span class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style={`background-color: ${primaryColor}`}>
+                <Icon name="book" class="text-white text-sm" />
+              </span>
+              Wat staat er in het examen?
+            </h2>
+            <div class="space-y-3">
+              {inhoud.map((item) => (
+                <div class="flex items-center gap-3 p-4 bg-gray-50 rounded-xl border border-gray-100">
+                  <Icon name="check-circle" class="flex-shrink-0" style={`color: ${primaryColor}`} />
+                  <span class="text-gray-700 font-medium">{item}</span>
+                </div>
+              ))}
+            </div>
+            <div
+              class="mt-6 rounded-xl p-5 flex items-start gap-4"
+              style={`background: ${primaryColor}10`}
+            >
+              <Icon name="gift" class="mt-0.5 flex-shrink-0" style={`color: ${primaryColor}`} />
+              <p class="text-gray-700 text-sm leading-relaxed">
+                Via de <strong>On My Way app</strong> oefen je met 50 volledige oefenexamens. Gratis inbegrepen bij elk Rij-Vrij pakket.
+              </p>
+            </div>
+          </div>
+
+          <div>
+            <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+              <span class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style={`background-color: ${secondaryColor}`}>
+                <Icon name="lightbulb" class="text-white text-sm" />
+              </span>
+              Tips voor de voorbereiding
+            </h2>
+            <ul class="space-y-3">
+              {tips.map((tip) => (
+                <li class="flex items-start gap-4 p-4 bg-gray-50 rounded-xl border border-gray-100">
+                  <div class="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style={`background-color: ${primaryColor}15`}>
+                    <i class={`fas ${tip.icon} text-sm`} style={`color: ${primaryColor}`}></i>
+                  </div>
+                  <span class="text-gray-700 text-sm leading-relaxed pt-1">{tip.text}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Theorie gehaald -->
+    <section class="py-10 bg-gray-50 border-y border-gray-100">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 flex items-start gap-4">
+        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5" style={`background-color: ${secondaryColor}15`}>
+          <Icon name="flag-checkered" style={`color: ${secondaryColor}`} />
+        </div>
+        <div>
+          <p class="font-semibold text-gray-900 mb-1">Theorie gehaald, wat nu?</p>
+          <p class="text-gray-600 text-sm leading-relaxed">
+            Zodra je je theorie hebt gehaald, kun je een tussentijdse toets (TTT) aanvragen en uiteindelijk het praktijkexamen. Je instructeur helpt je hier bij.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 bg-white">
+      <div class="max-w-2xl mx-auto px-4 text-center">
+        <h3 class="text-2xl font-bold text-gray-900 mb-3">Direct beginnen met leren?</h3>
+        <p class="text-gray-600 mb-6">Plan een proefles en ontvang gratis toegang tot de On My Way app.</p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/#proefles-cta" class="inline-block text-white px-7 py-3 rounded-lg font-semibold hover:opacity-90 transition-all shadow-md" style={`background-color: ${primaryColor}`}>
+            <Icon name="calendar-check" class="mr-2" />Plan gratis proefles
+          </a>
+          <a href="/onmyway-app" class="inline-block text-white px-7 py-3 rounded-lg font-semibold hover:opacity-90 transition-all shadow-md" style={`background-color: ${secondaryColor}`}>
+            <Icon name="mobile-alt" class="mr-2" />Meer over de app
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</Layout>
