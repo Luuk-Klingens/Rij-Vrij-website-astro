@@ -2,7 +2,6 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "rij-vrij-astro",
   "compatibility_date": "2026-04-26",
-  "main": "dist/_worker.js",
   "observability": {
     "enabled": true
   },
