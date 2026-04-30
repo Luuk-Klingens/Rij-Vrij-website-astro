@@ -7,54 +7,61 @@ const gold  = '#ac884d';
 
 const pakketten = [
   {
-    name: 'Opfris Start',
-    sub: '3 lessen × 90 minuten',
-    price: '299',
+    name: 'Opfris Basis',
+    sub: '5 lessen × 90 minuten',
+    price: '599',
+    originalPrice: '630',
     popular: false,
+    badge: null,
     features: [
-      'Beoordeling huidige rijvaardigheid',
-      'Gericht werken aan verbeterpunten',
       'Vaste instructeur elke les',
       'Direct starten',
+      'Beoordeling huidige rijvaardigheid',
+      'Gericht werken aan verbeterpunten',
     ],
     termijn: null,
   },
   {
     name: 'Opfris Plus',
-    sub: '5 lessen × 90 minuten',
-    price: '479',
+    sub: '10 lessen × 90 minuten',
+    price: '1.199',
+    originalPrice: '1.319',
     popular: true,
+    badge: null,
     features: [
-      'Alles van Opfris Start',
-      'Extra aandacht voor specifieke situaties',
-      'Stadsverkeer én snelwegrijden',
-      'Betaling in 2 termijnen mogelijk',
+      'Vaste instructeur elke les',
       'Direct starten',
+      'Beoordeling huidige rijvaardigheid',
+      'Gericht werken aan verbeterpunten',
+      'Gratis theorieopleiding t.w.v. €59',
+      'Gratis in 2 termijnen betalen',
     ],
     termijn: '2 termijnen',
   },
   {
-    name: 'Opfris Volledig',
-    sub: '8 lessen × 90 minuten',
-    price: '749',
+    name: 'Opfris Compleet',
+    sub: '15 lessen × 90 minuten',
+    price: '1.649',
+    originalPrice: '1.849',
     popular: false,
+    badge: 'Voordeligst',
     features: [
-      'Volledig opfrisprogramma',
-      'Alle verkeerssituaties behandeld',
-      'Optioneel: CBR rijtest voorbereiding',
-      'Betaling in 3 termijnen mogelijk',
+      'Vaste instructeur elke les',
       'Direct starten',
+      'Beoordeling huidige rijvaardigheid',
+      'Gericht werken aan verbeterpunten',
+      'Gratis theorieopleiding t.w.v. €59',
+      'Gratis in 3 termijnen betalen',
     ],
     termijn: '3 termijnen',
   },
 ];
 
 const tariefRows = [
-  { naam: 'Intakeles / beoordeling rijvaardigheid (60 min)', prijs: '€ 69,00' },
-  { naam: 'Losse opfrisles (90 min)', prijs: '€ 109,00' },
-  { naam: 'Snelwegles specifiek (90 min)', prijs: '€ 109,00' },
-  { naam: 'Parkeertraining (60 min)', prijs: '€ 69,00' },
-  { naam: 'CBR rijtest voorbereiding (90 min)', prijs: '€ 109,00' },
+  { naam: 'Opfrisles 60 minuten', prijs: '€86,50' },
+  { naam: 'Opfrisles 90 minuten', prijs: '€126,-' },
+  { naam: 'Opfrisles 120 minuten', prijs: '€165,50' },
+  { naam: 'Theorieopleiding', prijs: '€59,-' },
 ];
 ---
 
@@ -95,7 +102,7 @@ const tariefRows = [
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
         {pakketten.map((pkg) => (
-          <div class={`flex flex-col bg-white ${pkg.popular ? 'scale-[1.03]' : ''}`}
+          <div class={`flex flex-col bg-white relative overflow-hidden ${pkg.popular ? 'scale-[1.03]' : ''}`}
             style={`border: 2px solid ${pkg.popular ? gold : '#e4ddd0'}; border-top: 4px solid ${pkg.popular ? gold : green}; border-radius: 4px; box-shadow: ${pkg.popular ? '0 8px 32px rgba(34,57,39,0.12)' : '0 2px 12px rgba(34,57,39,0.06)'}`}>
 
             {pkg.popular && (
@@ -104,11 +111,20 @@ const tariefRows = [
               </div>
             )}
 
+            {pkg.badge && (
+              <div style={`position:absolute; top:22px; right:-32px; width:130px; text-align:center; transform:rotate(45deg); background-color:${gold}; color:white; font-size:12px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase; padding:7px 0; pointer-events:none; box-shadow:0 2px 6px rgba(0,0,0,0.18)`}>
+                {pkg.badge}
+              </div>
+            )}
+
             <div class="p-7 flex flex-col flex-grow">
               <h3 class="text-xl font-extrabold mb-1" style={`color: ${green}`}>{pkg.name}</h3>
               <p class="text-sm mb-5" style="color: #5c5c50">{pkg.sub}</p>
 
               <div class="mb-6">
+                {pkg.originalPrice && (
+                  <p class="text-base font-semibold line-through mb-0.5" style="color: #b0a090">€{pkg.originalPrice},-</p>
+                )}
                 <span class="text-4xl font-extrabold" style={`color: ${green}`}>€{pkg.price}</span>
                 <span class="text-sm ml-1" style="color: #5c5c50">,-</span>
                 {pkg.termijn && (
@@ -159,7 +175,7 @@ const tariefRows = [
       </div>
 
       <p class="text-sm mt-5" style="color: #5c5c50">
-        Tarieven per 1 januari 2026. Alle rijlessen zijn inclusief gebruik van de lesauto (automaat).
+        Tarieven per 1 januari 2026. Alle rijlessen zijn inclusief gebruik van de lesauto.
       </p>
     </div>
   </section>
