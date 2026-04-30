@@ -31,7 +31,7 @@ export const faqCategories: FaqCategory[] = [
         antwoord: 'Bij RijVrij hoef je niet te schakelen, waardoor je je volledig op het verkeer kunt concentreren. Dit zorgt gemiddeld voor 10-30% minder lessen en een ontspannener rijervaring. Een RijVrij rijbewijs (code 78) geeft je toegang tot alle automatische voertuigen, en dat is tegenwoordig meer dan 70% van alle nieuwe auto\'s.',
         categorie: 'Algemeen',
         vraagEN: 'What is the difference between automatic and manual driving lessons?',
-        antwoordEN: 'With an automatic car you don\'t need to change gears, so you can fully concentrate on traffic. This results in 10-30% fewer lessons on average and a more relaxed driving experience. An automatic driving licence (code 78) gives you access to all automatic vehicles — currently more than 70% of all new cars.',
+        antwoordEN: 'With an automatic car you don\'t need to change gears, so you can fully concentrate on traffic. This results in 10-30% fewer lessons on average and a more relaxed driving experience. An automatic driving licence (code 78) gives you access to all automatic vehicles, currently more than 70% of all new cars.',
         categorieEN: 'General',
       },
       {
@@ -151,7 +151,7 @@ export const faqCategories: FaqCategory[] = [
         antwoord: 'De proefles duurt 60 minuten. Je maakt kennis met Peter en de lesmethode, rijdt een stukje mee en krijgt gratis en vrijblijvend advies over jouw rijbewijs traject. We bespreken hoeveel lessen je waarschijnlijk nodig hebt en welk pakket het beste bij je past. Geen verplichtingen, gewoon kennismaken.',
         categorie: 'Proefles',
         vraagEN: 'What does the trial lesson involve?',
-        antwoordEN: 'The trial lesson lasts 60 minutes. You meet Peter and get to know the teaching method, take a short drive and receive free, no-obligation advice about your driving licence journey. We discuss how many lessons you will likely need and which package suits you best. No commitments — just getting acquainted.',
+        antwoordEN: 'The trial lesson lasts 60 minutes. You meet Peter and get to know the teaching method, take a short drive and receive free, no-obligation advice about your driving licence journey. We discuss how many lessons you will likely need and which package suits you best. No commitments, just getting acquainted.',
         categorieEN: 'Trial Lesson',
       },
       {
@@ -249,7 +249,7 @@ export const faqCategories: FaqCategory[] = [
         vraag: 'Ik heb dyslexie of concentratieproblemen, kan ik dan rijles nemen?',
         antwoord: 'Zeker! Wij bieden aangepaste opties zoals verlengde examens, Engelstalige examens of voorgelezen examens. We kijken samen naar wat jij nodig hebt en stemmen de lessen daar op af. Neem contact op om de opties vrijblijvend te bespreken.',
         categorie: 'Autisme & ADHD',
-        vraagEN: 'I have dyslexia or concentration difficulties — can I take driving lessons?',
+        vraagEN: 'I have dyslexia or concentration difficulties: can I take driving lessons?',
         antwoordEN: 'Absolutely! We offer adapted options such as extended exams, English-language exams or read-aloud exams. We look together at what you need and tailor the lessons accordingly. Contact us to discuss the options with no obligation.',
         categorieEN: 'Autism & ADHD',
       },

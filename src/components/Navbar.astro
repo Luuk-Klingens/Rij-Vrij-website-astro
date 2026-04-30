@@ -24,35 +24,34 @@ const p = (nl: string, en: string) => (isEN ? en : nl);
 <nav class="bg-white sticky top-0 z-50" style="box-shadow: 0 1px 0 #e4ddd0, 0 2px 12px rgba(34,57,39,0.06);">
 
   <!-- Info-balk -->
-  <div class="hidden lg:block text-white text-xs font-medium" style={`background-color: ${green}`}>
+  <div class="hidden lg:block text-white text-xs font-semibold" style={`background-color: ${green}`}>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-9 gap-4">
 
       <div class="flex items-center gap-1.5">
         {[0,1,2,3,4].map(() => <Icon name="star" class="text-yellow-400" style="font-size:10px" />)}
-        <span class="ml-1 opacity-85">{p('5 sterren opfrislessen — direct starten', '5-star refresher lessons — start immediately')}</span>
+        <span class="ml-1">{p('5 sterren opfrislessen, direct starten', '5-star refresher lessons, start immediately')}</span>
       </div>
 
-      <div class="flex items-center gap-5">
-        <a href="tel:0152224012" class="flex items-center gap-1.5 opacity-80 hover:opacity-100 transition-opacity">
+      <div class="flex items-center gap-6 ml-auto">
+        <a href="tel:0152224012" class="flex items-center gap-1.5 hover:text-yellow-300 transition-colors">
           <Icon name="phone" style="font-size:10px" />
           {contactPhone}
         </a>
-        <a href={`mailto:${contactEmail}`} class="flex items-center gap-1.5 opacity-80 hover:opacity-100 transition-opacity">
+        <a href={`mailto:${contactEmail}`} class="flex items-center gap-1.5 hover:text-yellow-300 transition-colors">
           <Icon name="envelope" style="font-size:10px" />
           {contactEmail}
         </a>
-        <div class="flex items-center gap-2 pl-4 border-l border-white/20">
-          <a href={facebookUrl} target="_blank" rel="noopener noreferrer" class="opacity-70 hover:opacity-100 transition-opacity" aria-label="Facebook">
+        <div class="flex items-center gap-2 pl-5 border-l border-white/25">
+          <a href={facebookUrl} target="_blank" rel="noopener noreferrer" class="hover:text-yellow-300 transition-colors" aria-label="Facebook">
             <Icon name="facebook" style="font-size:13px" />
           </a>
-          <a href={instagramUrl} target="_blank" rel="noopener noreferrer" class="opacity-70 hover:opacity-100 transition-opacity" aria-label="Instagram">
+          <a href={instagramUrl} target="_blank" rel="noopener noreferrer" class="hover:text-yellow-300 transition-colors" aria-label="Instagram">
             <Icon name="instagram" style="font-size:13px" />
           </a>
-          <a href={tiktokUrl} target="_blank" rel="noopener noreferrer" class="opacity-70 hover:opacity-100 transition-opacity" aria-label="TikTok">
+          <a href={tiktokUrl} target="_blank" rel="noopener noreferrer" class="hover:text-yellow-300 transition-colors" aria-label="TikTok">
             <Icon name="tiktok" style="font-size:13px" />
           </a>
         </div>
-        <span class="pl-4 border-l border-white/20 opacity-65">CBR {p('Opleidersnummer', 'School nr.')}: 1460F3</span>
       </div>
 
     </div>

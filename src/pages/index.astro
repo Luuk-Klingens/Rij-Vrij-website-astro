@@ -89,15 +89,15 @@ const pakketten = [
 ];
 
 const ctaBullets = [
-  'Maatwerk — we starten met een beoordeling van je huidig niveau',
+  'Maatwerk: we starten met een beoordeling van je huidig niveau',
   'Vaste instructeur voor continuïteit en vertrouwen',
-  'Alleen automaat — minder afleiding, meer focus op het verkeer',
-  'Specialist autisme & ADHD — altijd geduld en duidelijkheid',
+  'Alleen automaat, minder afleiding, meer focus op het verkeer',
+  'Specialist autisme & ADHD, altijd geduld en duidelijkheid',
 ];
 ---
 
 <Layout
-  title="Opfrislessen — Rij-Vrij Rijschool Haaglanden & Delft"
+  title="Opfrislessen | Rij-Vrij Rijschool Haaglanden & Delft"
   description="Rij-Vrij biedt professionele opfrislessen in automaat. Rijangst, snelweg, parkeren of gewoon weer vertrouwen krijgen. Specialist autisme & ADHD. Direct starten, geen wachttijden."
 >
   <link slot="head" rel="preload" as="image" href="/hero-768.webp" type="image/webp"
@@ -169,7 +169,7 @@ const ctaBullets = [
           </h1>
 
           <p class="text-lg mb-8 leading-relaxed max-w-md" style="color: rgba(255,255,255,0.75)">
-            Je rijbewijs heb je al. Rij-Vrij helpt je er alles uit te halen — rustig, doelgericht en op jouw tempo. Alleen automaat, regio Haaglanden, Delft &amp; Zoetermeer.
+            Je rijbewijs heb je al. Rij-Vrij helpt je er alles uit te halen: rustig, doelgericht en op jouw tempo. Alleen automaat, regio Haaglanden, Delft &amp; Zoetermeer.
           </p>
 
           <div class="flex flex-col sm:flex-row gap-3">
@@ -190,12 +190,14 @@ const ctaBullets = [
 
             <!-- Stat cards: Dutch Design stijl -->
             {[
-              { value: '100%', label: 'Automaat', sub: 'Geen schakelen — meer focus op het verkeer' },
+              { icon: 'car', label: 'Automaat & schakel', sub: 'Rijles in automaat én handgeschakeld' },
               { value: '15+', label: 'Lesgebieden', sub: 'Haaglanden, Delft & Zoetermeer' },
               { value: '5★', label: 'Waardering', sub: 'Beoordeeld door onze leerlingen' },
             ].map((stat) => (
               <div class="flex items-center gap-4 p-4 bg-white" style="border-left: 4px solid #ac884d; border-radius: 0 4px 4px 0; box-shadow: 0 2px 12px rgba(34,57,39,0.08)">
-                <div class="text-3xl font-extrabold flex-shrink-0" style={`color: ${green}; min-width: 64px`}>{stat.value}</div>
+                <div class="text-3xl font-extrabold flex-shrink-0 flex items-center justify-center" style={`color: ${green}; min-width: 64px`}>
+                  {stat.icon ? <Icon name={stat.icon} style="font-size:28px" /> : stat.value}
+                </div>
                 <div>
                   <div class="font-bold text-sm" style={`color: ${green}`}>{stat.label}</div>
                   <div class="text-xs" style="color: #5c5c50">{stat.sub}</div>
@@ -204,10 +206,10 @@ const ctaBullets = [
             ))}
 
             <!-- CBR badge -->
-            <div class="flex items-center gap-3 px-4 py-3" style={`background-color: ${green}; border-radius: 4px`}>
+            <a href="https://www.rijles-en-autisme.nl" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-4 py-3 transition-opacity hover:opacity-85" style={`background-color: ${green}; border-radius: 4px`}>
               <Icon name="certificate" style={`color: ${gold}; font-size:16px; flex-shrink:0`} />
               <span class="text-xs font-bold text-white">Erkend specialist autisme &amp; ADHD · rijles-en-autisme.nl</span>
-            </div>
+            </a>
           </div>
         </div>
 
@@ -227,7 +229,7 @@ const ctaBullets = [
           Opfrislessen op maat
         </h2>
         <p class="text-base max-w-xl" style="color: #5c5c50">
-          Of je nu lang niet gereden hebt, snelwegangst hebt of wil oefenen voor de CBR rijtest — wij maken een plan op jouw situatie.
+          Of je nu lang niet gereden hebt, snelwegangst hebt of wil oefenen voor de CBR rijtest: wij maken een plan op jouw situatie.
         </p>
       </div>
 
@@ -321,7 +323,7 @@ const ctaBullets = [
           Opfris pakketten
         </h2>
         <p class="text-base max-w-xl mx-auto" style="color: #5c5c50">
-          Losse les of een pakket — wij starten altijd met een korte beoordeling van jouw rijvaardigheid.
+          Losse les of een pakket: wij starten altijd met een korte beoordeling van jouw rijvaardigheid.
           Alle pakketten in automaat, geen verborgen kosten.
         </p>
       </div>
