@@ -1,306 +1,476 @@
-﻿---
+---
 import Layout from '../../layouts/Layout.astro';
 import ReviewsCarousel from '../../components/ReviewsCarousel.astro';
+import lesgebieden from '../../data/lesgebieden';
+import Icon from '../../components/Icon.astro';
 
 export const prerender = true;
 
-const primaryColor = '#223927';
-const secondaryColor = '#ac884d';
+const green        = '#223927';
+const gold         = '#ac884d';
+const inschrijfUrl = 'https://startmetjerijbewijs.nl/rij-vrij/inschrijven';
 
-const waaromCards = [
-  { icon: 'fa-car', title: 'Automatic = easier driving', text: 'Without gear changes you can fully concentrate on traffic. This means you learn faster and need 10-30% fewer lessons on average.' },
-  { icon: 'fa-trophy', title: 'High pass rate', text: 'Our proven teaching method and certified instructors produce excellent results at the CBR practical exam.' },
-  { icon: 'fa-mobile-alt', title: 'OnMyWay included', text: "Practise theory with videos and 50 practice exams. Track your progress and schedule lessons easily via the app." },
-  { icon: 'fa-handshake', title: 'Transparent & honest', text: 'We keep our promises. Clear rates, honest advice about your progress and no hidden costs.' },
-  { icon: 'fa-heart', title: 'Certified autism & ADHD specialist', text: 'Our instructors have specialist expertise in supporting students with autism or ADHD. At your pace, with patience and understanding.' },
-  { icon: 'fa-clock', title: 'No waiting times', text: 'You can start immediately. No long waiting list, sign up today and start your automatic driving lessons soon.' },
-];
-
-const proeflesBullets = [
-  'Get behind the wheel straight away in a modern automatic car',
-  'Meet your instructor and learn about the teaching method',
-  'Free, no-obligation advice about your driving licence',
-  'Trial lesson €49, or free when you purchase a starter package!',
-];
-
-const packages = [
+const diensten = [
   {
-    name: 'Start10',
-    description: '10 lessons of 90 minutes',
-    price: '1.399',
-    isPopular: false,
-    features: ['10 driving lessons of 90 minutes', 'CBR practical exam included', 'Free trial lesson (worth €49)', 'Free theory training (worth €59)', 'Start immediately!'],
+    icon: 'redo',
+    title: 'General refresher lesson',
+    text: "Haven't driven for a while? We assess your driving skills and work on the areas where you can improve.",
   },
   {
-    name: 'Populair20',
-    description: '20 lessons of 90 minutes',
-    price: '2.399',
-    isPopular: true,
-    features: ['20 driving lessons of 90 minutes', 'CBR practical exam included', 'Free trial lesson (worth €49)', 'Free theory training (worth €59)', 'Pay in two free instalments', 'Start immediately!'],
+    icon: 'road',
+    title: 'Motorway lesson',
+    text: 'Joining, leaving, safe overtaking and driving at speed. Specifically focused on motorway and dual-carriageway driving.',
   },
   {
-    name: 'Compleet30',
-    description: '30 lessons of 90 minutes',
-    price: '3.299',
-    isPopular: false,
-    features: ['30 driving lessons of 90 minutes', 'CBR practical exam included', 'Free trial lesson (worth €49)', 'Free theory training (worth €59)', 'Pay in three free instalments', 'Start immediately!'],
+    icon: 'parking',
+    title: 'Parking training',
+    text: 'Parallel parking, right-angle parking, reversing in narrow streets. We keep practising until you nail it.',
+  },
+  {
+    icon: 'heart',
+    title: 'Overcoming driving anxiety',
+    text: 'Calm and safe work to rebuild confidence. For people who have developed anxiety after an incident or a long break.',
+  },
+  {
+    icon: 'user-check',
+    title: 'CBR driving test (elderly)',
+    text: 'Special preparation for the CBR driving test required to renew your licence after the age of 75.',
+  },
+  {
+    icon: 'gift',
+    title: 'Gift voucher',
+    text: 'Give a refresher lesson as a gift to someone you care about. Practical, personal and always welcome.',
   },
 ];
 
-const stats = [
-  { value: '70%', label: "of new cars are automatic", sub: 'The future is automatic' },
-  { value: '10-30%', label: 'fewer driving lessons needed', sub: 'Get your licence faster & cheaper' },
-  { value: '15+', label: 'lesson areas', sub: 'Haaglanden, Delft and Zoetermeer region' },
+const waaromItems = [
+  { icon: 'car', title: 'Automatic & manual', text: 'No gear changes means full focus on traffic. More relaxed driving, faster results.' },
+  { icon: 'heart', title: 'Autism & ADHD specialist', text: 'Certified with rijles-en-autisme.nl. Lessons at your pace, with patience and clear structure.' },
+  { icon: 'map-pin', title: '15+ lesson areas', text: 'Active throughout the Haaglanden, Delft and Zoetermeer region. We come to you.' },
+  { icon: 'clock', title: 'No waiting times', text: 'Start immediately. Sign up today and get behind the wheel as soon as possible.' },
 ];
-import Icon from '../../components/Icon.astro';
+
+const pakketten = [
+  {
+    name: 'Refresher Basic',
+    sub: '5 lessons × 90 minutes',
+    price: '599',
+    originalPrice: '630',
+    popular: false,
+    badge: null,
+    features: [
+      'Dedicated instructor every lesson',
+      'Start immediately',
+      'Assessment of current driving skills',
+      'Focused work on areas for improvement',
+    ],
+  },
+  {
+    name: 'Refresher Plus',
+    sub: '10 lessons × 90 minutes',
+    price: '1.199',
+    originalPrice: '1.319',
+    popular: true,
+    badge: null,
+    features: [
+      'Dedicated instructor every lesson',
+      'Start immediately',
+      'Assessment of current driving skills',
+      'Focused work on areas for improvement',
+      'Free theory course worth €59',
+      'Free payment in 2 instalments',
+    ],
+  },
+  {
+    name: 'Refresher Complete',
+    sub: '15 lessons × 90 minutes',
+    price: '1.649',
+    originalPrice: '1.849',
+    popular: false,
+    badge: 'Best value',
+    features: [
+      'Dedicated instructor every lesson',
+      'Start immediately',
+      'Assessment of current driving skills',
+      'Focused work on areas for improvement',
+      'Free theory course worth €59',
+      'Free payment in 3 instalments',
+    ],
+  },
+];
+
+const ctaBullets = [
+  'Tailored: we start with an assessment of your current level',
+  'Dedicated instructor for continuity and trust',
+  'Automatic only, less distraction, more focus on traffic',
+  'Autism & ADHD specialist, always patient and clear',
+];
 ---
 
 <Layout
-  title="Automatic Driving School Pijnacker & Delft"
-  description="Rij-Vrij Driving School: automatic driving lessons in Pijnacker, Delft & surroundings. High pass rate, no waiting times. Autism & ADHD specialist. Book your free trial lesson."
+  title="Refresher Lessons | Rij-Vrij Driving School Haaglanden & Delft"
+  description="Rij-Vrij offers professional refresher lessons in automatic. Driving anxiety, motorway, parking or simply regaining confidence. Autism & ADHD specialist. Start immediately, no waiting times."
 >
-  <link slot="head" rel="preload" as="image" href="/hero-1440.webp" type="image/webp" imagesrcset="/hero-768.webp 768w, /hero-1440.webp 1440w" imagesizes="100vw" fetchpriority="high" />
+  <link slot="head" rel="preload" as="image" href="/hero-768.webp" type="image/webp"
+    imagesrcset="/hero-768.webp 768w, /hero-1080.webp 1080w, /hero-1440.webp 1440w"
+    imagesizes="100vw" fetchpriority="high" />
 
-  <div class="bg-white">
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "DrivingSchool",
+    "name": "Rij-Vrij Driving School",
+    "alternateName": ["RijVrij Driving School", "Rij-Vrij Refresher Lessons"],
+    "url": "https://rij-vrij.nl/en",
+    "telephone": "+31152224012",
+    "email": "info@rij-vrij.nl",
+    "image": "https://rij-vrij.nl/og-image.png",
+    "priceRange": "€€",
+    "sameAs": [
+      "https://www.facebook.com/profile.php?id=61569989527327",
+      "https://www.instagram.com/rij_vrij/",
+      "https://www.tiktok.com/@rij.vrij/"
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Hankweg 39",
+      "addressLocality": "Pijnacker",
+      "postalCode": "2641 WV",
+      "addressCountry": "NL"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": 52.0169, "longitude": 4.4306 },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "17:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "08:00", "closes": "17:00" }
+    ],
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "9.7", "ratingCount": "47", "bestRating": "10" },
+    "areaServed": lesgebieden.map(g => ({ "@type": "City", "name": g.naam }))
+  })} />
 
-    <!-- Hero -->
-    <section class="relative min-h-[600px] flex items-center justify-center overflow-hidden">
-      <img
-        src="/hero-1440.webp"
-        srcset="/hero-768.webp 768w, /hero-1440.webp 1440w"
-        sizes="100vw"
-        alt=""
-        aria-hidden="true"
-        width="1440"
-        height="647"
-        fetchpriority="high"
-        loading="eager"
-        decoding="sync"
-        class="absolute inset-0 w-full h-full object-cover"
-      />
-      <div class="absolute inset-0" style={`background-color: ${primaryColor}; opacity: 0.78`}></div>
+  <!-- ═══════════════════════════════════════════════════════
+       HERO — Diagonal split (Dutch Design)
+  ═══════════════════════════════════════════════════════════ -->
+  <section class="relative overflow-hidden" style="min-height: 640px">
 
-      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
-        <div class="inline-block bg-white/20 backdrop-blur-sm text-white text-sm font-semibold px-4 py-2 rounded-full mb-6 border border-white/30">
-          <Icon name="check-circle" class="mr-2" />
-          No waiting times, start immediately
-        </div>
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-white">
-          Driving with Rij-Vrij
-        </h1>
-        <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-white font-semibold">
-          The smart route to your driving licence! By skipping gear changes with an automatic car, you drive more easily, pass your test sooner and save on the total number of lessons. No waiting, start today!
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="#proefles-cta"
-            class="inline-block text-white px-8 py-4 rounded-lg text-lg font-semibold hover:opacity-90 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
-            style={`background-color: ${secondaryColor}`}
-          >
-            <Icon name="calendar-check" class="mr-2" />
-            Book my trial lesson
-          </a>
-          <a
-            href="tel:0152224012"
-            class="inline-block bg-white/20 backdrop-blur-sm border border-white/40 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white/30 transition-all"
-          >
-            <Icon name="phone" class="mr-2" />
-            015-2224012
-          </a>
-        </div>
-      </div>
-    </section>
+    <!-- White right side (full width on mobile, clipped on desktop) -->
+    <div class="absolute inset-0 bg-white"></div>
 
-    <!-- Stats -->
-    <section class="py-16 bg-white border-b border-gray-100">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-          {stats.map((stat) => (
-            <div class="p-8 rounded-xl text-white" style={`background-color: ${primaryColor}`}>
-              <div class="text-4xl md:text-5xl font-bold mb-2">{stat.value}</div>
-              <div class="text-lg font-semibold mb-1">{stat.label}</div>
-              <div class="text-white/80 text-sm">{stat.sub}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+    <!-- Green left side with diagonal edge — desktop only -->
+    <div class="absolute inset-0 hidden lg:block" style={`background-color: ${green}; clip-path: polygon(0 0, 60% 0, 52% 100%, 0 100%)`}></div>
 
-    <!-- Why Choose Us -->
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Why Rij-Vrij is the smartest choice for your driving lessons
-          </h2>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {waaromCards.map((item) => (
-            <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100 overflow-hidden flex flex-col">
-              <div class="flex items-center justify-center py-7" style={`background-color: ${primaryColor}`}>
-                <Icon name={item.icon.replace('fa-', '')} class="text-4xl text-white" />
-              </div>
-              <div class="p-6 flex flex-col flex-grow">
-                <h3 class="text-lg font-bold text-gray-900 mb-3 text-center">{item.title}</h3>
-                <p class="text-gray-600 text-sm leading-relaxed text-center">{item.text}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+    <!-- Gold diagonal accent line — desktop only -->
+    <div class="absolute inset-0 hidden lg:block" style={`background-color: ${gold}; clip-path: polygon(60% 0, 62.5% 0, 54.5% 100%, 52% 100%)`}></div>
 
-    <!-- Reviews -->
-    <section class="py-20 bg-white overflow-hidden">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-10">
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-            What our students say
-          </h2>
-          <div class="flex items-center justify-center gap-1 mb-1">
-            {[...Array(5)].map(() => (
-              <Icon name="star" class="text-yellow-400 text-xl" />
-            ))}
+    <!-- Mobile: full green background -->
+    <div class="absolute inset-0 lg:hidden" style={`background-color: ${green}`}></div>
+
+    <!-- Content grid -->
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[640px] flex items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-0 w-full py-16 lg:py-24">
+
+        <!-- LEFT — green side -->
+        <div class="flex flex-col justify-center lg:pr-20">
+          <div class="mb-6">
+            <span class="inline-block text-xs font-bold tracking-widest uppercase px-3 py-1" style={`background-color: ${gold}; color: ${green}; border-radius: 2px`}>
+              Refresher lessons
+            </span>
           </div>
-          <p class="text-sm text-gray-500">5 stars on Google</p>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6" style="line-height: 1.1">
+            Confidence<br />back<br />behind<br />the wheel.
+          </h1>
+
+          <p class="text-lg mb-8 leading-relaxed max-w-md" style="color: rgba(255,255,255,0.75)">
+            You already have your licence. Rij-Vrij helps you get the most out of it: calm, focused and at your own pace. Automatic only, Haaglanden, Delft &amp; Zoetermeer region.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-3">
+            <a href="#opfrisles-cta" class="btn-primary">
+              <Icon name="calendar-check" style="font-size:14px" />
+              Plan my refresher lesson
+            </a>
+            <a href="tel:0152224012" class="btn-outline-white">
+              <Icon name="phone" style="font-size:14px" />
+              015-2224012
+            </a>
+          </div>
         </div>
+
+        <!-- RIGHT — white side (desktop only) -->
+        <div class="hidden lg:flex flex-col justify-center pl-20">
+          <div class="space-y-4">
+
+            <!-- Stat cards: Dutch Design style -->
+            {[
+              { icon: 'car', label: 'Automatic & manual', sub: 'Lessons in automatic and manual' },
+              { icon: 'map-pin', label: 'Nationwide coverage', sub: 'Refresher lessons across the Netherlands' },
+              { value: '5★', label: 'Rating', sub: 'Rated by our students' },
+            ].map((stat) => (
+              <div class="flex items-center gap-4 p-4 bg-white" style="border-left: 4px solid #ac884d; border-radius: 0 4px 4px 0; box-shadow: 0 2px 12px rgba(34,57,39,0.08)">
+                <div class="text-3xl font-extrabold flex-shrink-0 flex items-center justify-center" style={`color: ${green}; min-width: 64px`}>
+                  {stat.icon ? <Icon name={stat.icon} style="font-size:28px" /> : stat.value}
+                </div>
+                <div>
+                  <div class="font-bold text-sm" style={`color: ${green}`}>{stat.label}</div>
+                  <div class="text-xs" style="color: #5c5c50">{stat.sub}</div>
+                </div>
+              </div>
+            ))}
+
+            <!-- CBR badge -->
+            <a href="https://www.rijles-en-autisme.nl" target="_blank" rel="noopener noreferrer" class="flex items-center gap-3 px-4 py-3 transition-opacity hover:opacity-85" style={`background-color: ${green}; border-radius: 4px`}>
+              <Icon name="certificate" style={`color: ${gold}; font-size:16px; flex-shrink:0`} />
+              <span class="text-xs font-bold text-white">Certified autism &amp; ADHD specialist · rijles-en-autisme.nl</span>
+            </a>
+          </div>
+        </div>
+
       </div>
-      <div class="px-4 sm:px-6 lg:px-8 mb-8">
-        <ReviewsCarousel />
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       SERVICES — What do we offer?
+  ═══════════════════════════════════════════════════════════ -->
+  <section class="py-20 bg-white">
+    <div class="section-container">
+
+      <div class="mb-14">
+        <span class="gold-bar"></span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold mb-3" style={`color: ${green}`}>
+          Tailored refresher lessons
+        </h2>
+        <p class="text-base max-w-xl" style="color: #5c5c50">
+          Whether you haven't driven for a while, have motorway anxiety or want to practise for the CBR driving test: we create a plan tailored to your situation.
+        </p>
       </div>
-      <div class="text-center">
-        <a href="/en/reviews" class="font-semibold hover:underline inline-flex items-center gap-2" style={`color: ${primaryColor}`}>
-          View all reviews <Icon name="arrow-right" />
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {diensten.map((d) => (
+          <div class="card-dutch flex flex-col gap-4">
+            <div class="w-10 h-10 flex items-center justify-center flex-shrink-0" style={`background-color: ${green}; border-radius: 4px`}>
+              <Icon name={d.icon} class="text-white" style="font-size:16px" />
+            </div>
+            <div>
+              <h3 class="font-bold mb-2" style={`color: ${green}`}>{d.title}</h3>
+              <p class="text-sm leading-relaxed" style="color: #5c5c50">{d.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-10">
+        <a href="/en/services" class="btn-outline">
+          View all services <Icon name="arrow-right" style="font-size:12px" />
         </a>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Packages -->
-    <section class="py-20" style="background-color: #f0f9fc">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Choose your driving package at Rij-Vrij
-          </h2>
-          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-            Get your licence faster and for less with automatic driving lessons. Choose the package that suits you and start today!
-          </p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {packages.map((pkg) => (
-            <div
-              class={`bg-white rounded-xl border-2 p-8 flex flex-col relative ${pkg.isPopular ? 'shadow-xl scale-105' : 'border-gray-200 shadow-sm'}`}
-              style={pkg.isPopular ? `border-color: ${primaryColor}` : ''}
-            >
-              {pkg.isPopular && (
-                <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <span class="text-white px-4 py-1 rounded-full text-sm font-semibold shadow-lg" style={`background-color: ${primaryColor}`}>
-                    Most popular
-                  </span>
-                </div>
-              )}
-              <h3 class="text-2xl font-bold text-gray-900 mb-2 text-center">{pkg.name}</h3>
-              <p class="text-gray-600 text-sm text-center mb-4">{pkg.description}</p>
-              <div class="text-center mb-6">
-                <div class="text-4xl font-bold mb-1" style={`color: ${primaryColor}`}>€{pkg.price},-</div>
-              </div>
-              <div class="flex-grow space-y-3 mb-8">
-                {pkg.features.map((feature) => (
-                  <div class="flex items-start text-sm text-gray-700">
-                    <Icon name="check-circle" class="mr-3 mt-0.5 flex-shrink-0" style={`color: ${primaryColor}`} />
-                    <span>{feature}</span>
-                  </div>
-                ))}
-              </div>
-              <a
-                href="#proefles-cta"
-                class="text-white px-6 py-3 rounded-lg text-center font-semibold hover:opacity-90 transition-all block shadow-md hover:shadow-lg w-full"
-                style={`background-color: ${pkg.isPopular ? primaryColor : secondaryColor}`}
-              >
-                Book my trial lesson
-              </a>
-            </div>
-          ))}
-        </div>
-        <p class="text-center text-sm text-gray-500 mt-8">
-          Single trial lesson (60 min): <strong>€49</strong> &nbsp;|&nbsp; Single lesson (90 min): <strong>€109</strong>
+  <!-- ═══════════════════════════════════════════════════════
+       WHY RIJ-VRIJ — on dark green band
+  ═══════════════════════════════════════════════════════════ -->
+  <section style={`background-color: ${green}`} class="py-20">
+    <div class="section-container">
+
+      <div class="mb-12">
+        <span class="block mb-4" style={`width: 3rem; height: 4px; background-color: ${gold}`}></span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-3">
+          Why Rij-Vrij?
+        </h2>
+        <p class="text-base" style="color: rgba(255,255,255,0.65)">
+          Professional, personal and always automatic.
         </p>
       </div>
-    </section>
 
-    <!-- Trial lesson CTA -->
-    <section id="proefles-cta" class="py-20 bg-white">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="rounded-2xl p-8 md:p-12 shadow-xl" style={`background-color: ${primaryColor}`}>
-          <div class="text-center mb-8">
-            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
-              Book your trial lesson at Rij-Vrij
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        {waaromItems.map((item) => (
+          <div class="p-6 flex flex-col gap-4" style={`background-color: rgba(255,255,255,0.06); border-left: 3px solid ${gold}`}>
+            <div class="w-10 h-10 flex items-center justify-center flex-shrink-0" style={`background-color: ${gold}; border-radius: 4px`}>
+              <Icon name={item.icon} style={`color: ${green}; font-size:16px`} />
+            </div>
+            <div>
+              <h3 class="font-bold text-white mb-2 text-sm">{item.title}</h3>
+              <p class="text-sm leading-relaxed" style="color: rgba(255,255,255,0.65)">{item.text}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       REVIEWS — on dark green background
+  ═══════════════════════════════════════════════════════════ -->
+  <section style={`background-color: ${green}`} class="pb-20 overflow-hidden">
+
+    <div class="section-container mb-10">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div>
+          <div class="flex gap-1 mb-2">
+            {[...Array(5)].map(() => <Icon name="star" class="text-yellow-400 text-lg" />)}
+          </div>
+          <p class="text-sm font-bold text-white">5 stars on Google</p>
+        </div>
+        <a href="/en/reviews" class="text-sm font-bold transition-opacity hover:opacity-75" style={`color: ${gold}`}>
+          View all reviews →
+        </a>
+      </div>
+    </div>
+
+    <div class="px-4 sm:px-6 lg:px-8">
+      <ReviewsCarousel />
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       PACKAGES
+  ═══════════════════════════════════════════════════════════ -->
+  <section class="py-20 bg-white">
+    <div class="section-container">
+
+      <div class="mb-14 text-center">
+        <span class="gold-bar-center"></span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold mb-3" style={`color: ${green}`}>
+          Refresher packages
+        </h2>
+        <p class="text-base max-w-xl mx-auto" style="color: #5c5c50">
+          Single lesson or a package: we always start with a brief assessment of your driving skills.
+          All packages in automatic, no hidden costs.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+        {pakketten.map((pkg) => (
+          <div class={`flex flex-col relative overflow-hidden bg-white ${pkg.popular ? 'scale-[1.03]' : ''}`}
+            style={`border: 2px solid ${pkg.popular ? gold : '#e4ddd0'}; border-top: 4px solid ${pkg.popular ? gold : green}; border-radius: 4px; box-shadow: ${pkg.popular ? '0 8px 32px rgba(34,57,39,0.12)' : '0 2px 12px rgba(34,57,39,0.06)'}`}>
+
+            {pkg.popular && (
+              <div class="text-center py-2 text-xs font-bold tracking-widest uppercase text-white" style={`background-color: ${gold}`}>
+                Most popular
+              </div>
+            )}
+
+            {pkg.badge && (
+              <div style={`position:absolute; top:22px; right:-32px; width:130px; text-align:center; transform:rotate(45deg); background-color:${gold}; color:white; font-size:12px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase; padding:7px 0; pointer-events:none; box-shadow:0 2px 6px rgba(0,0,0,0.18)`}>
+                {pkg.badge}
+              </div>
+            )}
+
+            <div class="p-8 flex flex-col flex-grow">
+              <h3 class="text-xl font-extrabold mb-1" style={`color: ${green}`}>{pkg.name}</h3>
+              <p class="text-sm mb-6" style="color: #5c5c50">{pkg.sub}</p>
+
+              <div class="mb-6">
+                {pkg.originalPrice && (
+                  <p class="text-base font-semibold line-through mb-0.5" style="color: #b0a090">€{pkg.originalPrice},-</p>
+                )}
+                <span class="text-4xl font-extrabold" style={`color: ${green}`}>€{pkg.price}</span>
+                <span class="text-sm ml-1" style="color: #5c5c50">,-</span>
+              </div>
+
+              <ul class="flex-grow space-y-3 mb-8">
+                {pkg.features.map((f) => (
+                  <li class="flex items-start gap-2.5 text-sm" style="color: #374151">
+                    <Icon name="check" style={`color: ${gold}; font-size:13px; flex-shrink:0; margin-top:2px`} />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+
+              <a
+                href="#opfrisles-cta"
+                class={pkg.popular ? 'btn-primary justify-center' : 'btn-outline justify-center'}
+                style={pkg.popular ? '' : `border-color: ${green}; color: ${green}`}
+              >
+                Sign up
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <p class="text-center text-sm mt-8" style="color: #5c5c50">
+        Single refresher lesson: <strong style={`color: ${green}`}>€86.50 – €165.50</strong>
+        &nbsp;·&nbsp;
+        <a href="/en/prices" style={`color: ${green}`} class="underline hover:opacity-75 transition-opacity">View all rates →</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       CTA — Sign up
+  ═══════════════════════════════════════════════════════════ -->
+  <section id="opfrisles-cta" class="py-20" style="background-color: #faf8f4">
+    <div class="section-container">
+      <div class="overflow-hidden" style={`border-left: 4px solid ${gold}; border-radius: 0 4px 4px 0; box-shadow: 0 4px 32px rgba(34,57,39,0.10)`}>
+        <div class="grid grid-cols-1 lg:grid-cols-2">
+
+          <!-- Left: info + benefits -->
+          <div class="p-10 lg:p-12" style={`background-color: ${green}`}>
+            <div style={`width: 2.5rem; height: 4px; background-color: ${gold}; margin-bottom: 1.5rem`}></div>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-3">
+              Ready to get started?
             </h2>
-            <div class="space-y-2 text-white/90 text-lg">
-              {proeflesBullets.map((bullet, i) => (
-                <p class={i === proeflesBullets.length - 1 ? 'font-semibold mt-4 pt-3 border-t border-white/20' : ''}>
-                  <Icon name="check" class="mr-2" />{bullet}
-                </p>
+            <p class="text-sm mb-8" style="color: rgba(255,255,255,0.65)">
+              Sign up directly via our online form. We will get in touch with you quickly.
+            </p>
+            <ul class="space-y-3">
+              {ctaBullets.map((b) => (
+                <li class="flex items-start gap-3 text-sm" style="color: rgba(255,255,255,0.85)">
+                  <Icon name="check" style={`color: ${gold}; font-size:13px; flex-shrink:0; margin-top:2px`} />
+                  {b}
+                </li>
               ))}
+            </ul>
+          </div>
+
+          <!-- Right: sign-up card -->
+          <div class="bg-white p-10 lg:p-12 flex flex-col justify-center">
+
+            <p class="text-xs font-bold uppercase tracking-widest mb-6" style={`color: ${gold}`}>How it works</p>
+
+            <div class="space-y-4 mb-8">
+              {([
+                { n: '1', icon: 'file-alt', label: 'Fill in the online registration form' },
+                { n: '2', icon: 'phone',    label: 'We will contact you quickly' },
+                { n: '3', icon: 'car',      label: 'Start your refresher lesson straight away' },
+              ] as const).map((s) => (
+                <div class="flex items-center gap-4">
+                  <div class="w-9 h-9 flex items-center justify-center font-extrabold text-sm flex-shrink-0" style={`background-color: ${gold}; color: ${green}; border-radius: 4px`}>
+                    {s.n}
+                  </div>
+                  <div class="flex items-center gap-2 text-sm font-medium" style="color: #374151">
+                    <Icon name={s.icon} style={`color: ${gold}; font-size:12px; flex-shrink:0`} />
+                    {s.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <a
+              href={inschrijfUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-primary w-full justify-center text-center py-4"
+            >
+              <Icon name="file-alt" style="font-size:13px" />
+              Sign up now
+            </a>
+
+            <p class="text-xs text-center mt-3" style="color: #9c9c8c">
+              No obligation · Via startmetjerijbewijs.nl
+            </p>
+
+            <div class="flex items-center gap-2 mt-5 pt-5 border-t" style="border-color: #e4ddd0">
+              <Icon name="phone" style={`font-size:11px; color: ${green}; flex-shrink:0`} />
+              <span class="text-xs" style="color: #5c5c50">Prefer to call?</span>
+              <a href="tel:0152224012" class="text-xs font-bold hover:opacity-75 transition-opacity" style={`color: ${green}`}>015-2224012</a>
             </div>
           </div>
 
-          <form id="proefles-form" class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
-            <input type="text" name="naam" placeholder="Your name *" required
-              class="w-full px-4 py-3 rounded-lg text-gray-900 font-medium placeholder-gray-400 border-0 focus:ring-2 focus:outline-none sm:col-span-1"
-              style={`focus:ring-color: ${primaryColor}`} />
-            <input type="tel" name="telefoon" placeholder="Phone number *" required
-              class="w-full px-4 py-3 rounded-lg text-gray-900 font-medium placeholder-gray-400 border-0 focus:ring-2 focus:outline-none sm:col-span-1" />
-            <input type="text" name="adres" placeholder="Address *" required
-              class="w-full px-4 py-3 rounded-lg text-gray-900 font-medium placeholder-gray-400 border-0 focus:ring-2 focus:outline-none sm:col-span-1" />
-            <input type="text" name="woonplaats" placeholder="City *" required
-              class="w-full px-4 py-3 rounded-lg text-gray-900 font-medium placeholder-gray-400 border-0 focus:ring-2 focus:outline-none sm:col-span-1" />
-            <button type="submit" id="proefles-submit"
-              class="sm:col-span-2 text-white px-8 py-4 rounded-lg text-lg font-bold hover:opacity-90 transition-all shadow-md"
-              style={`background-color: ${secondaryColor}`}>
-              <Icon name="calendar-check" class="mr-2" />
-              Send trial lesson request
-            </button>
-          </form>
-          <p id="proefles-msg" class="text-center mt-4 text-white font-medium hidden"></p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-  </div>
 </Layout>
-
-<script>
-  const form = document.getElementById('proefles-form') as HTMLFormElement | null;
-  const submitBtn = document.getElementById('proefles-submit') as HTMLButtonElement | null;
-  const msg = document.getElementById('proefles-msg') as HTMLElement | null;
-
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    if (!submitBtn || !msg) return;
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Sending...';
-
-    const data = new FormData(form);
-    try {
-      const res = await fetch('/api/proefles', { method: 'POST', body: data });
-      let json: { success?: boolean; error?: string } = {};
-      try { json = await res.json(); } catch { json = {}; }
-      if (res.ok && json.success) {
-        form.classList.add('hidden');
-        msg.textContent = 'Thank you! We will contact you as soon as possible.';
-        msg.classList.remove('hidden');
-      } else {
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<Icon name="calendar-check" class="mr-2" />Send trial lesson request';
-        msg.textContent = json.error || `Server error (${res.status}). Please try again.`;
-        msg.classList.remove('hidden');
-      }
-    } catch {
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = '<Icon name="calendar-check" class="mr-2" />Send trial lesson request';
-      msg.textContent = 'No connection. Please try again later.';
-      msg.classList.remove('hidden');
-    }
-  });
-</script>

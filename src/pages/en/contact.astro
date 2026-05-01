@@ -1,126 +1,152 @@
-﻿---
+---
 import Layout from '../../layouts/Layout.astro';
+import Icon from '../../components/Icon.astro';
 
 export const prerender = true;
 
-const primaryColor = '#223927';
-const secondaryColor = '#ac884d';
-import Icon from '../../components/Icon.astro';
+const green        = '#223927';
+const gold         = '#ac884d';
+const inschrijfUrl = 'https://startmetjerijbewijs.nl/rij-vrij/inschrijven';
 ---
 
 <Layout
-  title="Contact"
-  description="Contact Rij-Vrij Driving School. Call 015-2224012 or email info@rij-vrij.nl. Based at Hankweg 39 in Pijnacker. Book your trial lesson directly."
+  title="Contact | Rij-Vrij Refresher Lessons"
+  description="Contact Rij-Vrij. Call 015-2224012 or email info@rij-vrij.nl. Based in Pijnacker. Book your refresher lesson directly."
 >
-  <div class="bg-white">
 
-    <section class="py-16" style={`background-color: ${primaryColor}`}>
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Contact</h1>
-        <p class="text-xl text-white max-w-2xl mx-auto">Get in touch for more information or to book a trial lesson.</p>
-      </div>
-    </section>
+  <!-- ═══ HERO ═══ -->
+  <section style={`background-color: ${green}`} class="py-20">
+    <div class="section-container">
+      <div style={`width: 2.5rem; height: 4px; background-color: ${gold}; margin-bottom: 1.5rem`}></div>
+      <h1 class="text-4xl sm:text-5xl font-extrabold text-white mb-4" style="line-height: 1.1">Contact</h1>
+      <p class="text-lg max-w-xl" style="color: rgba(255,255,255,0.70)">
+        Questions about our refresher lessons? Or want to plan a lesson directly? Get in touch, we respond quickly.
+      </p>
+    </div>
+  </section>
 
-    <section class="py-20">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-
-          <div>
-            <h2 class="text-2xl font-semibold text-gray-900 mb-8">Contact Information</h2>
-            <div class="space-y-5">
-              <div class="flex items-start">
-                <div class="w-12 h-12 rounded-xl flex items-center justify-center mr-4 flex-shrink-0" style={`background-color: ${primaryColor}`}>
-                  <Icon name="phone" class="text-white" />
-                </div>
-                <div>
-                  <h4 class="font-semibold text-gray-900">Phone</h4>
-                  <a href="tel:0152224012" class="hover:underline" style={`color: ${primaryColor}`}>015-2224012</a>
-                </div>
-              </div>
-              <div class="flex items-start">
-                <div class="w-12 h-12 rounded-xl flex items-center justify-center mr-4 flex-shrink-0" style={`background-color: ${primaryColor}`}>
-                  <Icon name="envelope" class="text-white" />
-                </div>
-                <div>
-                  <h4 class="font-semibold text-gray-900">Email</h4>
-                  <a href="mailto:info@rij-vrij.nl" class="hover:underline" style={`color: ${primaryColor}`}>info@rij-vrij.nl</a>
-                </div>
-              </div>
-              <div class="flex items-start">
-                <div class="w-12 h-12 rounded-xl flex items-center justify-center mr-4 flex-shrink-0" style={`background-color: ${primaryColor}`}>
-                  <Icon name="map-marker-alt" class="text-white" />
-                </div>
-                <div>
-                  <h4 class="font-semibold text-gray-900">Address</h4>
-                  <p class="text-gray-600">Hankweg 39, 2641 WV Pijnacker</p>
-                </div>
-              </div>
-              <div class="flex items-start">
-                <div class="w-12 h-12 rounded-xl flex items-center justify-center mr-4 flex-shrink-0" style={`background-color: ${primaryColor}`}>
-                  <Icon name="clock" class="text-white" />
-                </div>
-                <div>
-                  <h4 class="font-semibold text-gray-900">Opening hours</h4>
-                  <p class="text-gray-600 text-sm">Monday: 08:00 – 17:00</p>
-                  <p class="text-gray-600 text-sm">Tuesday: 08:00 – 17:00</p>
-                  <p class="text-gray-600 text-sm">Wednesday: 08:00 – 17:00</p>
-                  <p class="text-gray-600 text-sm">Thursday: 08:00 – 17:00</p>
-                  <p class="text-gray-600 text-sm">Friday: 08:00 – 17:00</p>
-                  <p class="text-gray-600 text-sm">Saturday: By appointment</p>
-                  <p class="text-gray-600 text-sm">Sunday: Closed</p>
-                </div>
-              </div>
-              <div class="flex items-start">
-                <div class="w-12 h-12 rounded-xl flex items-center justify-center mr-4 flex-shrink-0" style={`background-color: ${primaryColor}`}>
-                  <Icon name="map" class="text-white" />
-                </div>
-                <div>
-                  <h4 class="font-semibold text-gray-900">Lesson area</h4>
-                  <p class="text-gray-600 text-sm">Delft, Pijnacker, Zoetermeer, Rijswijk and 8 other municipalities</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <h2 class="text-2xl font-semibold text-gray-900 mb-8">Get in touch</h2>
-            <p class="text-gray-600 mb-8 leading-relaxed">
-              Contact us directly via one of the options below. We will respond to your message as soon as possible.
-            </p>
-            <div class="space-y-4">
-              <a href="mailto:info@rij-vrij.nl?subject=Question%20via%20website" class="flex items-center gap-4 p-5 rounded-xl border-2 hover:shadow-md transition-all group" style={`border-color: ${primaryColor}`}>
-                <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={`background-color: ${primaryColor}`}>
-                  <Icon name="envelope" class="text-white text-lg" />
-                </div>
-                <div>
-                  <p class="font-bold text-gray-900">Send an email</p>
-                  <p class="text-sm" style={`color: ${primaryColor}`}>info@rij-vrij.nl</p>
-                </div>
-                <Icon name="arrow-right" class="ml-auto text-gray-600 transition-colors" />
-              </a>
-              <a href="tel:0152224012" class="flex items-center gap-4 p-5 rounded-xl border-2 hover:shadow-md transition-all group" style={`border-color: ${primaryColor}`}>
-                <div class="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={`background-color: ${primaryColor}`}>
-                  <Icon name="phone" class="text-white text-lg" />
-                </div>
-                <div>
-                  <p class="font-bold text-gray-900">Call us</p>
-                  <p class="text-sm" style={`color: ${primaryColor}`}>015-2224012</p>
-                </div>
-                <Icon name="arrow-right" class="ml-auto text-gray-600 transition-colors" />
-              </a>
-              <a href="mailto:info@rij-vrij.nl?subject=Trial%20lesson%20request" class="flex items-center justify-center gap-3 p-5 rounded-xl text-white font-bold text-lg hover:opacity-90 transition-all shadow-md" style={`background-color: ${primaryColor}`}>
-                <Icon name="calendar-check" />
-                Book my trial lesson
-              </a>
-            </div>
-            <p class="text-sm text-gray-600 mt-6">
-              Prefer email? Include your name, phone number and city in your message and we will contact you as soon as possible.
-            </p>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
+  <!-- Diagonal transition -->
+  <div style={`background-color: ${green}; overflow: hidden; height: 3rem`}>
+    <svg viewBox="0 0 1440 48" preserveAspectRatio="none" style="width:100%;height:100%;display:block;">
+      <path d="M0,0 L1440,48 L0,48 Z" fill="white" />
+    </svg>
   </div>
+
+  <!-- ═══ CONTACT CONTENT ═══ -->
+  <section class="pt-4 pb-20 bg-white">
+    <div class="section-container">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+
+        <!-- Contact info -->
+        <div>
+          <span class="gold-bar"></span>
+          <h2 class="text-2xl font-extrabold mb-8" style={`color: ${green}`}>Contact details</h2>
+
+          <div class="space-y-5">
+            {[
+              { icon: 'phone', label: 'Phone', value: '015-2224012', href: 'tel:0152224012' },
+              { icon: 'envelope', label: 'Email', value: 'info@rij-vrij.nl', href: 'mailto:info@rij-vrij.nl' },
+            ].map((item) => (
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 flex items-center justify-center flex-shrink-0" style={`background-color: ${green}; border-radius: 4px`}>
+                  <Icon name={item.icon} class="text-white" style="font-size:14px" />
+                </div>
+                <div>
+                  <p class="font-bold text-sm" style={`color: ${green}`}>{item.label}</p>
+                  <a href={item.href} class="text-sm transition-opacity hover:opacity-70" style="color: #374151">{item.value}</a>
+                </div>
+              </div>
+            ))}
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 flex items-center justify-center flex-shrink-0" style={`background-color: ${green}; border-radius: 4px`}>
+                <Icon name="map-marker-alt" class="text-white" style="font-size:14px" />
+              </div>
+              <div>
+                <p class="font-bold text-sm" style={`color: ${green}`}>Address</p>
+                <p class="text-sm" style="color: #374151">Hankweg 39, 2641 WV Pijnacker</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 flex items-center justify-center flex-shrink-0" style={`background-color: ${green}; border-radius: 4px`}>
+                <Icon name="clock" class="text-white" style="font-size:14px" />
+              </div>
+              <div>
+                <p class="font-bold text-sm mb-2" style={`color: ${green}`}>Opening hours</p>
+                {[
+                  'Monday – Friday: 08:00 – 17:00',
+                  'Saturday: By appointment',
+                  'Sunday: Closed',
+                ].map((t) => (
+                  <p class="text-sm" style="color: #374151">{t}</p>
+                ))}
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 flex items-center justify-center flex-shrink-0" style={`background-color: ${green}; border-radius: 4px`}>
+                <Icon name="map" class="text-white" style="font-size:14px" />
+              </div>
+              <div>
+                <p class="font-bold text-sm" style={`color: ${green}`}>Lesson area</p>
+                <p class="text-sm" style="color: #374151">Delft, Pijnacker, Zoetermeer, Rijswijk and 11 other municipalities</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact options -->
+        <div>
+          <span class="gold-bar"></span>
+          <h2 class="text-2xl font-extrabold mb-6" style={`color: ${green}`}>Get in touch</h2>
+          <p class="text-sm mb-8" style="color: #5c5c50">
+            We respond to your message as quickly as possible. Prefer email? Include your name and phone number and we will call you back.
+          </p>
+
+          <div class="space-y-4">
+            <a
+              href="mailto:info@rij-vrij.nl?subject=Question%20via%20website"
+              class="flex items-center gap-4 p-5 group transition-all"
+              style={`border: 2px solid #e4ddd0; border-left: 4px solid ${gold}; border-radius: 0 4px 4px 0; background: #faf8f4`}
+            >
+              <div class="w-10 h-10 flex items-center justify-center flex-shrink-0" style={`background-color: ${green}; border-radius: 4px`}>
+                <Icon name="envelope" class="text-white text-lg" />
+              </div>
+              <div class="flex-grow">
+                <p class="font-bold text-sm" style={`color: ${green}`}>Send an email</p>
+                <p class="text-sm" style="color: #5c5c50">info@rij-vrij.nl</p>
+              </div>
+              <Icon name="arrow-right" style="color: #ac884d; font-size: 14px" />
+            </a>
+
+            <a
+              href="tel:0152224012"
+              class="flex items-center gap-4 p-5 group transition-all"
+              style={`border: 2px solid #e4ddd0; border-left: 4px solid ${gold}; border-radius: 0 4px 4px 0; background: #faf8f4`}
+            >
+              <div class="w-10 h-10 flex items-center justify-center flex-shrink-0" style={`background-color: ${green}; border-radius: 4px`}>
+                <Icon name="phone" class="text-white text-lg" />
+              </div>
+              <div class="flex-grow">
+                <p class="font-bold text-sm" style={`color: ${green}`}>Call us</p>
+                <p class="text-sm" style="color: #5c5c50">015-2224012</p>
+              </div>
+              <Icon name="arrow-right" style="color: #ac884d; font-size: 14px" />
+            </a>
+
+            <a
+              href={inschrijfUrl} target="_blank" rel="noopener noreferrer"
+              class="btn-primary w-full justify-center text-center py-4"
+            >
+              <Icon name="calendar-check" style="font-size:13px" />
+              Plan my refresher lesson
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
 </Layout>

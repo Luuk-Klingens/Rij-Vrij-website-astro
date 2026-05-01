@@ -1,190 +1,205 @@
-﻿---
+---
 import Layout from '../../layouts/Layout.astro';
+import Icon from '../../components/Icon.astro';
 
 export const prerender = true;
 
-const primaryColor = '#223927';
-const secondaryColor = '#ac884d';
+const green        = '#223927';
+const gold         = '#ac884d';
+const inschrijfUrl = 'https://startmetjerijbewijs.nl/rij-vrij/inschrijven';
 
-const startPakketten = [
+const pakketten = [
   {
-    name: 'Start10',
-    description: '10 lessons of 90 minutes',
-    price: '1.399',
-    isPopular: false,
-    features: ['10 driving lessons of 90 minutes', 'CBR practical exam included', 'Fixed driving instructor', 'Free trial lesson (worth €49)', 'Free theory training (worth €59)', 'Package saving of €124', 'Start immediately!'],
+    name: 'Refresher Basic',
+    sub: '5 lessons × 90 minutes',
+    price: '599',
+    originalPrice: '630',
+    popular: false,
+    badge: null,
+    features: [
+      'Dedicated instructor every lesson',
+      'Start immediately',
+      'Assessment of current driving skills',
+      'Focused work on areas for improvement',
+    ],
     termijn: null,
   },
   {
-    name: 'Populair20',
-    description: '20 lessons of 90 minutes',
-    price: '2.399',
-    isPopular: true,
-    features: ['20 driving lessons of 90 minutes', 'CBR practical exam included', 'Fixed driving instructor', 'Free trial lesson (worth €49)', 'Free theory training (worth €59)', 'Pay in two free instalments', 'Package saving of €214', 'Start immediately!'],
+    name: 'Refresher Plus',
+    sub: '10 lessons × 90 minutes',
+    price: '1.199',
+    originalPrice: '1.319',
+    popular: true,
+    badge: null,
+    features: [
+      'Dedicated instructor every lesson',
+      'Start immediately',
+      'Assessment of current driving skills',
+      'Focused work on areas for improvement',
+      'Free theory course worth €59',
+      'Free payment in 2 instalments',
+    ],
     termijn: '2 instalments',
   },
   {
-    name: 'Compleet30',
-    description: '30 lessons of 90 minutes',
-    price: '3.299',
-    isPopular: false,
-    features: ['30 driving lessons of 90 minutes', 'CBR practical exam included', 'Fixed driving instructor', 'Free trial lesson (worth €49)', 'Free theory training (worth €59)', 'Pay in three free instalments', 'Package saving of €404', 'Start immediately!'],
+    name: 'Refresher Complete',
+    sub: '15 lessons × 90 minutes',
+    price: '1.649',
+    originalPrice: '1.849',
+    popular: false,
+    badge: 'Best value',
+    features: [
+      'Dedicated instructor every lesson',
+      'Start immediately',
+      'Assessment of current driving skills',
+      'Focused work on areas for improvement',
+      'Free theory course worth €59',
+      'Free payment in 3 instalments',
+    ],
     termijn: '3 instalments',
   },
 ];
 
-const vervolgPakketten = [
-  { name: 'Verder 10', description: '10 lessons of 90 minutes', price: '1.299', features: ['10 driving lessons of 90 minutes', 'CBR practical exam included', 'Package saving of €116'] },
-  { name: 'Verder 15', description: '15 lessons of 90 minutes', price: '1.799', features: ['15 driving lessons of 90 minutes', 'CBR practical exam included', 'Package saving of €161'] },
-  { name: 'Verder 20', description: '20 lessons of 90 minutes', price: '2.299', features: ['20 driving lessons of 90 minutes', 'CBR practical exam included', 'Package saving of €206'] },
+const tariefRows = [
+  { naam: 'Refresher lesson 60 minutes', prijs: '€86.50' },
+  { naam: 'Refresher lesson 90 minutes', prijs: '€126.00' },
+  { naam: 'Refresher lesson 120 minutes', prijs: '€165.50' },
+  { naam: 'Theory course', prijs: '€59.00' },
 ];
-
-const tariefSections = [
-  {
-    title: 'Individual lessons',
-    items: [
-      { naam: 'Trial lesson of 60 minutes', prijs: '€ 49.00', note: '* Free with starter packages!' },
-      { naam: 'Driving lesson of 90 minutes', prijs: '€ 109.00', note: '' },
-    ],
-  },
-  {
-    title: 'Theory study materials',
-    items: [
-      { naam: 'Theory via On My Way app', prijs: '€ 59.00', note: '' },
-    ],
-  },
-  {
-    title: 'Exam fees',
-    items: [
-      { naam: 'Practical exam (CBR) incl. car use', prijs: '€ 325.00', note: '' },
-      { naam: 'Interim test (CBR) incl. car use', prijs: '€ 275.00', note: '' },
-      { naam: 'Exam anxiety practical exam (CBR) incl. car use', prijs: '€ 395.00', note: '' },
-      { naam: 'BNOR practical exam (CBR) incl. car use', prijs: '€ 360.00', note: '' },
-    ],
-  },
-];
-import Icon from '../../components/Icon.astro';
 ---
 
 <Layout
-  title="Prices & Driving Packages"
-  description="View the prices and driving packages of Rij-Vrij Driving School. Starter package from €1,399 including free trial lesson and On My Way app. Transparent pricing, no hidden costs."
+  title="Prices for Refresher Lessons"
+  description="View the rates of Rij-Vrij for refresher lessons. Packages from €599 for 5 lessons. Transparent prices, no hidden costs. Start immediately in the Haaglanden, Delft & Zoetermeer region."
 >
-  <div class="bg-white">
 
-    <section class="py-16" style={`background-color: ${primaryColor}`}>
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Prices</h1>
-        <p class="text-xl text-white max-w-3xl mx-auto">Overview of our prices as of 1 January 2026.</p>
+  <!-- ═══ HERO HEADER ═══ -->
+  <section style={`background-color: ${green}`} class="py-20">
+    <div class="section-container">
+      <div style={`width: 2.5rem; height: 4px; background-color: ${gold}; margin-bottom: 1.5rem`}></div>
+      <h1 class="text-4xl sm:text-5xl font-extrabold text-white mb-4" style="line-height: 1.1">
+        Prices
+      </h1>
+      <p class="text-lg max-w-2xl" style="color: rgba(255,255,255,0.70)">
+        Fair, transparent rates for refresher lessons. No hidden costs, no small print.
+      </p>
+    </div>
+  </section>
+
+  <!-- Diagonal transition green → white -->
+  <div style={`background-color: ${green}; overflow: hidden; height: 3rem`}>
+    <svg viewBox="0 0 1440 48" preserveAspectRatio="none" style="width:100%;height:100%;display:block;">
+      <path d="M0,0 L1440,48 L0,48 Z" fill="white" />
+    </svg>
+  </div>
+
+  <!-- ═══ PACKAGES ═══ -->
+  <section class="pt-4 pb-20 bg-white">
+    <div class="section-container">
+
+      <div class="mb-12">
+        <span class="gold-bar"></span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold mb-3" style={`color: ${green}`}>Refresher packages</h2>
+        <p class="text-base" style="color: #5c5c50">All packages are in automatic. We always start with an assessment of your current driving skills.</p>
       </div>
-    </section>
 
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-gray-900 mb-3">Starter packages</h2>
-          <p class="text-gray-600">Begin your lessons, including trial lesson, theory & CBR exam.</p>
-        </div>
-        <div class="flex flex-wrap justify-center gap-6">
-          {startPakketten.map((pkg) => (
-            <div
-              class={`bg-white rounded-xl border-2 p-6 flex flex-col relative w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] max-w-sm ${pkg.isPopular ? 'shadow-xl' : 'border-gray-200 shadow-sm'}`}
-              style={pkg.isPopular ? `border-color: ${primaryColor}` : ''}
-            >
-              {pkg.isPopular && (
-                <div class="text-center mb-4">
-                  <span class="text-white px-4 py-1 rounded-full text-xs font-semibold" style={`background-color: ${primaryColor}`}>Most popular</span>
-                </div>
-              )}
-              <h3 class="text-xl font-bold text-gray-900 mb-1 text-center">{pkg.name}</h3>
-              <p class="text-gray-600 text-xs text-center mb-4">{pkg.description}</p>
-              <div class="text-3xl font-bold mb-1 text-center" style={`color: ${primaryColor}`}>€ {pkg.price},-</div>
-              {pkg.termijn && (
-                <p class="text-xs text-center text-gray-500 mb-2">Payment in {pkg.termijn} available</p>
-              )}
-              <div class="flex-grow space-y-2 mb-6 mt-4">
-                {pkg.features.map((feature) => (
-                  <div class="flex items-start text-sm text-gray-700">
-                    <Icon name="check-circle" class="mr-2 mt-0.5 flex-shrink-0" style={`color: ${primaryColor}`} />
-                    <span>{feature}</span>
-                  </div>
-                ))}
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
+        {pakketten.map((pkg) => (
+          <div class={`flex flex-col bg-white relative overflow-hidden ${pkg.popular ? 'scale-[1.03]' : ''}`}
+            style={`border: 2px solid ${pkg.popular ? gold : '#e4ddd0'}; border-top: 4px solid ${pkg.popular ? gold : green}; border-radius: 4px; box-shadow: ${pkg.popular ? '0 8px 32px rgba(34,57,39,0.12)' : '0 2px 12px rgba(34,57,39,0.06)'}`}>
+
+            {pkg.popular && (
+              <div class="text-center py-2 text-xs font-bold tracking-widest uppercase text-white" style={`background-color: ${gold}`}>
+                Most popular
               </div>
-              <a href="/en/#proefles-cta" class="text-white px-4 py-3 rounded-lg text-center font-semibold hover:opacity-90 transition-colors block w-full" style={`background-color: ${pkg.isPopular ? primaryColor : secondaryColor}`}>
-                Sign up now!
-              </a>
-            </div>
-          ))}
-        </div>
+            )}
 
-        <div class="mt-8 max-w-2xl mx-auto flex items-start gap-3 bg-blue-100 border border-blue-300 rounded-xl px-5 py-4 text-sm text-blue-900">
-          <Icon name="info-circle" class="mt-0.5 text-blue-600 flex-shrink-0" />
-          <p>
-            <strong>Please note:</strong> all starter packages exclude the health declaration (€ 45.25), which you complete yourself at <a href="https://mijn.cbr.nl" target="_blank" rel="noopener noreferrer" class="underline hover:text-blue-700">mijn.cbr.nl</a>.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="py-16 bg-white border-t border-gray-100">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-10">
-          <h2 class="text-3xl font-bold text-gray-900 mb-3">Follow-up packages</h2>
-          <p class="text-gray-600">Already had lessons elsewhere? Continue with a follow-up package.</p>
-        </div>
-        <div class="flex flex-wrap justify-center gap-6">
-          {vervolgPakketten.map((pkg) => (
-            <div class="bg-white rounded-xl border-2 border-gray-200 shadow-sm p-6 flex flex-col w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] max-w-sm">
-              <h3 class="text-xl font-bold text-gray-900 mb-1 text-center">{pkg.name}</h3>
-              <p class="text-gray-600 text-xs text-center mb-4">{pkg.description}</p>
-              <div class="text-3xl font-bold mb-4 text-center" style={`color: ${primaryColor}`}>€ {pkg.price},-</div>
-              <div class="flex-grow space-y-2 mb-6">
-                {pkg.features.map((feature) => (
-                  <div class="flex items-start text-sm text-gray-700">
-                    <Icon name="check-circle" class="mr-2 mt-0.5 flex-shrink-0" style={`color: ${primaryColor}`} />
-                    <span>{feature}</span>
-                  </div>
-                ))}
+            {pkg.badge && (
+              <div style={`position:absolute; top:22px; right:-32px; width:130px; text-align:center; transform:rotate(45deg); background-color:${gold}; color:white; font-size:12px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase; padding:7px 0; pointer-events:none; box-shadow:0 2px 6px rgba(0,0,0,0.18)`}>
+                {pkg.badge}
               </div>
-              <a href="/en/contact" class="text-white px-4 py-3 rounded-lg text-center font-semibold hover:opacity-90 transition-colors block w-full" style={`background-color: ${secondaryColor}`}>
-                Get in touch
-              </a>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+            )}
 
-    <section class="py-16 bg-gray-50 border-t border-gray-100">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-        {tariefSections.map((section) => (
-          <div class="bg-white border border-gray-200 rounded-2xl p-6">
-            <h3 class="text-2xl font-bold text-gray-900 mb-6">{section.title}</h3>
-            <div class="space-y-4">
-              {section.items.map((item) => (
-                <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-3 border-b border-gray-100 pb-4 last:border-b-0 last:pb-0">
-                  <div class="max-w-3xl">
-                    <p class="font-semibold text-gray-900">{item.naam}</p>
-                    {item.note && <p class="text-sm text-gray-600 mt-1">{item.note}</p>}
-                  </div>
-                  <div class="text-lg font-bold whitespace-nowrap" style={`color: ${primaryColor}`}>{item.prijs}</div>
-                </div>
-              ))}
+            <div class="p-7 flex flex-col flex-grow">
+              <h3 class="text-xl font-extrabold mb-1" style={`color: ${green}`}>{pkg.name}</h3>
+              <p class="text-sm mb-5" style="color: #5c5c50">{pkg.sub}</p>
+
+              <div class="mb-6">
+                {pkg.originalPrice && (
+                  <p class="text-base font-semibold line-through mb-0.5" style="color: #b0a090">€{pkg.originalPrice},-</p>
+                )}
+                <span class="text-4xl font-extrabold" style={`color: ${green}`}>€{pkg.price}</span>
+                <span class="text-sm ml-1" style="color: #5c5c50">,-</span>
+                {pkg.termijn && (
+                  <p class="text-xs mt-1" style="color: #5c5c50">Payment in {pkg.termijn} available</p>
+                )}
+              </div>
+
+              <ul class="flex-grow space-y-2.5 mb-7">
+                {pkg.features.map((f) => (
+                  <li class="flex items-start gap-2.5 text-sm" style="color: #374151">
+                    <Icon name="check" style={`color: ${gold}; font-size:13px; flex-shrink:0; margin-top:2px`} />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+
+              <a
+                href={inschrijfUrl} target="_blank" rel="noopener noreferrer"
+                class={pkg.popular ? 'btn-primary justify-center' : 'btn-outline justify-center'}
+                style={pkg.popular ? '' : `border-color: ${green}; color: ${green}`}
+              >
+                Sign up
+              </a>
             </div>
           </div>
         ))}
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="py-12 bg-gray-50 border-t border-gray-100">
-      <div class="max-w-2xl mx-auto px-4 text-center">
-        <h3 class="text-2xl font-bold text-gray-900 mb-3">Ready to start?</h3>
-        <p class="text-gray-600 mb-6">Book your trial lesson today and discover how quickly you can get your licence with an automatic car.</p>
-        <a href="/en/#proefles-cta" class="inline-block text-white px-8 py-4 rounded-lg font-bold hover:opacity-90 transition-all shadow-md" style={`background-color: ${primaryColor}`}>
-          <Icon name="calendar-check" class="mr-2" />Book my trial lesson
+  <!-- ═══ INDIVIDUAL RATES ═══ -->
+  <section class="py-16" style="background-color: #faf8f4">
+    <div class="section-container">
+
+      <div class="mb-10">
+        <span class="gold-bar"></span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold mb-2" style={`color: ${green}`}>Individual rates</h2>
+        <p class="text-base" style="color: #5c5c50">Prefer to book individually? No package needed.</p>
+      </div>
+
+      <div class="max-w-2xl" style="border: 2px solid #e4ddd0; border-left: 4px solid #ac884d; border-radius: 0 4px 4px 0; background: white; box-shadow: 0 2px 12px rgba(34,57,39,0.06)">
+        {tariefRows.map((row, i) => (
+          <div class={`flex justify-between items-start gap-4 px-6 py-4 text-sm ${i < tariefRows.length - 1 ? 'border-b' : ''}`} style="border-color: #f0ebe2">
+            <span style="color: #374151">{row.naam}</span>
+            <span class="font-extrabold whitespace-nowrap" style={`color: ${green}`}>{row.prijs}</span>
+          </div>
+        ))}
+      </div>
+
+      <p class="text-sm mt-5" style="color: #5c5c50">
+        Rates as of 1 January 2026. All lessons include use of the driving school car.
+      </p>
+    </div>
+  </section>
+
+  <!-- ═══ CTA ═══ -->
+  <section class="py-16 bg-white border-t" style="border-color: #e4ddd0">
+    <div class="section-container text-center">
+      <span class="gold-bar-center"></span>
+      <h3 class="text-2xl font-extrabold mb-3" style={`color: ${green}`}>Ready to start?</h3>
+      <p class="mb-7" style="color: #5c5c50">Book your refresher lesson today. We will get in touch quickly.</p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a href={inschrijfUrl} target="_blank" rel="noopener noreferrer" class="btn-primary">
+          <Icon name="calendar-check" style="font-size:13px" />
+          Plan my refresher lesson
+        </a>
+        <a href="tel:0152224012" class="btn-outline">
+          <Icon name="phone" style="font-size:13px" />
+          015-2224012
         </a>
       </div>
-    </section>
+    </div>
+  </section>
 
-  </div>
 </Layout>

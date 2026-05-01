@@ -1,105 +1,179 @@
-﻿---
+---
 import Layout from '../../layouts/Layout.astro';
+import Icon from '../../components/Icon.astro';
 
 export const prerender = true;
 
-const primaryColor = '#223927';
-const secondaryColor = '#ac884d';
+const green        = '#223927';
+const gold         = '#ac884d';
+const inschrijfUrl = 'https://startmetjerijbewijs.nl/rij-vrij/inschrijven';
 
 const bio = [
-  'Driving instructor and owner of Rij-Vrij Driving School. In the past I gained extensive experience in teaching, coaching and guiding people in another sector (financial services). Since 2024 I have been active full-time in the driving school industry, and in January 2025 I founded my own driving school.',
+  'Driving instructor and owner of Rij-Vrij. In the past I gained extensive experience in coaching and guiding people in financial services. Since 2024 I have been working full-time in the driving school industry, and in January 2025 I founded my own driving school.',
   'Driving is my passion, and nothing is more rewarding than sharing that passion with others.',
-  'At Rij-Vrij, you come first! Your learning style, your safety and your pace set the rhythm. Whether you are sitting behind the wheel for the very first time or have had lessons before, together we will make sure you take to the road safely and confidently.',
-  'So if you are ready to take the first step towards your driving licence, in a relaxed, fun and educational way, you have come to the right place.',
-  'Feel free to get in touch for more information or to book a trial lesson.',
+  'At Rij-Vrij, you come first. Your situation, your pace and your safety determine how we work. Whether you haven\'t driven for a long time, suffer from driving anxiety or simply want to refresh a specific skill: together we work towards a result you will be happy with.',
+  'Feel free to get in touch for more information or to plan a refresher lesson.',
 ];
 
 const waarden = [
-  { icon: 'fa-user', title: 'Your pace', text: 'Your learning style and your pace set the rhythm of the lessons. No pressure, no rush.' },
-  { icon: 'fa-shield-alt', title: 'Your safety', text: 'Safety always comes first. We make sure you take to the road with full confidence.' },
-  { icon: 'fa-heart', title: 'Your enjoyment', text: 'Lessons at Rij-Vrij are relaxed, fun and educational. Together we make it a positive experience.' },
+  { icon: 'user', title: 'Your pace', text: 'No pressure, no rush. We adapt to you, not the other way around.' },
+  { icon: 'shield-alt', title: 'Your safety', text: 'Safety always comes first. We never drive faster than you can handle.' },
+  { icon: 'heart', title: 'Your confidence', text: 'Refresher lessons are there to regain confidence. We do that together, step by step.' },
 ];
-import Icon from '../../components/Icon.astro';
 ---
 
 <Layout
-  title="About Us"
-  description="Meet Peter, driving instructor and owner of Rij-Vrij Driving School. Certified instructor with expertise in autism & ADHD support. Based in Pijnacker."
+  title="About Us | Peter, Instructor & Owner"
+  description="Meet Peter, driving instructor and owner of Rij-Vrij. Specialist in refresher lessons and autism & ADHD guidance. Based in Pijnacker, Haaglanden region."
 >
-  <div class="bg-white">
 
-    <section class="py-20" style={`background-color: ${primaryColor}`}>
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <p class="text-white text-sm font-semibold uppercase tracking-widest mb-3">About us</p>
-        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Let Us Introduce Ourselves</h1>
-        <p class="text-xl text-white max-w-2xl mx-auto">The person behind Rij-Vrij</p>
-      </div>
-    </section>
+  <!-- ═══ HERO ═══ -->
+  <section style={`background-color: ${green}`} class="py-20">
+    <div class="section-container">
+      <div style={`width: 2.5rem; height: 4px; background-color: ${gold}; margin-bottom: 1.5rem`}></div>
+      <p class="text-xs font-bold tracking-widest uppercase mb-3" style={`color: ${gold}`}>About us</p>
+      <h1 class="text-4xl sm:text-5xl font-extrabold text-white mb-4" style="line-height: 1.1">
+        Let us introduce ourselves
+      </h1>
+      <p class="text-lg max-w-xl" style="color: rgba(255,255,255,0.70)">
+        The person behind Rij-Vrij
+      </p>
+    </div>
+  </section>
 
-    <section class="py-20">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <div class="inline-flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full mb-6" style={`background-color: ${primaryColor}15; color: ${primaryColor}`}>
-              <Icon name="user-circle" />
-              Driving Instructor &amp; Owner
-            </div>
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-              Hi, I'm <span style={`color: ${primaryColor}`}>Peter</span>
-            </h2>
-            <div class="space-y-5 text-gray-700 leading-relaxed">
-              {bio.map((para, i) => (
-                <p class={i === 1 ? 'text-lg font-medium text-gray-800' : ''}>{para}</p>
-              ))}
-              <p class="font-semibold text-gray-800 text-lg">See you behind the wheel soon!</p>
-            </div>
-            <div class="mt-8 flex flex-col sm:flex-row gap-4">
-              <a href="/en/contact" class="inline-block text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-all shadow-md text-center" style={`background-color: ${primaryColor}`}>
-                <Icon name="envelope" class="mr-2" />Get in touch
-              </a>
-              <a href="/en/#proefles-cta" class="inline-block text-white px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-all shadow-md text-center" style={`background-color: ${secondaryColor}`}>
-                <Icon name="calendar-check" class="mr-2" />Book a trial lesson
-              </a>
+  <!-- Diagonal transition -->
+  <div style={`background-color: ${green}; overflow: hidden; height: 3rem`}>
+    <svg viewBox="0 0 1440 48" preserveAspectRatio="none" style="width:100%;height:100%;display:block;">
+      <path d="M0,0 L1440,48 L0,48 Z" fill="white" />
+    </svg>
+  </div>
+
+  <!-- ═══ PETER ═══ -->
+  <section class="pt-4 pb-20 bg-white">
+    <div class="section-container">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+
+        <!-- Text -->
+        <div>
+          <span class="badge mb-6">Driving Instructor &amp; Owner</span>
+
+          <h2 class="text-3xl sm:text-4xl font-extrabold mb-6" style={`color: ${green}`}>
+            Hi, I'm <span style={`color: ${gold}`}>Peter</span>
+          </h2>
+
+          <div class="space-y-4 text-base leading-relaxed" style="color: #374151">
+            {bio.map((alinea, i) => (
+              <p class={i === 1 ? 'font-bold text-lg' : ''} style={i === 1 ? `color: ${green}` : ''}>{alinea}</p>
+            ))}
+            <p class="font-bold" style={`color: ${green}`}>See you behind the wheel soon!</p>
+          </div>
+
+          <div class="mt-8 flex flex-col sm:flex-row gap-3">
+            <a href="/en/contact" class="btn-green">
+              <Icon name="envelope" style="font-size:13px" />
+              Get in touch
+            </a>
+            <a href={inschrijfUrl} target="_blank" rel="noopener noreferrer" class="btn-primary">
+              <Icon name="calendar-check" style="font-size:13px" />
+              Plan refresher lesson
+            </a>
+          </div>
+        </div>
+
+        <!-- Photo + media -->
+        <div class="flex flex-col items-center gap-10">
+
+          <!-- Peter photo -->
+          <div class="relative w-full max-w-sm">
+            <div class="absolute -inset-3" style={`background-color: ${gold}; opacity: 0.15; border-radius: 4px`}></div>
+            <img
+              src="/peter.png"
+              alt="Peter, driving instructor and owner of Rij-Vrij"
+              class="relative w-full object-cover"
+              style="border-radius: 4px; box-shadow: 0 8px 32px rgba(34,57,39,0.15)"
+              width="400"
+              height="500"
+              loading="lazy"
+            />
+            <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 whitespace-nowrap text-white text-sm font-bold px-5 py-2" style={`background-color: ${green}; border-left: 3px solid ${gold}; border-radius: 0 4px 4px 0`}>
+              <Icon name="star" style="font-size:11px; margin-right: 6px" />
+              Peter, Instructor &amp; Owner
             </div>
           </div>
 
-          <div class="flex justify-center">
-            <img src="/peter.png" alt="Peter, rijinstructeur Rij-Vrij" class="rounded-2xl shadow-xl max-h-[480px] object-cover" loading="lazy" />
+          <!-- Telstar article -->
+          <div class="mt-4 text-center w-full max-w-sm">
+            <p class="text-xs font-bold uppercase tracking-widest mb-3" style="color: #5c5c50">Telstar Online · 13 May 2025</p>
+            <img
+              src="/telstar.png"
+              alt="Telstar article about Rij-Vrij"
+              class="w-full object-contain mx-auto opacity-90 hover:opacity-100 transition-opacity"
+              style="border-radius: 4px; box-shadow: 0 2px 12px rgba(34,57,39,0.10)"
+              width="400"
+              height="300"
+              loading="lazy"
+            />
+            <a
+              href="https://www.telstar-online.nl/nieuws/zakelijk/160987/autorijschool-Rij-Vrij-de-slimme-weg-naar-je-rijbewijs-"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-outline mt-4 text-sm"
+              style={`border-color: ${green}; color: ${green}`}
+            >
+              <Icon name="external-link-alt" style="font-size:11px" />
+              Read the article
+            </a>
           </div>
         </div>
-      </div>
-    </section>
 
-    <section class="py-16 bg-gray-50">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold text-gray-900 mb-3">Our values</h2>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          {waarden.map((item) => (
-            <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100 overflow-hidden flex flex-col">
-              <div class="flex items-center justify-center py-7" style={`background-color: ${primaryColor}`}>
-                <i class={`fas ${item.icon} text-4xl text-white`}></i>
-              </div>
-              <div class="p-6 flex flex-col flex-grow text-center">
-                <h3 class="font-bold text-gray-900 mb-2">{item.title}</h3>
-                <p class="text-gray-600 text-sm leading-relaxed">{item.text}</p>
-              </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ VALUES ═══ -->
+  <section class="py-16" style="background-color: #faf8f4">
+    <div class="section-container">
+
+      <div class="mb-12 text-center">
+        <span class="gold-bar-center"></span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold" style={`color: ${green}`}>You come first at Rij-Vrij</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        {waarden.map((w) => (
+          <div class="card-dutch flex flex-col items-start gap-4">
+            <div class="w-10 h-10 flex items-center justify-center flex-shrink-0" style={`background-color: ${green}; border-radius: 4px`}>
+              <Icon name={w.icon} class="text-white" style="font-size:16px" />
             </div>
-          ))}
-        </div>
+            <div>
+              <h3 class="font-extrabold mb-2" style={`color: ${green}`}>{w.title}</h3>
+              <p class="text-sm leading-relaxed" style="color: #5c5c50">{w.text}</p>
+            </div>
+          </div>
+        ))}
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="py-12 bg-white border-t border-gray-100">
-      <div class="max-w-2xl mx-auto px-4 text-center">
-        <h3 class="text-xl font-bold text-gray-900 mb-2">Ready to get started?</h3>
-        <p class="text-gray-600 text-sm mb-6">Book a free trial lesson and discover what Rij-Vrij can do for you.</p>
-        <a href="/en/#proefles-cta" class="inline-block text-white px-7 py-3 rounded-lg font-semibold hover:opacity-90 transition-all shadow-md" style={`background-color: ${primaryColor}`}>
-          <Icon name="calendar-check" class="mr-2" />Book free trial lesson
+  <!-- ═══ CTA ═══ -->
+  <section class="py-16 bg-white border-t" style="border-color: #e4ddd0">
+    <div class="section-container text-center">
+      <span class="gold-bar-center"></span>
+      <h3 class="text-2xl font-extrabold mb-3" style={`color: ${green}`}>Ready to get started?</h3>
+      <p class="mb-7" style="color: #5c5c50">
+        Plan a refresher lesson or ask your question. We are here for you.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <a href={inschrijfUrl} target="_blank" rel="noopener noreferrer" class="btn-primary">
+          <Icon name="calendar-check" style="font-size:13px" />
+          Plan refresher lesson
+        </a>
+        <a href="/en/contact" class="btn-outline">
+          <Icon name="envelope" style="font-size:13px" />
+          More information
         </a>
       </div>
-    </section>
+    </div>
+  </section>
 
-  </div>
 </Layout>

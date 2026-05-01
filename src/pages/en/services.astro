@@ -1,77 +1,156 @@
-﻿---
+---
 import Layout from '../../layouts/Layout.astro';
+import Icon from '../../components/Icon.astro';
 
 export const prerender = true;
 
-const primaryColor = '#223927';
-const secondaryColor = '#ac884d';
+const green        = '#223927';
+const gold         = '#ac884d';
+const inschrijfUrl = 'https://startmetjerijbewijs.nl/rij-vrij/inschrijven';
 
-const services = [
-  { icon: 'fa-redo', title: 'Refresher driving course', description: 'A complete refresher course to regain confidence behind the wheel. Perfect for people who have not driven for a while.', features: ['60-minute lesson', 'Refresh traffic rules', 'Practical driving skills'] },
-  { icon: 'fa-road', title: 'Motorway refresher', description: 'Specifically focused on motorway driving, with attention to joining, leaving and safe overtaking.', features: ['90-minute lesson', 'Motorway techniques', 'Road safety'] },
-  { icon: 'fa-parking', title: 'Parking refresher', description: 'Refresher lesson for parking, including parallel parking, right-angle parking and parking in narrow streets.', features: ['60-minute lesson', 'Parking techniques', 'City-specific situations'] },
-  { icon: 'fa-user-check', title: 'CBR driving test (elderly)', description: 'Special training for the CBR driving test for elderly drivers, including all required skills and tips.', features: ['90-minute lesson', 'CBR-specific training', 'Exam preparation'] },
-  { icon: 'fa-gift', title: 'Give a refresher lesson as a gift', description: 'Give a refresher driving lesson as a gift to someone you care about. A practical and valuable present!', features: ['Gift voucher available', 'Flexible redemption', 'Personal message'] },
-  { icon: 'fa-euro-sign', title: 'Pricing', description: 'Transparent and fair prices for all our services. No hidden costs.', features: ['From €74 per lesson', 'Package deals', 'No hidden costs'] },
+const diensten = [
+  {
+    icon: 'redo',
+    title: 'General refresher lesson',
+    description: "Haven't driven for a while? We assess your driving skills and work together on the areas where improvement is possible.",
+    features: ['Assessment of driving skills', 'Focused work on areas for improvement', 'Your own pace, your own style'],
+  },
+  {
+    icon: 'road',
+    title: 'Motorway lesson',
+    description: 'Joining, leaving, safe overtaking and driving at speed. Specifically focused on motorway driving in automatic.',
+    features: ['Joining & leaving motorways', 'Safe overtaking at speed', 'Dealing with traffic jams and keeping distance'],
+  },
+  {
+    icon: 'parking',
+    title: 'Parking training',
+    description: 'Parallel parking, right-angle parking, reversing in narrow streets: practical situations in your own neighbourhood.',
+    features: ['Parallel & right-angle parking', 'Narrow streets & car parks', 'Reversing with confidence'],
+  },
+  {
+    icon: 'heart',
+    title: 'Overcoming driving anxiety',
+    description: 'Calm and step-by-step work to rebuild confidence behind the wheel. For people who have developed anxiety after an incident or a long break from driving.',
+    features: ['Calm, safe guidance', 'At your pace, no pressure', 'Autism & ADHD specialist'],
+  },
+  {
+    icon: 'user-check',
+    title: 'CBR driving test (elderly)',
+    description: 'Special preparation for the CBR driving test required to renew your driving licence after the age of 75.',
+    features: ['CBR-focused practice', 'All test elements covered', 'Honest assessment of driving skills'],
+  },
+  {
+    icon: 'gift',
+    title: 'Gift voucher refresher lesson',
+    description: 'Give a refresher lesson as a gift to someone you care about. Practical, personal and always welcome.',
+    features: ['Gift voucher available', 'Flexible to redeem', 'Personal message possible'],
+  },
 ];
-import Icon from '../../components/Icon.astro';
 ---
 
 <Layout
-  title="Services"
-  description="View all services from Rij-Vrij Driving School: refresher courses, anxiety driver support, driving skills test and more. Tailored automatic driving lessons in Pijnacker & Delft."
+  title="Services: What Do We Offer?"
+  description="Rij-Vrij offers professional tailored refresher lessons: general, motorway, parking, driving anxiety and CBR driving test preparation. Automatic, Haaglanden, Delft & Zoetermeer region."
 >
-  <div class="bg-white">
 
-    <section class="py-20" style={`background-color: ${primaryColor}`}>
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4">Services</h1>
-        <p class="text-xl text-white max-w-2xl mx-auto">
-          Rij-Vrij offers more than just starter packages. Discover all our services.
+  <!-- ═══ HERO ═══ -->
+  <section style={`background-color: ${green}`} class="py-20">
+    <div class="section-container">
+      <div style={`width: 2.5rem; height: 4px; background-color: ${gold}; margin-bottom: 1.5rem`}></div>
+      <h1 class="text-4xl sm:text-5xl font-extrabold text-white mb-4" style="line-height: 1.1">
+        Tailored<br />refresher lessons
+      </h1>
+      <p class="text-lg max-w-2xl" style="color: rgba(255,255,255,0.70)">
+        You learned the basics once. We help you polish those basics so you can drive with pleasure, safety and confidence. Automatic only, no fuss with gear changes.
+      </p>
+    </div>
+  </section>
+
+  <!-- Diagonal transition -->
+  <div style={`background-color: ${green}; overflow: hidden; height: 3rem`}>
+    <svg viewBox="0 0 1440 48" preserveAspectRatio="none" style="width:100%;height:100%;display:block;">
+      <path d="M0,0 L1440,48 L0,48 Z" fill="#faf8f4" />
+    </svg>
+  </div>
+
+  <!-- ═══ SERVICES GRID ═══ -->
+  <section class="pt-4 pb-20" style="background-color: #faf8f4">
+    <div class="section-container">
+
+      <div class="mb-12">
+        <span class="gold-bar"></span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold mb-3" style={`color: ${green}`}>Our services</h2>
+        <p class="text-base max-w-xl" style="color: #5c5c50">
+          Choose the lesson that suits your situation, or let us create a tailored plan.
         </p>
       </div>
-    </section>
 
-    <section class="py-20 bg-gray-50">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service) => (
-            <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow border border-gray-100 overflow-hidden flex flex-col">
-              <div class="flex items-center justify-center py-7" style={`background-color: ${primaryColor}`}>
-                <i class={`fas ${service.icon} text-4xl text-white`}></i>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {diensten.map((d) => (
+          <div class="card-dutch flex flex-col gap-5">
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 flex items-center justify-center flex-shrink-0" style={`background-color: ${green}; border-radius: 4px`}>
+                <Icon name={d.icon} class="text-white" style="font-size:16px" />
               </div>
-              <div class="p-6 flex flex-col flex-grow">
-                <h3 class="font-bold text-gray-900 mb-2 text-center">{service.title}</h3>
-                <p class="text-gray-600 text-sm leading-relaxed text-center mb-4">{service.description}</p>
-                <div class="mt-auto space-y-1">
-                  {service.features.map((f) => (
-                    <div class="flex items-center gap-2 text-xs text-gray-600">
-                      <Icon name="check-circle" class="flex-shrink-0" style={`color: ${primaryColor}`} />
-                      {f}
-                    </div>
-                  ))}
-                </div>
-              </div>
+              <h3 class="font-extrabold" style={`color: ${green}`}>{d.title}</h3>
             </div>
-          ))}
+
+            <p class="text-sm leading-relaxed" style="color: #5c5c50">{d.description}</p>
+
+            <ul class="space-y-2 mt-auto">
+              {d.features.map((f) => (
+                <li class="flex items-center gap-2 text-sm" style="color: #374151">
+                  <Icon name="check" style={`color: ${gold}; font-size:12px; flex-shrink:0`} />
+                  {f}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ USP BAND ═══ -->
+  <section style={`background-color: ${green}`} class="py-12">
+    <div class="section-container">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
+        {[
+          { value: '100%', label: 'Automatic', sub: 'All lessons in an automatic car' },
+          { value: '15+', label: 'Lesson areas', sub: 'Haaglanden, Delft & Zoetermeer' },
+          { value: '5★', label: 'Google', sub: 'Rated by our students' },
+        ].map((s) => (
+          <div>
+            <div class="text-4xl font-extrabold mb-1" style={`color: ${gold}`}>{s.value}</div>
+            <div class="font-bold text-white text-sm">{s.label}</div>
+            <div class="text-xs mt-1" style="color: rgba(255,255,255,0.55)">{s.sub}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ CTA ═══ -->
+  <section class="py-16 bg-white">
+    <div class="section-container">
+      <div class="flex flex-col lg:flex-row gap-8 items-center justify-between">
+        <div>
+          <span class="gold-bar"></span>
+          <h3 class="text-2xl font-extrabold mb-2" style={`color: ${green}`}>Not sure which lesson suits you?</h3>
+          <p style="color: #5c5c50">Simply get in touch, we will help you figure out what your situation requires.</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-3 flex-shrink-0">
+          <a href={inschrijfUrl} target="_blank" rel="noopener noreferrer" class="btn-primary">
+            <Icon name="calendar-check" style="font-size:13px" />
+            Plan refresher lesson
+          </a>
+          <a href="/en/contact" class="btn-outline">
+            <Icon name="envelope" style="font-size:13px" />
+            Ask a question
+          </a>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="py-12 bg-white border-t border-gray-100">
-      <div class="max-w-2xl mx-auto px-4 text-center">
-        <h3 class="text-xl font-bold text-gray-900 mb-2">Questions about a service?</h3>
-        <p class="text-gray-600 text-sm mb-6">Get in touch. We are happy to help.</p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="/en/contact" class="inline-block text-white px-7 py-3 rounded-lg font-semibold hover:opacity-90 transition-all shadow-md" style={`background-color: ${primaryColor}`}>
-            <Icon name="envelope" class="mr-2" />Get in touch
-          </a>
-          <a href="/en/#proefles-cta" class="inline-block text-white px-7 py-3 rounded-lg font-semibold hover:opacity-90 transition-all shadow-md" style={`background-color: ${secondaryColor}`}>
-            <Icon name="calendar-check" class="mr-2" />Book trial lesson
-          </a>
-        </div>
-      </div>
-    </section>
-
-  </div>
 </Layout>
