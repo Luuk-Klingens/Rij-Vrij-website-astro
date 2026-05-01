@@ -2,8 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
 
-const green = '#223927';
-const gold  = '#ac884d';
+const green        = '#223927';
+const gold         = '#ac884d';
+const inschrijfUrl = 'https://startmetjerijbewijs.nl/rij-vrij/inschrijven';
 
 const aanpak = [
   { icon: 'user', title: 'Jij staat centraal', text: 'Jouw leerstijl, jouw veiligheid en jouw tempo bepalen het ritme van elke les.' },
@@ -157,7 +158,7 @@ const silvyReview = {
         Plan een opfrisles of stel je vraag. Wij helpen je graag op weg, op jouw tempo.
       </p>
       <div class="flex flex-col sm:flex-row gap-3 justify-center">
-        <a href="/#opfrisles-cta" class="btn-primary">
+        <a href={inschrijfUrl} target="_blank" rel="noopener noreferrer" class="btn-primary">
           <Icon name="calendar-check" style="font-size:13px" />
           Plan opfrisles
         </a>

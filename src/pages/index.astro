@@ -4,8 +4,9 @@ import ReviewsCarousel from '../components/ReviewsCarousel.astro';
 import lesgebieden from '../data/lesgebieden';
 import Icon from '../components/Icon.astro';
 
-const green = '#223927';
-const gold  = '#ac884d';
+const green       = '#223927';
+const gold        = '#ac884d';
+const inschrijfUrl = 'https://startmetjerijbewijs.nl/rij-vrij/inschrijven';
 
 const diensten = [
   {
@@ -49,41 +50,49 @@ const waaromItems = [
 
 const pakketten = [
   {
-    name: 'Opfris Start',
-    sub: '3 lessen × 90 minuten',
-    price: '299',
+    name: 'Opfris Basis',
+    sub: '5 lessen × 90 minuten',
+    price: '599',
+    originalPrice: '630',
     popular: false,
+    badge: null,
     features: [
-      'Beoordeling huidige rijvaardigheid',
-      'Gericht werken aan verbeterpunten',
       'Vaste instructeur elke les',
       'Direct starten',
+      'Beoordeling huidige rijvaardigheid',
+      'Gericht werken aan verbeterpunten',
     ],
   },
   {
     name: 'Opfris Plus',
-    sub: '5 lessen × 90 minuten',
-    price: '479',
+    sub: '10 lessen × 90 minuten',
+    price: '1.199',
+    originalPrice: '1.319',
     popular: true,
+    badge: null,
     features: [
-      'Alles van Opfris Start',
-      'Extra aandacht voor specifieke situaties',
-      'Stadsverkeer én snelweg',
-      'Betaling in 2 termijnen mogelijk',
+      'Vaste instructeur elke les',
       'Direct starten',
+      'Beoordeling huidige rijvaardigheid',
+      'Gericht werken aan verbeterpunten',
+      'Gratis theorieopleiding t.w.v. €59',
+      'Gratis in 2 termijnen betalen',
     ],
   },
   {
-    name: 'Opfris Volledig',
-    sub: '8 lessen × 90 minuten',
-    price: '749',
+    name: 'Opfris Compleet',
+    sub: '15 lessen × 90 minuten',
+    price: '1.649',
+    originalPrice: '1.849',
     popular: false,
+    badge: 'Voordeligst',
     features: [
-      'Volledig opfrisprogramma',
-      'Alle verkeerssituaties behandeld',
-      'Optioneel: CBR rijtest voorbereiding',
-      'Betaling in 3 termijnen mogelijk',
+      'Vaste instructeur elke les',
       'Direct starten',
+      'Beoordeling huidige rijvaardigheid',
+      'Gericht werken aan verbeterpunten',
+      'Gratis theorieopleiding t.w.v. €59',
+      'Gratis in 3 termijnen betalen',
     ],
   },
 ];
@@ -191,7 +200,7 @@ const ctaBullets = [
             <!-- Stat cards: Dutch Design stijl -->
             {[
               { icon: 'car', label: 'Automaat & schakel', sub: 'Rijles in automaat én handgeschakeld' },
-              { value: '15+', label: 'Lesgebieden', sub: 'Haaglanden, Delft & Zoetermeer' },
+              { icon: 'map-pin', label: 'Landelijk uitgezet', sub: 'Opfrislessen door heel Nederland' },
               { value: '5★', label: 'Waardering', sub: 'Beoordeeld door onze leerlingen' },
             ].map((stat) => (
               <div class="flex items-center gap-4 p-4 bg-white" style="border-left: 4px solid #ac884d; border-radius: 0 4px 4px 0; box-shadow: 0 2px 12px rgba(34,57,39,0.08)">
@@ -330,7 +339,7 @@ const ctaBullets = [
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
         {pakketten.map((pkg) => (
-          <div class={`flex flex-col relative bg-white ${pkg.popular ? 'scale-[1.03]' : ''}`}
+          <div class={`flex flex-col relative overflow-hidden bg-white ${pkg.popular ? 'scale-[1.03]' : ''}`}
             style={`border: 2px solid ${pkg.popular ? gold : '#e4ddd0'}; border-top: 4px solid ${pkg.popular ? gold : green}; border-radius: 4px; box-shadow: ${pkg.popular ? '0 8px 32px rgba(34,57,39,0.12)' : '0 2px 12px rgba(34,57,39,0.06)'}`}>
 
             {pkg.popular && (
@@ -339,11 +348,20 @@ const ctaBullets = [
               </div>
             )}
 
+            {pkg.badge && (
+              <div style={`position:absolute; top:22px; right:-32px; width:130px; text-align:center; transform:rotate(45deg); background-color:${gold}; color:white; font-size:12px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase; padding:7px 0; pointer-events:none; box-shadow:0 2px 6px rgba(0,0,0,0.18)`}>
+                {pkg.badge}
+              </div>
+            )}
+
             <div class="p-8 flex flex-col flex-grow">
               <h3 class="text-xl font-extrabold mb-1" style={`color: ${green}`}>{pkg.name}</h3>
               <p class="text-sm mb-6" style="color: #5c5c50">{pkg.sub}</p>
 
               <div class="mb-6">
+                {pkg.originalPrice && (
+                  <p class="text-base font-semibold line-through mb-0.5" style="color: #b0a090">€{pkg.originalPrice},-</p>
+                )}
                 <span class="text-4xl font-extrabold" style={`color: ${green}`}>€{pkg.price}</span>
                 <span class="text-sm ml-1" style="color: #5c5c50">,-</span>
               </div>
@@ -370,35 +388,30 @@ const ctaBullets = [
       </div>
 
       <p class="text-center text-sm mt-8" style="color: #5c5c50">
-        Losse les (90 min): <strong style={`color: ${green}`}>€109,-</strong>
+        Losse opfrisles: <strong style={`color: ${green}`}>€86,50 – €165,50</strong>
         &nbsp;·&nbsp;
-        Intakeles / beoordeling (60 min): <strong style={`color: ${green}`}>€69,-</strong>
+        <a href="/prijzen" style={`color: ${green}`} class="underline hover:opacity-75 transition-opacity">Alle tarieven bekijken →</a>
       </p>
     </div>
   </section>
 
   <!-- ═══════════════════════════════════════════════════════
-       CTA — Aanmelding formulier (diagonale split)
+       CTA — Inschrijven
   ═══════════════════════════════════════════════════════════ -->
   <section id="opfrisles-cta" class="py-20" style="background-color: #faf8f4">
     <div class="section-container">
       <div class="overflow-hidden" style={`border-left: 4px solid ${gold}; border-radius: 0 4px 4px 0; box-shadow: 0 4px 32px rgba(34,57,39,0.10)`}>
-
         <div class="grid grid-cols-1 lg:grid-cols-2">
 
-          <!-- Links: info -->
+          <!-- Links: info + voordelen -->
           <div class="p-10 lg:p-12" style={`background-color: ${green}`}>
-
-            <!-- Gouden accent streep -->
             <div style={`width: 2.5rem; height: 4px; background-color: ${gold}; margin-bottom: 1.5rem`}></div>
-
             <h2 class="text-2xl sm:text-3xl font-extrabold text-white mb-3">
-              Plan je opfrisles bij Rij-Vrij
+              Klaar om te starten?
             </h2>
             <p class="text-sm mb-8" style="color: rgba(255,255,255,0.65)">
-              Vul het formulier in en wij nemen zo snel mogelijk contact op. Vrijblijvend.
+              Schrijf je direct in via ons online formulier. Wij nemen daarna snel contact op.
             </p>
-
             <ul class="space-y-3">
               {ctaBullets.map((b) => (
                 <li class="flex items-start gap-3 text-sm" style="color: rgba(255,255,255,0.85)">
@@ -409,39 +422,48 @@ const ctaBullets = [
             </ul>
           </div>
 
-          <!-- Rechts: formulier -->
+          <!-- Rechts: inschrijf-kaart -->
           <div class="bg-white p-10 lg:p-12 flex flex-col justify-center">
-            <form id="opfrisles-form" class="space-y-3">
 
-              <div id="opfrisles-success" class="hidden p-4 text-sm flex items-center gap-2" style={`background-color: rgba(34,57,39,0.08); border-left: 3px solid ${green}; color: ${green}`}>
-                <Icon name="check-circle" style="font-size:14px; flex-shrink:0" />
-                <p><strong>Verzonden!</strong> Wij nemen snel contact op.</p>
-              </div>
-              <div id="opfrisles-error" class="hidden p-4 text-sm flex items-center gap-2" style="background-color: rgba(239,68,68,0.08); border-left: 3px solid #ef4444; color: #b91c1c">
-                <Icon name="exclamation-circle" style="font-size:14px; flex-shrink:0" />
-                <p id="opfrisles-error-text">Er ging iets mis. Probeer later opnieuw.</p>
-              </div>
+            <p class="text-xs font-bold uppercase tracking-widest mb-6" style={`color: ${gold}`}>Zo werkt het</p>
 
-              {['naam', 'telefoon', 'adres', 'woonplaats'].map((field) => (
-                <input
-                  type={field === 'telefoon' ? 'tel' : 'text'}
-                  name={field}
-                  required
-                  placeholder={field.charAt(0).toUpperCase() + field.slice(1)}
-                  class="w-full px-4 py-3 text-sm outline-none transition"
-                  style={`border: 2px solid #e4ddd0; border-radius: 4px; background: #faf8f4; color: #1a1a18`}
-                />
+            <div class="space-y-4 mb-8">
+              {([
+                { n: '1', icon: 'file-alt', label: 'Vul het online inschrijfformulier in' },
+                { n: '2', icon: 'phone',    label: 'Wij nemen snel contact op' },
+                { n: '3', icon: 'car',      label: 'Direct starten met je opfrisles' },
+              ] as const).map((s) => (
+                <div class="flex items-center gap-4">
+                  <div class="w-9 h-9 flex items-center justify-center font-extrabold text-sm flex-shrink-0" style={`background-color: ${gold}; color: ${green}; border-radius: 4px`}>
+                    {s.n}
+                  </div>
+                  <div class="flex items-center gap-2 text-sm font-medium" style="color: #374151">
+                    <Icon name={s.icon} style={`color: ${gold}; font-size:12px; flex-shrink:0`} />
+                    {s.label}
+                  </div>
+                </div>
               ))}
+            </div>
 
-              <button
-                type="submit"
-                id="opfrisles-btn"
-                class="w-full py-3.5 font-bold text-sm tracking-wide transition-all duration-150 cursor-pointer"
-                style={`background-color: ${gold}; color: ${green}; border-radius: 4px; border: none`}
-              >
-                <span id="opfrisles-label">Opfrisles aanvragen</span>
-              </button>
-            </form>
+            <a
+              href={inschrijfUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-primary w-full justify-center text-center py-4"
+            >
+              <Icon name="file-alt" style="font-size:13px" />
+              Schrijf je nu in
+            </a>
+
+            <p class="text-xs text-center mt-3" style="color: #9c9c8c">
+              Vrijblijvend · Via startmetjerijbewijs.nl
+            </p>
+
+            <div class="flex items-center gap-2 mt-5 pt-5 border-t" style="border-color: #e4ddd0">
+              <Icon name="phone" style={`font-size:11px; color: ${green}; flex-shrink:0`} />
+              <span class="text-xs" style="color: #5c5c50">Liever bellen?</span>
+              <a href="tel:0152224012" class="text-xs font-bold hover:opacity-75 transition-opacity" style={`color: ${green}`}>015-2224012</a>
+            </div>
           </div>
 
         </div>
@@ -450,49 +472,3 @@ const ctaBullets = [
   </section>
 
 </Layout>
-
-<script>
-  const form     = document.getElementById('opfrisles-form') as HTMLFormElement;
-  const btn      = document.getElementById('opfrisles-btn') as HTMLButtonElement;
-  const label    = document.getElementById('opfrisles-label') as HTMLSpanElement;
-  const success  = document.getElementById('opfrisles-success') as HTMLDivElement;
-  const errorBox = document.getElementById('opfrisles-error') as HTMLDivElement;
-  const errorTxt = document.getElementById('opfrisles-error-text') as HTMLParagraphElement;
-
-  const inputs = form?.querySelectorAll('input');
-  inputs?.forEach((input) => {
-    input.addEventListener('focus', () => {
-      (input as HTMLInputElement).style.borderColor = '#223927';
-      (input as HTMLInputElement).style.background  = '#fff';
-    });
-    input.addEventListener('blur', () => {
-      (input as HTMLInputElement).style.borderColor = '#e4ddd0';
-      (input as HTMLInputElement).style.background  = '#faf8f4';
-    });
-  });
-
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    btn.disabled = true;
-    label.textContent = 'Verzenden...';
-    success.classList.add('hidden');
-    errorBox.classList.add('hidden');
-    try {
-      const res  = await fetch('/api/proefles', { method: 'POST', body: new FormData(form) });
-      let json: { ok: boolean; error?: string } | null = null;
-      try { json = await res.json(); } catch {
-        errorTxt.textContent = `Serverfout (${res.status}).`;
-        errorBox.classList.remove('hidden');
-        return;
-      }
-      if (json?.ok) { form.reset(); success.classList.remove('hidden'); }
-      else { errorTxt.textContent = json?.error ?? 'Er ging iets mis.'; errorBox.classList.remove('hidden'); }
-    } catch {
-      errorTxt.textContent = 'Geen verbinding. Controleer je internet.';
-      errorBox.classList.remove('hidden');
-    } finally {
-      btn.disabled = false;
-      label.textContent = 'Opfrisles aanvragen';
-    }
-  });
-</script>

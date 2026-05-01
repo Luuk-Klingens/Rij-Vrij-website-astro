@@ -23,25 +23,26 @@ const p = (nl: string, en: string) => (isEN ? en : nl);
 
 <nav class="bg-white sticky top-0 z-50" style="box-shadow: 0 1px 0 #e4ddd0, 0 2px 12px rgba(34,57,39,0.06);">
 
-  <!-- Info-balk -->
-  <div class="hidden lg:block text-white text-xs font-semibold" style={`background-color: ${green}`}>
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-9 gap-4">
+  <!-- Info-balk (desktop: volledig, mobile: compact) -->
+  <div class="text-white text-xs font-semibold" style={`background-color: ${green}`}>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-8 lg:h-9 gap-4">
 
+      <!-- Mobile: alleen telefoon + sterren | Desktop: sterren + tekst -->
       <div class="flex items-center gap-1.5">
         {[0,1,2,3,4].map(() => <Icon name="star" class="text-yellow-400" style="font-size:10px" />)}
-        <span class="ml-1">{p('5 sterren opfrislessen, direct starten', '5-star refresher lessons, start immediately')}</span>
+        <span class="ml-1 hidden lg:inline">{p('5 sterren opfrislessen, direct starten', '5-star refresher lessons, start immediately')}</span>
       </div>
 
-      <div class="flex items-center gap-6 ml-auto">
+      <div class="flex items-center gap-3 lg:gap-6 ml-auto">
         <a href="tel:0152224012" class="flex items-center gap-1.5 hover:text-yellow-300 transition-colors">
           <Icon name="phone" style="font-size:10px" />
           {contactPhone}
         </a>
-        <a href={`mailto:${contactEmail}`} class="flex items-center gap-1.5 hover:text-yellow-300 transition-colors">
+        <a href={`mailto:${contactEmail}`} class="hidden lg:flex items-center gap-1.5 hover:text-yellow-300 transition-colors">
           <Icon name="envelope" style="font-size:10px" />
           {contactEmail}
         </a>
-        <div class="flex items-center gap-2 pl-5 border-l border-white/25">
+        <div class="flex items-center gap-2 pl-3 lg:pl-5 border-l border-white/25">
           <a href={facebookUrl} target="_blank" rel="noopener noreferrer" class="hover:text-yellow-300 transition-colors" aria-label="Facebook">
             <Icon name="facebook" style="font-size:13px" />
           </a>
@@ -58,7 +59,7 @@ const p = (nl: string, en: string) => (isEN ? en : nl);
   </div>
 
   <!-- Gouden accent-lijn onder info-balk -->
-  <div class="hidden lg:block h-px" style={`background: linear-gradient(90deg, ${gold}, transparent 70%)`}></div>
+  <div class="h-px" style={`background: linear-gradient(90deg, ${gold}, transparent 70%)`}></div>
 
   <!-- Hoofdnavigatie -->
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -124,12 +125,14 @@ const p = (nl: string, en: string) => (isEN ? en : nl);
 
         <!-- CTA knop: goud gevuld, groene tekst -->
         <a
-          href={p('/contact', '/en/contact')}
+          href={isEN ? '/en/contact' : 'https://startmetjerijbewijs.nl/rij-vrij/inschrijven'}
+          target={isEN ? undefined : '_blank'}
+          rel={isEN ? undefined : 'noopener noreferrer'}
           class="ml-3 px-5 py-2.5 text-sm font-bold flex items-center gap-2 transition-all duration-150 hover:-translate-y-0.5"
           style={`background-color: ${gold}; color: ${green}; border-radius: 4px; box-shadow: 0 2px 12px rgba(172,136,77,0.25)`}
         >
-          <Icon name="calendar-check" style="font-size:11px" />
-          {p('Plan opfrisles', 'Book lesson')}
+          <Icon name="file-alt" style="font-size:11px" />
+          {p('Inschrijven', 'Book lesson')}
         </a>
 
         <!-- Taalwisselaar -->

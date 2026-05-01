@@ -2,8 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
 
-const green = '#223927';
-const gold  = '#ac884d';
+const green        = '#223927';
+const gold         = '#ac884d';
+const inschrijfUrl = 'https://startmetjerijbewijs.nl/rij-vrij/inschrijven';
 
 const diensten = [
   {
@@ -137,7 +138,7 @@ const diensten = [
           <p style="color: #5c5c50">Neem gewoon contact op, wij helpen je bepalen wat jouw situatie vraagt.</p>
         </div>
         <div class="flex flex-col sm:flex-row gap-3 flex-shrink-0">
-          <a href="/#opfrisles-cta" class="btn-primary">
+          <a href={inschrijfUrl} target="_blank" rel="noopener noreferrer" class="btn-primary">
             <Icon name="calendar-check" style="font-size:13px" />
             Plan opfrisles
           </a>

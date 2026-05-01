@@ -2,8 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
 
-const green = '#223927';
-const gold  = '#ac884d';
+const green        = '#223927';
+const gold         = '#ac884d';
+const inschrijfUrl = 'https://startmetjerijbewijs.nl/rij-vrij/inschrijven';
 
 const bio = [
   'Rijinstructeur en eigenaar van Rij-Vrij. In het verleden heb ik veel ervaring opgedaan in het begeleiden en coachen van mensen in de financiële dienstverlening. Sinds 2024 ben ik full-time actief in de rijschoolbranche en in januari 2025 heb ik mijn eigen rijschool opgericht.',
@@ -70,7 +71,7 @@ const waarden = [
               <Icon name="envelope" style="font-size:13px" />
               Neem contact op
             </a>
-            <a href="/#opfrisles-cta" class="btn-primary">
+            <a href={inschrijfUrl} target="_blank" rel="noopener noreferrer" class="btn-primary">
               <Icon name="calendar-check" style="font-size:13px" />
               Plan opfrisles
             </a>
@@ -161,7 +162,7 @@ const waarden = [
         Plan een opfrisles of stel je vraag. Wij staan voor je klaar.
       </p>
       <div class="flex flex-col sm:flex-row gap-3 justify-center">
-        <a href="/#opfrisles-cta" class="btn-primary">
+        <a href={inschrijfUrl} target="_blank" rel="noopener noreferrer" class="btn-primary">
           <Icon name="calendar-check" style="font-size:13px" />
           Plan opfrisles
         </a>

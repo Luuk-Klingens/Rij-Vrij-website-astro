@@ -1,8 +1,8 @@
-﻿export interface ReviewEntry {
+export interface ReviewEntry {
   name: string;
   rating: number;
   text: string;
-  photo?: string;      // lokaal pad bijv. /reviews/gilberto.png
+  photo?: string;      // lokaal pad bijv. /reviews/jessica.png
   photoUri?: string;   // Google CDN URL
   profileUrl?: string; // Google Maps profiel link
   date: string;
@@ -10,39 +10,38 @@
 
 export const siteReviews: ReviewEntry[] = [
   {
-    name: 'Shiyanna Lucifer (Lucy)',
+    name: 'Jessica Boekestijn',
     rating: 5,
-    text: 'Geweldige rijschool! Peter is heel rustig, kalm, geduldig en bovenal eerlijk! Ook heb ik heerlijk met hem kunnen praten over van alles en nog wat. Er was een relaxte sfeer in de auto en alles was bespreekbaar. Hierdoor is mijn zelfvertrouwen achter het stuur ook flink gestegen. Aan het eind van dit rij-avontuur ben ik in 1x geslaagd dankzij de super begeleiding van Peter! Dit was al met een extra moeilijkheidsgraad vanwege mijn ADHD, maar Peter wist hier heel goed mee om te gaan. Hij kon mij als het ware lezen en las al een pauze in, nog voordat ik zelf doorhad dat ik het toch eigenlijk wel nodig had. Super bedankt Peter, zonder jouw hulp had ik dit nooit gelijk gehaald! Veel succes met je rijschool in de toekomst!',
-    photo: '/reviews/lucy.webp',
-    profileUrl: 'https://www.google.com/maps/contrib/109616687297179080099/reviews',
+    text: 'Na jaren niet te hebben gereden heb ik een paar lessen bij Peter genomen. Hij heeft mij goed begeleid met zijn opfrislessen. Peter is een hele aardige vent met veel inzicht en ik voelde mij op mijn gemak. Nogmaals bedankt Peter',
+    photo: '/reviews/jessica.png',
     date: '',
   },
   {
-    name: 'G. Sepúlveda',
+    name: 'Cay K',
     rating: 5,
-    text: 'Peter is een uitstekende en geduldige instructeur die me van complete beginner tot zelfverzekerde bestuurder heeft begeleid. Zoals velen weten, is het CBR-examen een zware procedure met een hoog slagingspercentage, maar Peter heeft me bij elke stap gesteund en was oprecht begaan met mijn succes. Zijn lesstijl is helder, aanmoedigend en zeer effectief. Of je nu Engels of Nederlands spreekt, hij heeft een uniek talent om contact te maken met zijn leerlingen en hen te helpen het hoge niveau te bereiken dat vereist is om in Nederland te mogen rijden.',
-    photo: '/reviews/gilberto.webp',
+    text: 'Peter is een goede en geduldige instructeur die ik iedereen kan aanraden. Na een aantal opfrislessen kan ik nu weer nuttig gebruik gaan maken van mijn eerder behaalde rijbewijs.',
+    photo: '/reviews/cay-k.png',
     date: '',
   },
   {
-    name: 'Tim Vollering',
+    name: "Helen O'Brien",
     rating: 5,
-    text: 'Ik heb mijn rijbewijs gehaald bij Rij-Vrij, en ik ben erg tevreden over de rijlessen, Peter geeft je duidelijk en op leuke manier les. En er is altijd veel ruimte, om aan te geven wat je wilt verbeteren. Peter is erg behulpzaam bij het regelen van afspraken met het CBR. Al met al een hele fijne ervaring gehad bij deze rijschool en ik zou het iedereen aanraden.',
-    photo: '/reviews/tim-vollering.webp',
+    text: "On my first refresher lesson I was very nervous, wondering if I would remember anything after nearly 10 years. Peter put me at ease through his patience, good explanation and feedback, and mainly the relaxed and comfortable atmosphere. A few refresher lessons later, I feel happy and confident driving again. Thank you Peter.",
+    photo: '/reviews/helen.png',
     date: '',
   },
   {
-    name: 'afurreraj',
+    name: 'Monique',
     rating: 5,
-    text: 'Een rijbewijs halen is geen gemakkelijke weg, en nog minder makkelijk is het vinden van een instructeur die zich aanpast aan jouw behoeften en zich inzet voor jouw succes. Dat is precies het type instructeur dat Peter is.\n\nPeter is een zeer geduldige en attente instructeur. Hij probeert je eerst als leerling te begrijpen om te bepalen wat het beste bij je past in je leertraject en stemt de training af op jouw behoeften. Tegelijkertijd zorgt hij ervoor dat de sfeer in de auto prettig is en probeert hij je altijd te laten ontspannen, zodat je optimaal kunt rijden. Hij weet dat zelfvertrouwen en rijtechniek hand in hand gaan, dus werkt hij met je samen zodat je in de toekomst een geweldige, zelfstandige bestuurder kunt worden. Zoals Peter zegt: "Ik wil niet alleen dat mijn leerlingen slagen voor hun examen, ik wil dat ze slagen voor hun examen én de meest capabele bestuurders worden die ze kunnen zijn; die elke situatie op de weg aankunnen." Ik denk dat dat alles zegt wat je over Peter moet weten. :)\n\nBedankt Peter voor je vertrouwen in mij en voor je geweldige begeleiding! Ik wens je veel succes in de toekomst!',
-    photo: '/reviews/alecia.webp',
+    text: 'Ik volg bij Peter de opfriscursus voor mijn rijangst. Al langere tijd lukt het niet om zonder angst op een prettige manier in de auto te zitten. Bij de eerste les stelde Peter mij gelijk op mijn gemak en spraken we van te voren af wat wel en niet lukte. Inmiddels ben ik 3 rijlessen verder en zit ik al een stuk comfortabeler in de auto. Peter is rustig en kan goed begeleiden. Hij luistert naar wat moeilijk is en komt met een oplossing. Ik heb er vertrouwen in dat ik mijn doel door Peter kan halen. Ik kan iedereen een opfriscursus via Peter aanbevelen',
+    photo: '/reviews/monique.png',
     date: '',
   },
   {
-    name: 'Kartik Veerakumar',
+    name: 'Brigitta Hendriks',
     rating: 5,
-    text: 'Peter is een erg goede instructeur. Hij heeft me uitstekend begeleid en me alle tips gegeven om te slagen voor het examen. Hij is beleefd, vriendelijk en empathisch. Ik beveel hem van harte aan als je je rijbewijs wilt halen.',
-    photo: '/reviews/kartiq.webp',
+    text: 'Prima les gehad, alle lof. Ik heb les genomen om meer zelfvertrouwen te krijgen en dat is gelukt.',
+    photo: '/reviews/brigitta.png',
     date: '',
   },
 ];

@@ -2,8 +2,9 @@
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
 
-const green = '#223927';
-const gold  = '#ac884d';
+const green        = '#223927';
+const gold         = '#ac884d';
+const inschrijfUrl = 'https://startmetjerijbewijs.nl/rij-vrij/inschrijven';
 ---
 
 <Layout
@@ -133,7 +134,7 @@ const gold  = '#ac884d';
             </a>
 
             <a
-              href="/#opfrisles-cta"
+              href={inschrijfUrl} target="_blank" rel="noopener noreferrer"
               class="btn-primary w-full justify-center text-center py-4"
             >
               <Icon name="calendar-check" style="font-size:13px" />
